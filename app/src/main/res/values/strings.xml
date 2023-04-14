@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Todays Application</string>
+    <string name="app_name">오늘은</string>
+    <string name="toolbarName">커뮤니티</string>
+    <string name="title_name">Title Name</string>
 </resources>
