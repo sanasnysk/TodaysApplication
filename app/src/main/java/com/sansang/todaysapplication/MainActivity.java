@@ -9,12 +9,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.Toolbar;
 
-import com.sansang.todaysapplication.Teams.TeamAddActivity;
+import com.sansang.todaysapplication.Teams.TeamListActivity;
 
 public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
 
@@ -23,16 +21,18 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-                
+
         initToolbarView();
     }
 
     @SuppressLint("SetTextI18n")
     private void initToolbarView() {
         Toolbar communityToolbar = findViewById(R.id.mainCustomToolbar);
+        communityToolbar.setTitle("홈 오늘은");
         setSupportActionBar(communityToolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+
         communityToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                 return true;
 
             case R.id.team_list_option:
-                Intent intent_teamadd = new Intent(getApplicationContext(), TeamAddActivity.class);
+                Intent intent_teamadd = new Intent(getApplicationContext(), TeamListActivity.class);
                 startActivity(intent_teamadd);
                 finish();
 

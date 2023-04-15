@@ -5,4 +5,15 @@
     <string name="teamAdd">팀 리더 추가</string>
     <string name="save">save</string>
     <string name="addsearch">add search</string>
+    <string name="id">id</string>
+    <string name="teamid">teamId</string>
+    <string name="team_id">Team Id</string>
+    <string name="teamleader">TeamLeader</string>
+    <string name="team_leader">Team Leader</string>
+    <string name="teamphone">teamPhone</string>
+    <string name="team_phone">Team Phone</string>
+    <string name="teamdate">teamDate</string>
+    <string name="team_date">Team Date</string>
+    <string name="teammemo">teamMemo</string>
+    <string name="team_memo">Team Memo</string>
 </resources>
