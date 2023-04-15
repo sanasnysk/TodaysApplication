@@ -2,4 +2,7 @@
     <string name="app_name">오늘은</string>
     <string name="toolbarName">커뮤니티</string>
     <string name="title_name">Title Name</string>
+    <string name="teamAdd">팀 리더 추가</string>
+    <string name="save">save</string>
+    <string name="addsearch">add search</string>
 </resources>

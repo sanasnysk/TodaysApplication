@@ -29,43 +29,19 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
 
     @SuppressLint("SetTextI18n")
     private void initToolbarView() {
-        Toolbar toolbar = findViewById(R.id.toolbar_custom);
-        toolbar.setTitle("");
-        setSupportActionBar(toolbar);
+        Toolbar communityToolbar = findViewById(R.id.mainCustomToolbar);
+        setSupportActionBar(communityToolbar);
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(false);
-        
-        AppCompatImageView img_popup = findViewById(R.id.popup_iv);
-        img_popup.setOnClickListener(new View.OnClickListener() {
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        communityToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                PopupMenu popup = new PopupMenu(MainActivity.this, view);
+            public void onClick(View v) {
+                PopupMenu popup = new PopupMenu(MainActivity.this, v);
                 popup.inflate(R.menu.main_toolbar_menu);
                 popup.setOnMenuItemClickListener(MainActivity.this);
                 popup.show();
             }
         });
-
-        AppCompatTextView txt_title = findViewById(R.id.custom_tv);
-        txt_title.setText("Main Activity Toolbar");
-
-        AppCompatImageView img_setting = findViewById(R.id.setting_iv);
-        img_setting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "설정을 선택하였습나다.", Toast.LENGTH_SHORT).show();
-            }
-        });
-        
-        AppCompatImageView img_notification = findViewById(R.id.notification_iv);
-        img_notification.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "알림을 선택하였습나다.", Toast.LENGTH_SHORT).show();
-            }
-        });
-        
-        
     }
 
     @SuppressLint("NonConstantResourceId")
