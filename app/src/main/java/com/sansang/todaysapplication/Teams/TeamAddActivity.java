@@ -3,6 +3,7 @@ package com.sansang.todaysapplication.Teams;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,6 +17,8 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.sansang.todaysapplication.Database.TodayDatabase;
+import com.sansang.todaysapplication.DatabaseController.TeamController;
 import com.sansang.todaysapplication.R;
 
 import java.text.SimpleDateFormat;
@@ -29,9 +32,9 @@ public class TeamAddActivity extends AppCompatActivity {
     Date mDate;
     @SuppressLint("SimpleDateFormat")
     SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-    private EditText etxt_id,etxt_tmid,etxt_tmleader,etxt_tmphone,etxt_tmdate,etxt_tmmemo;
-    //private TeamDatabase teamDB;
-    //private TeamControl teamControl;
+    private EditText etxt_tmid,etxt_tmleader,etxt_tmmobile,etxt_tmdate,etxt_tmmemo;
+    private TodayDatabase todayDatabase;
+    private TeamController teamController;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -59,22 +62,23 @@ public class TeamAddActivity extends AppCompatActivity {
         DateTime();
     }
 
+    @SuppressLint("SetTextI18n")
     private void teamAutoId() {
-        /*
-        teamControl.open();
-        final Cursor cus = teamControl.teamAutoId();
+
+        teamController.open();
+        final Cursor cus = teamController.teamAutoId();
         final int rows = cus.getCount();
-        String teamId = "t_";
+        String teamId = "tm_";
         int idNo = 1;
 
         if (rows == 0){
-            editText_tid.setText( "t_" + idNo );
+            etxt_tmid.setText( teamId + idNo );
         }else {
             int r = cus.getInt( 0 );
             int rid = idNo + r;
-            editText_tid.setText(teamId + rid);
+            etxt_tmid.setText(teamId + rid);
         }
-        */
+
     }
 
 
@@ -92,13 +96,12 @@ public class TeamAddActivity extends AppCompatActivity {
             }
         });
 
-        //teamDB = new TeamDatabase( this );
-        //teamControl = new TeamControl( this );
+        todayDatabase = new TodayDatabase( this );
+        teamController = new TeamController( this );
 
-        etxt_id = findViewById(R.id.tid_etxt);
         etxt_tmid = findViewById(R.id.tmId_etxt);
         etxt_tmleader = findViewById(R.id.tmLeader_etxt);
-        etxt_tmphone = findViewById(R.id.tmPhone_etxt);
+        etxt_tmmobile = findViewById(R.id.tmMobile_etxt);
         etxt_tmdate = findViewById(R.id.tmDate_etxt);
         etxt_tmmemo = findViewById(R.id.tmMemo_etxt);
 
@@ -108,26 +111,11 @@ public class TeamAddActivity extends AppCompatActivity {
         etxt_tmdate.setFocusable( false );
         etxt_tmdate.setText(DateTime());
 
-        //Result Intent Data
-        Intent positionIntent = getIntent();
-
-        int rid = 1;
-        String tmid = "t_1";
-        String leader = "sanda";
-        String mobile = "000-0000-0000";
-        String date = "2023-01-01";
-        String memo = "test";
-//        String leader = positionIntent.getExtras().getString( "leader" ); //String 형
-//        String phone = positionIntent.getExtras().getString( "mobile" ); //String 형
-//        String tDate = positionIntent.getExtras().getString( "date" ); //String 형
-//        String memo = positionIntent.getExtras().getString( "memo" ); //String 형
-
-        etxt_tmid.setText( tmid );
-        etxt_tmleader.setText( leader );
-        etxt_tmphone.setText( mobile );
-        etxt_tmdate.setText( date );
-        etxt_tmmemo.setText( memo );
-        etxt_id.setText( String.valueOf( rid ) );
+        etxt_tmid.setText( "" );
+        etxt_tmleader.setText( "" );
+        etxt_tmmobile.setText( "" );
+        etxt_tmdate.setText( "" );
+        etxt_tmmemo.setText( "" );
     }
 
     public void goToMainActivity(){
@@ -176,13 +164,36 @@ public class TeamAddActivity extends AppCompatActivity {
             case R.id.toolbar_save_team:
                 Toast.makeText(getApplicationContext(), "저장 버튼 클릭", Toast.LENGTH_SHORT).show();
 
+                if (etxt_tmleader.length() == 0 || etxt_tmmobile.length() == 0){
+                    Toast.makeText(this,
+                            "팀 또는 회사이름, 전화번호를 입력하세요.", Toast.LENGTH_SHORT).show();
+                }else {
+                    String tid = etxt_tmid.getText().toString();
+                    String leader = etxt_tmleader.getText().toString();
+                    String mobile = etxt_tmmobile.getText().toString();
+                    String date = etxt_tmdate.getText().toString();
+                    String memo = etxt_tmmemo.getText().toString();
+
+                    teamController.open();
+                    teamController.insertTeam(tid,leader,mobile,date,memo);
+
+                    Toast.makeText( getApplicationContext(),
+                            "새로운 데이터를 저장 했습니다.", Toast.LENGTH_SHORT ).show();
+
+                    teamController.close();
+
+                    Intent intent = new Intent(getApplicationContext(), TeamListActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+                return true;
+
+            case R.id.toolbar_close_team:
+                Toast.makeText(getApplicationContext(),
+                        "팀 추가를 닫습니다.", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), TeamListActivity.class);
                 startActivity(intent);
                 finish();
-                return true;
-
-            case R.id.toolbar_search_team:
-                Toast.makeText(getApplicationContext(), "검색 버튼 클릭", Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

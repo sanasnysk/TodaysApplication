@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.sansang.todaysapplication.Contents.TeamContents;
 import com.sansang.todaysapplication.R;
 import com.sansang.todaysapplication.Teams.TeamAddActivity;
-import com.sansang.todaysapplication.Teams.TeamListActivity;
+import com.sansang.todaysapplication.Teams.TeamEditActivity;
 
 import java.util.ArrayList;
 
@@ -43,17 +43,20 @@ public class TeamsAdapter extends RecyclerView.Adapter<TeamsAdapter.ViewHolder> 
         holder.team_leader.setText(mList.get(position).getTeamLeader());
         holder.team_mobile.setText(mList.get(position).getTeamPhone());
         holder.team_date.setText(mList.get(position).getTeamDate());
+        holder.team_memo.setText(mList.get(position).getTeamMemo());
+        holder.team_id.setText(mList.get(position).getId());
+        holder.team_tid.setText(mList.get(position).getTeamId());
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick( View v ) {
-                Intent teamTable = new Intent(v.getContext(), TeamAddActivity.class);
-                teamTable.putExtra("team_leader", mList.get(position).getTeamLeader());
-                v.getContext().startActivity(teamTable);
-
-                ((Activity) v.getContext()).finish();
-            }
-        });
+//        holder.itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick( View v ) {
+//                Intent teamTable = new Intent(v.getContext(), TeamAddActivity.class);
+//                teamTable.putExtra("team_leader", mList.get(position).getTeamLeader());
+//                v.getContext().startActivity(teamTable);
+//
+//                ((Activity) v.getContext()).finish();
+//            }
+//        });
 
     }
 
@@ -63,17 +66,16 @@ public class TeamsAdapter extends RecyclerView.Adapter<TeamsAdapter.ViewHolder> 
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
-        TextView team_leader;
-        TextView team_mobile;
-        TextView team_date;
-        TextView team_memo;
+        TextView team_id, team_tid, team_leader, team_mobile, team_date, team_memo;
 
         public ViewHolder( @NonNull View itemView ) {
             super(itemView);
-            this.team_leader = itemView.findViewById(R.id.team_leader_name);
-            this.team_mobile = itemView.findViewById(R.id.team_mobile_no);
-            this.team_date = itemView.findViewById(R.id.team_date_day);
-            this.team_memo = itemView.findViewById(R.id.team_memo_mo);
+            this.team_id = itemView.findViewById(R.id.team_list_id);
+            this.team_tid = itemView.findViewById(R.id.team_list_tid);
+            this.team_leader = itemView.findViewById(R.id.team_list_name);
+            this.team_mobile = itemView.findViewById(R.id.team_list_mobile);
+            this.team_date = itemView.findViewById(R.id.team_list_date);
+            this.team_memo = itemView.findViewById(R.id.team_list_memo);
 
             itemView.setOnCreateContextMenuListener(this);
         }
@@ -107,7 +109,10 @@ public class TeamsAdapter extends RecyclerView.Adapter<TeamsAdapter.ViewHolder> 
                         break;
 
                     case 1002:
-                        Intent editIntent = new Intent(itemView.getContext(), TeamAddActivity.class);
+                        Intent editIntent = new Intent(itemView.getContext(), TeamEditActivity.class);
+
+                        editIntent.putExtra("id", team_id.getText().toString());
+                        editIntent.putExtra("tid", team_tid.getText().toString());
                         editIntent.putExtra("leader", team_leader.getText().toString());
                         editIntent.putExtra("mobile", team_mobile .getText().toString());
                         editIntent.putExtra("date", team_date.getText().toString());

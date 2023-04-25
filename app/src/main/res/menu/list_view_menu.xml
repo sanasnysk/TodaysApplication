@@ -4,16 +4,11 @@
     <item
         android:id="@+id/recyclerview_add_menu"
         android:icon="@drawable/ic_add"
-        android:title="@string/save"
-        app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/recyclerview_edit_menu"
-        android:icon="@drawable/ic_edit"
-        android:title="@string/save"
+        android:title="@string/add"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/recyclerview_home_menu"
         android:icon="@drawable/ic_home"
-        android:title="@string/addsearch"
-        app:showAsAction="always" />
+        android:title="@string/home"
+        app:showAsAction="ifRoom" />
 </menu>

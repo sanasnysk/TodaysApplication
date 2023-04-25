@@ -12,6 +12,9 @@
         android:theme="@style/Theme.TodaysApplication"
         tools:targetApi="31">
         <activity
+            android:name=".Teams.TeamEditActivity"
+            android:exported="false" />
+        <activity
             android:name=".Teams.TeamListActivity"
             android:exported="false" />
         <activity

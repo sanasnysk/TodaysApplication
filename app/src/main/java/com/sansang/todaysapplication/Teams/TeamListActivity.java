@@ -1,12 +1,5 @@
 package com.sansang.todaysapplication.Teams;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -14,9 +7,19 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.sansang.todaysapplication.Adapter.TeamsAdapter;
 import com.sansang.todaysapplication.Contents.TeamContents;
+import com.sansang.todaysapplication.Database.TodayDatabase;
+import com.sansang.todaysapplication.DatabaseController.TeamController;
 import com.sansang.todaysapplication.MainActivity;
 import com.sansang.todaysapplication.R;
 
@@ -24,76 +27,61 @@ import java.util.ArrayList;
 
 public class TeamListActivity extends AppCompatActivity {
     private ArrayList<TeamContents> list;
-    private RecyclerView mRecyclerView;
+    private RecyclerView rv_team;
     private TeamsAdapter teamsAdapter;
-    //TeamDatabase db;
-    //SQLiteDatabase sql;
-    //TeamControl teamControl;
+    TodayDatabase todayDatabase;
+    SQLiteDatabase sqLiteDatabase;
+    TeamController teamController;
     private final int count = -1;
     RecyclerView.LayoutManager layoutManager;
 
-    private RecyclerView rv_team;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_team_list);
 
         initView();
+
+        todayDatabase = new TodayDatabase(this);
+        teamController = new TeamController(this);
+        sqLiteDatabase = todayDatabase.getReadableDatabase();
+
+        rv_team = findViewById(R.id.recyclerview_team);
+        rv_team.setHasFixedSize(true);
+
+        layoutManager = new LinearLayoutManager(this);
+        ((LinearLayoutManager) layoutManager).setReverseLayout(true);
+        ((LinearLayoutManager) layoutManager).setStackFromEnd(true);
+        rv_team.setLayoutManager(layoutManager);
+
+        getTeamRecyclerView();
     }
 
     @SuppressLint("CutPasteId")
     private void initView() {
-        rv_team = findViewById(R.id.recyclerview_team);
-
-        Toolbar communityToolbar = findViewById(R.id.customToolbar);
-        communityToolbar.setTitle("팀 리스트 확인");
-        setSupportActionBar(communityToolbar);
+        Toolbar listToolbar = findViewById(R.id.customToolbar);
+        listToolbar.setTitle("팀 리스트 확인");
+        setSupportActionBar(listToolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        communityToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        listToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goToMainActivity();
             }
         });
 
-        //db = new TeamDatabase(this);
-        //teamControl = new TeamControl(this);
-        //sql = db.getReadableDatabase();
-
-        mRecyclerView = findViewById(R.id.recyclerview_team);
-        mRecyclerView.setHasFixedSize(true);
-
-        layoutManager = new LinearLayoutManager(this);
-        ((LinearLayoutManager) layoutManager).setReverseLayout(true);
-        ((LinearLayoutManager) layoutManager).setStackFromEnd(true);
-
-        mRecyclerView.setLayoutManager(layoutManager);
-
-        getTeamRecyclerView();
-
     }
 
     @SuppressLint("NotifyDataSetChanged")
     private void getTeamRecyclerView(){
         list = new ArrayList<>();
-        //teamControl.open();
-        //list = teamControl.getList();
-
-        TeamContents teams = new TeamContents();
-        teams.setId("1");
-        teams.setTeamId("t_1");
-        teams.setTeamLeader("sanda");
-        teams.setTeamPhone("000-0001-0001");
-        teams.setTeamDate("2023-01-01");
-        teams.setTeamMemo("test");
-
-        list.add(teams);
-
+        teamController.open();
+        list = teamController.getList();
 
         teamsAdapter = new TeamsAdapter(this.list);
-        mRecyclerView.setAdapter(teamsAdapter);
+        rv_team.setAdapter(teamsAdapter);
         teamsAdapter.notifyDataSetChanged();
 
     }
@@ -117,16 +105,15 @@ public class TeamListActivity extends AppCompatActivity {
             case R.id.recyclerview_add_menu:
                 Intent intent_add = new Intent(getApplicationContext(), TeamAddActivity.class);
                 startActivity(intent_add);
+
+                Toast.makeText(getApplicationContext(),
+                        "팀 추가하기로 이동합니다.", Toast.LENGTH_SHORT).show();
                 finish();
                 return true;
-            case R.id.recyclerview_edit_menu:
-                Intent intent_edit = new Intent(getApplicationContext(), TeamAddActivity.class);
-                startActivity(intent_edit);
-                finish();
-                return true;
+
             case R.id.recyclerview_home_menu:
-                Intent intent_search = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent_search);
+                Intent intent_home = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent_home);
                 finish();
                 return true;
             default:
