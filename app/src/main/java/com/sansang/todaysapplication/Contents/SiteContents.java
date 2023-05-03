@@ -8,23 +8,23 @@ public class SiteContents {
     String sitePay;
     String siteManager;
     String siteDate;
+    String siteMemo;
     String teamLeader;
     String teamId; //teamLeader 로 표시
-    String siteMemo;
 
     public SiteContents() {
     }
 
-    public SiteContents(String id, String siteId, String siteName, String sitePay, String siteManager, String siteDate, String teamLeader, String teamId, String siteMemo) {
+    public SiteContents(String id, String siteId, String siteName, String sitePay, String siteManager, String siteDate, String siteMemo, String teamLeader, String teamId) {
         this.id = id;
         this.siteId = siteId;
         this.siteName = siteName;
         this.sitePay = sitePay;
         this.siteManager = siteManager;
         this.siteDate = siteDate;
+        this.siteMemo = siteMemo;
         this.teamLeader = teamLeader;
         this.teamId = teamId;
-        this.siteMemo = siteMemo;
     }
 
     public String getId() {
@@ -75,6 +75,14 @@ public class SiteContents {
         this.siteDate = siteDate;
     }
 
+    public String getSiteMemo() {
+        return siteMemo;
+    }
+
+    public void setSiteMemo(String siteMemo) {
+        this.siteMemo = siteMemo;
+    }
+
     public String getTeamLeader() {
         return teamLeader;
     }
@@ -91,11 +99,4 @@ public class SiteContents {
         this.teamId = teamId;
     }
 
-    public String getSiteMemo() {
-        return siteMemo;
-    }
-
-    public void setSiteMemo(String siteMemo) {
-        this.siteMemo = siteMemo;
-    }
 }

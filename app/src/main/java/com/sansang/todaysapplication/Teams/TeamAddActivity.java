@@ -31,7 +31,8 @@ public class TeamAddActivity extends AppCompatActivity {
     long mNow;
     Date mDate;
     @SuppressLint("SimpleDateFormat")
-    SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd");
+    //SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
     private EditText etxt_tmid,etxt_tmleader,etxt_tmmobile,etxt_tmdate,etxt_tmmemo;
     private TodayDatabase todayDatabase;
     private TeamController teamController;
@@ -43,20 +44,6 @@ public class TeamAddActivity extends AppCompatActivity {
         setContentView(R.layout.activity_team_add);
 
         initView();
-
-        //EditText Date Click
-        etxt_tmdate.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Get Current Date
-                @SuppressLint({"NewApi", "LocalSuppress"}) final Calendar c = Calendar.getInstance();
-                mYear = c.get( Calendar.YEAR );
-                mMonth = c.get( Calendar.MONTH );
-                mDay = c.get( Calendar.DAY_OF_MONTH );
-
-                DatePickerDialog();
-            }
-        } );
 
         teamAutoId();
         DateTime();
@@ -92,7 +79,7 @@ public class TeamAddActivity extends AppCompatActivity {
         communityToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToMainActivity();
+                goToTeamListActivity();
             }
         });
 
@@ -111,14 +98,10 @@ public class TeamAddActivity extends AppCompatActivity {
         etxt_tmdate.setFocusable( false );
         etxt_tmdate.setText(DateTime());
 
-        etxt_tmid.setText( "" );
-        etxt_tmleader.setText( "" );
-        etxt_tmmobile.setText( "" );
-        etxt_tmdate.setText( "" );
-        etxt_tmmemo.setText( "" );
+        dateChange();
     }
 
-    public void goToMainActivity(){
+    public void goToTeamListActivity(){
         Intent intent = new Intent(getApplicationContext(), TeamListActivity.class);
         startActivity(intent);
         finish();
@@ -128,6 +111,20 @@ public class TeamAddActivity extends AppCompatActivity {
         mNow = System.currentTimeMillis();
         mDate = new Date(mNow);
         return mFormat.format(mDate);
+    }
+
+    private void dateChange(){
+        etxt_tmdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar calendar = Calendar.getInstance();
+                mYear = calendar.get(Calendar.YEAR);
+                mMonth = calendar.get(Calendar.MONTH);
+                mDay = calendar.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog();
+            }
+        });
     }
 
     private void DatePickerDialog() {
@@ -161,7 +158,7 @@ public class TeamAddActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.toolbar_save_team:
+            case R.id.toolbar_save_add:
                 Toast.makeText(getApplicationContext(), "저장 버튼 클릭", Toast.LENGTH_SHORT).show();
 
                 if (etxt_tmleader.length() == 0 || etxt_tmmobile.length() == 0){
@@ -188,7 +185,7 @@ public class TeamAddActivity extends AppCompatActivity {
                 }
                 return true;
 
-            case R.id.toolbar_close_team:
+            case R.id.toolbar_close_add:
                 Toast.makeText(getApplicationContext(),
                         "팀 추가를 닫습니다.", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), TeamListActivity.class);
@@ -196,7 +193,7 @@ public class TeamAddActivity extends AppCompatActivity {
                 finish();
                 return true;
             default:
-                return super.onOptionsItemSelected(item);
+                return false;
         }
     }
 

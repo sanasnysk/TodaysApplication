@@ -1,4 +1,4 @@
-package com.sansang.todaysapplication.Teams;
+package com.sansang.todaysapplication.Sites;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -16,44 +16,35 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.sansang.todaysapplication.Adapter.TeamsAdapter;
-import com.sansang.todaysapplication.Contents.TeamContents;
+import com.sansang.todaysapplication.Adapter.SitesAdapter;
+import com.sansang.todaysapplication.Contents.SiteContents;
 import com.sansang.todaysapplication.Database.TodayDatabase;
-import com.sansang.todaysapplication.DatabaseController.TeamController;
+import com.sansang.todaysapplication.DatabaseController.SiteController;
 import com.sansang.todaysapplication.R;
 
 import java.util.ArrayList;
 
-public class TeamListActivity extends AppCompatActivity {
-    private ArrayList<TeamContents> list;
-    private RecyclerView rv_team;
-    private TeamsAdapter teamsAdapter;
+public class SiteListActivity extends AppCompatActivity {
+    private ArrayList<SiteContents> list;
+    private RecyclerView mRecyclerView;
+    private SitesAdapter sitesAdapter;
     TodayDatabase todayDatabase;
     SQLiteDatabase sqLiteDatabase;
-    TeamController teamController;
+    SiteController siteController;
     private final int count = -1;
     RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_team_list);
+        setContentView(R.layout.activity_site_list);
+
+        todayDatabase = new TodayDatabase(this);
+        sqLiteDatabase = todayDatabase.getReadableDatabase();
+        siteController = new SiteController(this);
 
         initView();
 
-        todayDatabase = new TodayDatabase(this);
-        teamController = new TeamController(this);
-        sqLiteDatabase = todayDatabase.getReadableDatabase();
-
-        rv_team = findViewById(R.id.recyclerview_team);
-        rv_team.setHasFixedSize(true);
-
-        layoutManager = new LinearLayoutManager(this);
-        ((LinearLayoutManager) layoutManager).setReverseLayout(true);
-        ((LinearLayoutManager) layoutManager).setStackFromEnd(true);
-        rv_team.setLayoutManager(layoutManager);
-
-        getTeamRecyclerView();
     }
 
     @SuppressLint("CutPasteId")
@@ -71,17 +62,16 @@ public class TeamListActivity extends AppCompatActivity {
             }
         });
 
-    }
+        mRecyclerView = findViewById(R.id.recyclerview_site);
+        mRecyclerView.setHasFixedSize(true);
 
-    @SuppressLint("NotifyDataSetChanged")
-    private void getTeamRecyclerView(){
-        list = new ArrayList<>();
-        teamController.open();
-        list = teamController.getList();
+        layoutManager = new LinearLayoutManager(this);
+        ((LinearLayoutManager) layoutManager).setReverseLayout(true);
+        ((LinearLayoutManager) layoutManager).setStackFromEnd(true);
 
-        teamsAdapter = new TeamsAdapter(this.list);
-        rv_team.setAdapter(teamsAdapter);
-        teamsAdapter.notifyDataSetChanged();
+        mRecyclerView.setLayoutManager(layoutManager);
+
+        getSiteRecyclerView();
 
     }
 
@@ -89,6 +79,18 @@ public class TeamListActivity extends AppCompatActivity {
 
         finish();
     }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private void getSiteRecyclerView(){
+        list = new ArrayList<>();
+        siteController.open();
+        list = siteController.getAllSiteList();
+
+        sitesAdapter = new SitesAdapter(this.list);
+        mRecyclerView.setAdapter(sitesAdapter);
+        sitesAdapter.notifyDataSetChanged();
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -101,12 +103,20 @@ public class TeamListActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.toolbar_add_list:
-                Intent intent_add = new Intent(getApplicationContext(), TeamAddActivity.class);
+                Intent intent_add = new Intent(getApplicationContext(), SiteAddActivity.class);
                 startActivity(intent_add);
 
                 Toast.makeText(getApplicationContext(),
                         "팀 추가하기로 이동합니다.", Toast.LENGTH_SHORT).show();
                 finish();
+                return true;
+
+            case R.id.toolbar_table_list:
+                Intent intent_table = new Intent(getApplicationContext(), SiteTableActivity.class);
+                intent_table.putExtra("tmLeader", sitesAdapter.getItemId(1));
+                startActivity(intent_table);
+                finish();
+
                 return true;
 
             case R.id.toolbar_close_list:

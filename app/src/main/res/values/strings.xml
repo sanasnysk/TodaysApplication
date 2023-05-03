@@ -19,4 +19,16 @@
     <string name="수정">수정하기</string>
     <string name="삭제">삭제하기</string>
     <string name="종료">종료하기</string>
+    <string name="stid">stId</string>
+    <string name="siteName">Site Name</string>
+    <string name="sitePay">Site Pay</string>
+    <string name="siteDate">Site Date</string>
+    <string name="siteManager">Manager</string>
+    <string name="siteMemo">Site Memo</string>
+    <string name="teamLeader">Leader</string>
+    <string name="teamSpinner">팀을 선택하세요?</string>
+    <string name="table">table</string>
+    <string name="현장추가">현장 추가</string>
+    <string name="새로고침">새로고침</string>
+    <string name="현장닫기">현장 닫기</string>
 </resources>

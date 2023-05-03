@@ -12,6 +12,18 @@
         android:theme="@style/Theme.TodaysApplication"
         tools:targetApi="31">
         <activity
+            android:name=".Sites.SiteTableActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Sites.SiteListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Sites.SiteEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Sites.SiteAddActivity"
+            android:exported="false" />
+        <activity
             android:name=".Teams.TeamEditActivity"
             android:exported="false" />
         <activity

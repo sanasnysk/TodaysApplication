@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Sites.SiteAddActivity">
+
+    <include
+        android:id="@+id/custom_tb"
+        layout="@layout/custom_toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_add"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/yellow_light"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/custom_tb">
+
+        <TextView
+            android:id="@+id/stId_txt"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/blue_200"
+            android:padding="2dp"
+            android:text="@string/stid"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="VisualLintOverlap" />
+
+        <EditText
+            android:id="@+id/stId_add_etxt"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="8dp"
+            android:hint="@string/stid"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:focusable="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/stId_txt"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck,VisualLintOverlap" />
+
+        <TextView
+            android:id="@+id/stName_txt"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="17dp"
+            android:background="@color/blue_200"
+            android:padding="2dp"
+            android:text="@string/siteName"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/stId_txt"
+            tools:ignore="TextSizeCheck" />
+
+        <EditText
+            android:id="@+id/stName_add_etxt"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="8dp"
+            android:hint="@string/siteName"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/stName_txt"
+            app:layout_constraintTop_toBottomOf="@id/stId_add_etxt"
+            tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/stPay_txt"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="17dp"
+            android:background="@color/blue_200"
+            android:padding="2dp"
+            android:text="@string/sitePay"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/stName_txt" />
+
+        <EditText
+            android:id="@+id/stPay_add_etxt"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="8dp"
+            android:hint="@string/sitePay"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/stPay_txt"
+            app:layout_constraintTop_toBottomOf="@id/stName_add_etxt"
+            tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/stManager_txt"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="17dp"
+            android:background="@color/blue_200"
+            android:padding="2dp"
+            android:text="@string/siteManager"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/stPay_txt"
+            tools:ignore="TextSizeCheck" />
+
+        <EditText
+            android:id="@+id/stManager_add_etxt"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="8dp"
+            android:hint="@string/siteManager"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/stManager_txt"
+            app:layout_constraintTop_toBottomOf="@id/stPay_add_etxt"
+            tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/stDate_txt"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="17dp"
+            android:background="@color/blue_200"
+            android:padding="2dp"
+            android:text="@string/siteDate"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/stManager_txt"
+            tools:ignore="TextSizeCheck" />
+
+        <EditText
+            android:id="@+id/stDate_add_etxt"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="8dp"
+            android:hint="@string/siteDate"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:focusable="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/stDate_txt"
+            app:layout_constraintTop_toBottomOf="@id/stManager_add_etxt"
+            tools:ignore="DuplicateSpeakableTextCheck,TextFields,TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/stMemo_txt"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="17dp"
+            android:background="@color/blue_200"
+            android:padding="2dp"
+            android:text="@string/siteMemo"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/stDate_txt"
+            tools:ignore="TextSizeCheck" />
+
+        <EditText
+            android:id="@+id/stMemo_add_etxt"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="8dp"
+            android:hint="@string/siteMemo"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/stMemo_txt"
+            app:layout_constraintTop_toBottomOf="@id/stDate_add_etxt"
+            tools:ignore="DuplicateSpeakableTextCheck,TextFields,TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/tmId_st_txt"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="17dp"
+            android:background="@color/blue_200"
+            android:padding="2dp"
+            android:text="@string/tmid"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/stMemo_txt"
+            tools:ignore="TextSizeCheck" />
+
+        <EditText
+            android:id="@+id/tmId_st_add_etxt"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="8dp"
+            android:hint="@string/tmid"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:focusable="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tmId_st_txt"
+            app:layout_constraintTop_toBottomOf="@id/stMemo_add_etxt"
+            tools:ignore="DuplicateSpeakableTextCheck,TextFields,TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/tmLeader_st_txt"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="17dp"
+            android:background="@color/blue_200"
+            android:padding="2dp"
+            android:text="@string/teamLeader"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tmId_st_txt"
+            tools:ignore="TextSizeCheck" />
+
+        <EditText
+            android:id="@+id/tmLeader_st_add_etxt"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="8dp"
+            android:hint="@string/teamLeader"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:focusable="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tmLeader_st_txt"
+            app:layout_constraintTop_toBottomOf="@id/tmId_st_add_etxt"
+            tools:ignore="DuplicateSpeakableTextCheck,TextFields,TouchTargetSizeCheck" />
+
+        <LinearLayout
+            android:id="@+id/dialog_spinner_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/spinner_background"
+            android:layout_margin="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tmLeader_st_add_etxt">
+
+            <TextView
+                android:id="@+id/dialog_spinner_txt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:padding="10dp"
+                android:layout_weight="3.5"
+                android:text="@string/teamSpinner"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                tools:ignore="RtlCompat" />
+
+            <Button
+                android:id="@+id/btn_spinner_down"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight=".5"
+                android:background="@drawable/ic_dropdown"
+                tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck,ImageContrastCheck" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

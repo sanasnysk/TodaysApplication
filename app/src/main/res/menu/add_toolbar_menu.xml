@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/toolbar_save_team"
+        android:id="@+id/toolbar_save_add"
         android:icon="@drawable/ic_save"
         android:title="@string/save"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/toolbar_close_team"
+        android:id="@+id/toolbar_close_add"
         android:icon="@drawable/ic_close"
         android:title="@string/close"
         app:showAsAction="always" />

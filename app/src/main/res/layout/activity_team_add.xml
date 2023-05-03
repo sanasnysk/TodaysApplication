@@ -48,14 +48,14 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="8dp"
             android:hint="@string/tmid"
+            android:importantForAutofill="no"
+            android:inputType="text"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:inputType="text"
-            android:importantForAutofill="no"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tmId_txt"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="Autofill,NotSibling,TextFields,TouchTargetSizeCheck" />
+            tools:ignore="Autofill,NotSibling,TextFields,TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
 
         <TextView
             android:id="@+id/tmLeader_txt"
@@ -80,14 +80,14 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="8dp"
             android:hint="@string/leader"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:inputType="textPersonName"
-            android:importantForAutofill="no"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tmLeader_txt"
             app:layout_constraintTop_toBottomOf="@id/tmId_etxt"
-            tools:ignore="Autofill,TextFields,TouchTargetSizeCheck" />
+            tools:ignore="Autofill,TextFields,TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
 
         <TextView
             android:id="@+id/tmMobile_txt"
@@ -112,14 +112,14 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="8dp"
             android:hint="@string/mobile"
+            android:importantForAutofill="no"
+            android:inputType="text"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:inputType="text"
-            android:importantForAutofill="no"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tmMobile_txt"
             app:layout_constraintTop_toBottomOf="@id/tmLeader_etxt"
-            tools:ignore="Autofill,TextFields,TouchTargetSizeCheck" />
+            tools:ignore="Autofill,TextFields,TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
 
         <TextView
             android:id="@+id/tmDate_txt"
@@ -143,14 +143,14 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="8dp"
             android:hint="@string/date"
+            android:importantForAutofill="no"
+            android:inputType="text"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:inputType="text"
-            android:importantForAutofill="no"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tmDate_txt"
             app:layout_constraintTop_toBottomOf="@id/tmMobile_etxt"
-            tools:ignore="Autofill,TextFields,TouchTargetSizeCheck" />
+            tools:ignore="Autofill,TextFields,TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
 
         <TextView
             android:id="@+id/tmMemo_txt"
@@ -175,14 +175,14 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="8dp"
             android:hint="@string/memo"
+            android:importantForAutofill="no"
+            android:inputType="text"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:inputType="text"
-            android:importantForAutofill="no"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tmMemo_txt"
             app:layout_constraintTop_toBottomOf="@id/tmDate_etxt"
-            tools:ignore="Autofill,TextFields,TouchTargetSizeCheck" />
+            tools:ignore="Autofill,TextFields,TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

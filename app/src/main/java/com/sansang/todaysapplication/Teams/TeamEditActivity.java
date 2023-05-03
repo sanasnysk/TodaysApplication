@@ -41,8 +41,6 @@ public class TeamEditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_team_edit);
 
         initView();
-        DateTime();
-        dateChange();
     }
 
     private void initView() {
@@ -55,7 +53,7 @@ public class TeamEditActivity extends AppCompatActivity {
         editToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToMainActivity();
+                goToTeamListActivity();
             }
         });
 
@@ -74,6 +72,8 @@ public class TeamEditActivity extends AppCompatActivity {
         etxt_tmleader.requestFocus();
         etxt_tmdate.setFocusable( false );
         etxt_tmdate.setText(DateTime());
+
+        dateChange();
 
         //Result Intent Data
         Intent positionIntent = getIntent();
@@ -94,7 +94,7 @@ public class TeamEditActivity extends AppCompatActivity {
 
     }
 
-    public void goToMainActivity(){
+    public void goToTeamListActivity(){
         Intent intent = new Intent(getApplicationContext(), TeamListActivity.class);
         startActivity(intent);
         finish();
@@ -151,7 +151,7 @@ public class TeamEditActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.toolbar_edit_team:
+            case R.id.toolbar_edit_update:
                 String id = etxt_id.getText().toString();
                 String tid = etxt_tmid.getText().toString();
                 String tleader = etxt_tmleader.getText().toString();
@@ -173,13 +173,13 @@ public class TeamEditActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),
                             "팀 정보를 수정하지 못 했습니다.", Toast.LENGTH_SHORT).show();
 
-                    Intent intent = new Intent(getApplicationContext(), TeamListActivity.class);
-                    startActivity(intent);
+//                    Intent intent = new Intent(getApplicationContext(), TeamListActivity.class);
+//                    startActivity(intent);
                     finish();
                 }
                 return true;
 
-            case R.id.toolbar_delete_team:
+            case R.id.toolbar_delete_update:
                 String deleteid = etxt_id.getText().toString();
 
                 if (etxt_id.length() > 0){
@@ -194,15 +194,18 @@ public class TeamEditActivity extends AppCompatActivity {
                 }else {
                     Toast.makeText(getApplicationContext(),
                             "팀 정보를 삭제하지 못 했습니다.", Toast.LENGTH_SHORT).show();
-                    Intent intent_update = new Intent( getApplicationContext(), TeamListActivity.class );
-                    startActivity( intent_update );
+//                    Intent intent_update = new Intent( getApplicationContext(), TeamListActivity.class );
+//                    startActivity( intent_update );
                     finish();
                 }
                 return true;
 
-            case R.id.toolbar_close_team:
+            case R.id.toolbar_close_update:
                 Toast.makeText(getApplicationContext(),
                         "팀 수정하기를 닫습니다.", Toast.LENGTH_SHORT).show();
+                Intent intent_update = new Intent( getApplicationContext(), TeamListActivity.class );
+                startActivity( intent_update );
+                finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

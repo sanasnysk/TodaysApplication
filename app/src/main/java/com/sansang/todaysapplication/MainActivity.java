@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.Toolbar;
 
+import com.sansang.todaysapplication.Sites.SiteListActivity;
 import com.sansang.todaysapplication.Teams.TeamListActivity;
 
 public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
@@ -55,13 +56,17 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                 Toast.makeText(this, "income list go to", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.site_list_option:
-                Toast.makeText(this, "site list go to", Toast.LENGTH_SHORT).show();
+                Intent intent_siteList = new Intent(getApplicationContext(), SiteListActivity.class);
+                startActivity(intent_siteList);
+                //finish();
+
+                Toast.makeText(this, "site add go to", Toast.LENGTH_SHORT).show();
                 return true;
 
             case R.id.team_list_option:
                 Intent intent_teamadd = new Intent(getApplicationContext(), TeamListActivity.class);
                 startActivity(intent_teamadd);
-                finish();
+                //finish();
 
                 Toast.makeText(this, "team add go to", Toast.LENGTH_SHORT).show();
                 return true;
