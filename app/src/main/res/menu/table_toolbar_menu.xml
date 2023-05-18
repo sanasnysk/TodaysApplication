@@ -12,13 +12,13 @@
     <item
         android:id="@+id/toolbar_add_table"
         android:icon="@drawable/ic_add"
-        android:title="@string/현장추가"
+        android:title="@string/추가"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/toolbar_close_table"
         android:icon="@drawable/ic_close"
-        android:title="@string/현장닫기"
+        android:title="@string/닫기"
         app:showAsAction="never" />
 
 </menu>

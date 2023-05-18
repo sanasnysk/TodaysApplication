@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Incmoes.IncomeAddActivity">
+
+    <include
+        android:id="@+id/custom_tb"
+        layout="@layout/custom_toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/layout_add_1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="48dp"
+        android:background="@color/yellow_light"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/custom_tb"
+        tools:ignore="DisableBaselineAlignment,UselessLeaf">
+
+        <LinearLayout
+            android:id="@+id/layout_add_1_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="1dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            tools:ignore="RtlCompat,UselessParent,VisualLintBounds">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/text_background"
+                android:importantForAutofill="no"
+                android:padding="3dp"
+                android:text="icid"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                tools:ignore="HardcodedText,TextFields,RtlCompat,TextContrastCheck" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/text_background"
+                android:importantForAutofill="no"
+                android:padding="3dp"
+                android:text="일자"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                tools:ignore="HardcodedText,TextFields,RtlCompat,TextContrastCheck" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/text_background"
+                android:importantForAutofill="no"
+                android:padding="3dp"
+                android:text="리더"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                tools:ignore="HardcodedText,TextFields,RtlCompat,TextContrastCheck" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/text_background"
+                android:importantForAutofill="no"
+                android:padding="3dp"
+                android:text="수입"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                tools:ignore="HardcodedText,TextFields,RtlCompat,TextContrastCheck" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/text_background"
+                android:importantForAutofill="no"
+                android:padding="3dp"
+                android:text="세금"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                tools:ignore="HardcodedText,TextFields,RtlCompat,TextContrastCheck" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/text_background"
+                android:importantForAutofill="no"
+                android:padding="3dp"
+                android:text="메모"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                tools:ignore="HardcodedText,TextFields,RtlCompat,TextContrastCheck" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/text_background"
+                android:importantForAutofill="no"
+                android:padding="3dp"
+                android:text="@string/stid"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                tools:ignore="HardcodedText,TextFields,RtlCompat,TextContrastCheck" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/text_background"
+                android:importantForAutofill="no"
+                android:padding="3dp"
+                android:text="@string/tmid"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                tools:ignore="HardcodedText,TextFields,RtlCompat,TextContrastCheck" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_add_1_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="3"
+            android:orientation="vertical"
+            tools:ignore="RtlCompat">
+
+            <EditText
+                android:id="@+id/edtxt_income_add_icid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:focusable="false"
+                android:hint="@string/income_id"
+                android:inputType="text"
+                android:padding="3dp"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                tools:ignore="Autofill,DuplicateSpeakableTextCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+
+            <EditText
+                android:id="@+id/edtxt_income_add_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:focusable="false"
+                android:hint="@string/income_date"
+                android:inputType="text"
+                android:padding="3dp"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                tools:ignore="Autofill,DuplicateSpeakableTextCheck,TextFields,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+
+            <EditText
+                android:id="@+id/edtxt_income_add_leader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:enabled="true"
+                android:focusable="false"
+                android:hint="@string/team_leader"
+                android:inputType="text"
+                android:padding="3dp"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                tools:ignore="Autofill,DuplicateSpeakableTextCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+
+            <EditText
+                android:id="@+id/edtxt_income_add_deposit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:hint="@string/income_deposit"
+                android:inputType="numberDecimal"
+                android:padding="3dp"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                tools:ignore="Autofill,DuplicateSpeakableTextCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+
+            <EditText
+                android:id="@+id/edtxt_income_add_tax"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:enabled="true"
+                android:hint="@string/income_tax"
+                android:inputType="numberDecimal"
+                android:padding="3dp"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                tools:ignore="Autofill,DuplicateSpeakableTextCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+
+            <EditText
+                android:id="@+id/edtxt_income_add_memo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:enabled="true"
+                android:hint="@string/income_memo"
+                android:inputType="text"
+                android:padding="3dp"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                tools:ignore="Autofill,DuplicateSpeakableTextCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+
+            <EditText
+                android:id="@+id/edtxt_income_add_stid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:focusable="false"
+                android:hint="@string/stid"
+                android:inputType="text"
+                android:padding="3dp"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                tools:ignore="Autofill,DuplicateSpeakableTextCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+
+            <EditText
+                android:id="@+id/edtxt_income_add_tmid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:focusable="false"
+                android:hint="@string/tmid"
+                android:inputType="text"
+                android:padding="3dp"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                tools:ignore="Autofill,DuplicateSpeakableTextCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+
+            <LinearLayout
+                android:id="@+id/dialog_spinner_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:background="@drawable/spinner_background"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layout_add_1">
+
+                <TextView
+                    android:id="@+id/dialog_spinner_txt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="3.5"
+                    android:padding="10dp"
+                    android:text="@string/siteSpinner"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    tools:ignore="RtlCompat" />
+
+                <Button
+                    android:id="@+id/btn_spinner_down"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight=".5"
+                    android:background="@drawable/ic_dropdown"
+                    tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck,ImageContrastCheck" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

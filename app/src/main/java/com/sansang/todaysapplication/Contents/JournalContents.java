@@ -9,15 +9,17 @@ public class JournalContents {
     String journalOne;
     String sitePay;
     String journalAmount;
-    String siteId;
-    String teamId;
-    String teamLeader;
     String journalMemo;
+    String siteId;
+    String teamLeader;
+    String teamId;
+
+
 
     public JournalContents() {
     }
 
-    public JournalContents(String id, String journalId, String journalDate, String siteName, String journalOne, String sitePay, String journalAmount, String siteId, String teamId, String teamLeader, String journalMemo) {
+    public JournalContents(String id, String journalId, String journalDate, String siteName, String journalOne, String sitePay, String journalAmount, String journalMemo, String siteId, String teamLeader, String teamId) {
         this.id = id;
         this.journalId = journalId;
         this.journalDate = journalDate;
@@ -25,10 +27,10 @@ public class JournalContents {
         this.journalOne = journalOne;
         this.sitePay = sitePay;
         this.journalAmount = journalAmount;
-        this.siteId = siteId;
-        this.teamId = teamId;
-        this.teamLeader = teamLeader;
         this.journalMemo = journalMemo;
+        this.siteId = siteId;
+        this.teamLeader = teamLeader;
+        this.teamId = teamId;
     }
 
     public String getId() {
@@ -87,20 +89,20 @@ public class JournalContents {
         this.journalAmount = journalAmount;
     }
 
+    public String getJournalMemo() {
+        return journalMemo;
+    }
+
+    public void setJournalMemo(String journalMemo) {
+        this.journalMemo = journalMemo;
+    }
+
     public String getSiteId() {
         return siteId;
     }
 
     public void setSiteId(String siteId) {
         this.siteId = siteId;
-    }
-
-    public String getTeamId() {
-        return teamId;
-    }
-
-    public void setTeamId(String teamId) {
-        this.teamId = teamId;
     }
 
     public String getTeamLeader() {
@@ -111,11 +113,11 @@ public class JournalContents {
         this.teamLeader = teamLeader;
     }
 
-    public String getJournalMemo() {
-        return journalMemo;
+    public String getTeamId() {
+        return teamId;
     }
 
-    public void setJournalMemo(String journalMemo) {
-        this.journalMemo = journalMemo;
+    public void setTeamId(String teamId) {
+        this.teamId = teamId;
     }
 }

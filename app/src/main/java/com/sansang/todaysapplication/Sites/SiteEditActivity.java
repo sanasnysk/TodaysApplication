@@ -337,13 +337,13 @@ public class SiteEditActivity extends AppCompatActivity {
 
             case R.id.toolbar_delete_update:
                 String id = etxt_sid.getText().toString();
-                String tid = etxt_stId.getText().toString();
+                String sid = etxt_stId.getText().toString();
                 if (etxt_sid.length() > 0) {
                     siteController.open();
                     siteController.deleteSite(id);
 
                     Toast.makeText(SiteEditActivity.this,
-                            tid + "를 삭제 했습니다.", Toast.LENGTH_LONG).show();
+                            sid + "를 삭제 했습니다.", Toast.LENGTH_LONG).show();
 
                     Intent intent_update = new Intent(getApplicationContext(), SiteListActivity.class);
                     startActivity(intent_update);
@@ -351,7 +351,7 @@ public class SiteEditActivity extends AppCompatActivity {
 
                 } else {
                     Toast.makeText(SiteEditActivity.this,
-                            tid + "가 삭제 되지 않았습니다.", Toast.LENGTH_LONG).show();
+                            sid + "가 삭제 되지 않았습니다.", Toast.LENGTH_LONG).show();
                 }
                 return true;
 

@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.Toolbar;
 
+import com.sansang.todaysapplication.Incmoes.IncomeListActivity;
+import com.sansang.todaysapplication.Journals.JournalListActivity;
 import com.sansang.todaysapplication.Sites.SiteListActivity;
 import com.sansang.todaysapplication.Teams.TeamListActivity;
 
@@ -50,9 +52,14 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()){
             case R.id.journal_list_option:
+                Intent intent_journalList = new Intent(getApplicationContext(), JournalListActivity.class);
+                startActivity(intent_journalList);
                 Toast.makeText(this, "journal list go to", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.income_list_option:
+                Intent intent_incomeList = new Intent(getApplicationContext(), IncomeListActivity.class);
+                startActivity(intent_incomeList);
+
                 Toast.makeText(this, "income list go to", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.site_list_option:

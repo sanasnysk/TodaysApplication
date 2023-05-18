@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Incmoes.IncomeTableActivity">
+
+    <include
+        android:id="@+id/custom_tb"
+        layout="@layout/custom_toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:background="@color/yellow_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/custom_tb">
+
+        <EditText
+            android:id="@+id/income_table_startDate"
+            android:layout_width="198dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="1dp"
+            android:background="#FFFFFF"
+            android:focusable="false"
+            android:hint="Start Date"
+            android:importantForAutofill="no"
+            android:padding="1dp"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText,RtlCompat,TextFields,TouchTargetSizeCheck,TextContrastCheck" />
+
+        <EditText
+            android:id="@+id/income_table_endDate"
+            android:layout_width="198dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
+            android:background="#FFFFFF"
+            android:focusable="false"
+            android:hint="End Date"
+            android:importantForAutofill="no"
+            android:padding="1dp"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/income_table_startDate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/income_table_startDate"
+            app:layout_constraintTop_toTopOf="@+id/income_table_startDate"
+            tools:ignore="HardcodedText,RtlCompat,TextFields,TouchTargetSizeCheck,TextContrastCheck" />
+
+        <EditText
+            android:id="@+id/income_table_leader_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
+            android:background="@drawable/search_background"
+            android:drawableEnd="@drawable/ic_search"
+            android:hint="리더를 입력 하세요?"
+            android:importantForAutofill="no"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/income_table_startDate"
+            tools:ignore="HardcodedText,RtlCompat,TextFields,TouchTargetSizeCheck,VisualLintTextFieldSize,TextContrastCheck" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView_income"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/table_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout_1"
+        tools:ignore="UselessParent">
+
+        <HorizontalScrollView
+            android:id="@+id/hsv_journal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="SpeakableTextPresentCheck">
+
+            <TableLayout
+                android:id="@+id/income_table"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/blue_200"
+                android:collapseColumns="0,5,6,8,10"
+                android:padding="1dp"
+                android:shrinkColumns="0"
+                android:stretchColumns="*">
+
+            </TableLayout>
+
+        </HorizontalScrollView>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:background="@color/yellow_light"
+        app:layout_constraintTop_toBottomOf="@id/scrollView_income"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="DisableBaselineAlignment,MissingConstraints,UselessLeaf,UselessParent">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            tools:ignore="MissingConstraints,NestedWeights">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="1dp"
+                android:background="@color/white"
+                android:lines="1"
+                android:text="일일 합계"
+                android:textAlignment="center"
+                android:textColor="@color/blue_200"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                tools:ignore="HardcodedText,RtlCompat,TextContrastCheck" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                tools:ignore="DisableBaselineAlignment">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginEnd="0dp"
+                        android:background="@color/white"
+                        android:lines="1"
+                        android:text="일일 합계 :"
+                        android:textAlignment="center"
+                        android:textColor="@color/blue_200"
+                        android:textSize="12sp"
+                        android:textStyle="normal"
+                        tools:ignore="HardcodedText,RtlCompat,TextContrastCheck" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginEnd="0dp"
+                        android:background="@color/white"
+                        android:lines="1"
+                        android:text="금액 합계 :"
+                        android:textAlignment="center"
+                        android:textColor="@color/blue_200"
+                        android:textSize="12sp"
+                        android:textStyle="normal"
+                        tools:ignore="HardcodedText,RtlCompat,TextContrastCheck" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginEnd="0dp"
+                        android:background="@color/white"
+                        android:lines="1"
+                        android:text="잔액합계 :"
+                        android:textAlignment="center"
+                        android:textColor="@color/blue_200"
+                        android:textSize="12sp"
+                        android:textStyle="normal"
+                        tools:ignore="HardcodedText,RtlCompat,TextContrastCheck" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_weight="2"
+                    android:orientation="vertical"
+                    tools:ignore="RtlCompat">
+
+                    <TextView
+                        android:id="@+id/income_text_day_total"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginEnd="2dp"
+                        android:background="@color/white"
+                        android:lines="1"
+                        android:text="0"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/blue_200"
+                        android:textSize="12sp"
+                        android:textStyle="normal"
+                        tools:ignore="HardcodedText,RtlCompat,TextContrastCheck" />
+
+                    <TextView
+                        android:id="@+id/income_text_amount_total"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginEnd="2dp"
+                        android:background="@color/white"
+                        android:lines="1"
+                        android:text="0"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/blue_200"
+                        android:textSize="12sp"
+                        android:textStyle="normal"
+                        tools:ignore="HardcodedText,RtlCompat,TextContrastCheck" />
+
+                    <TextView
+                        android:id="@+id/income_text_balance_total"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginEnd="2dp"
+                        android:background="@color/white"
+                        android:lines="1"
+                        android:text="0"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/blue_200"
+                        android:textSize="12sp"
+                        android:textStyle="normal"
+                        tools:ignore="HardcodedText,RtlCompat,TextContrastCheck" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            tools:ignore="MissingConstraints">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_marginEnd="1dp"
+                android:background="@color/white"
+                android:lines="1"
+                android:text="수입 합계"
+                android:textAlignment="center"
+                android:textColor="@color/blue_200"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                tools:ignore="HardcodedText,RtlCompat,TextContrastCheck" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                tools:ignore="DisableBaselineAlignment">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    tools:ignore="InefficientWeight">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginEnd="0dp"
+                        android:background="@color/white"
+                        android:lines="1"
+                        android:text="입금합계 :"
+                        android:textAlignment="center"
+                        android:textColor="@color/blue_200"
+                        android:textSize="12sp"
+                        android:textStyle="normal"
+                        tools:ignore="HardcodedText,RtlCompat,TextContrastCheck" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginEnd="0dp"
+                        android:background="@color/white"
+                        android:lines="1"
+                        android:text="세금공제 :"
+                        android:textAlignment="center"
+                        android:textColor="@color/blue_200"
+                        android:textSize="12sp"
+                        android:textStyle="normal"
+                        tools:ignore="HardcodedText,RtlCompat,TextContrastCheck" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginEnd="0dp"
+                        android:background="@color/white"
+                        android:lines="1"
+                        android:text="잔여일수 :"
+                        android:textAlignment="center"
+                        android:textColor="@color/blue_200"
+                        android:textSize="12sp"
+                        android:textStyle="normal"
+                        tools:ignore="HardcodedText,RtlCompat,TextContrastCheck" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_weight="2"
+                    android:orientation="vertical"
+                    tools:ignore="RtlCompat">
+
+                    <TextView
+                        android:id="@+id/income_text_deposit_total"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginEnd="2dp"
+                        android:background="@color/white"
+                        android:lines="1"
+                        android:text="0"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/blue_200"
+                        android:textSize="12sp"
+                        android:textStyle="normal"
+                        tools:ignore="HardcodedText,RtlCompat,TextContrastCheck" />
+
+                    <TextView
+                        android:id="@+id/income_text_tax_total"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginEnd="2dp"
+                        android:background="@color/white"
+                        android:lines="1"
+                        android:text="0"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/blue_200"
+                        android:textSize="12sp"
+                        android:textStyle="normal"
+                        tools:ignore="HardcodedText,RtlCompat,TextContrastCheck" />
+
+                    <TextView
+                        android:id="@+id/income_text_balanceday_total"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginEnd="2dp"
+                        android:background="@color/white"
+                        android:lines="1"
+                        android:text="0"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/blue_200"
+                        android:textSize="12sp"
+                        android:textStyle="normal"
+                        tools:ignore="HardcodedText,RtlCompat,TextContrastCheck" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.sansang.todaysapplication.Contents.SiteContents;
+import com.sansang.todaysapplication.NumberTextWatcher.NumberTextWatcher;
 import com.sansang.todaysapplication.R;
 import com.sansang.todaysapplication.Sites.SiteAddActivity;
 import com.sansang.todaysapplication.Sites.SiteEditActivity;
@@ -47,10 +48,12 @@ public class SitesAdapter extends RecyclerView.Adapter<SitesAdapter.ViewHolder> 
         holder.site_leader.setText(mList.get(position).getTeamLeader());
         holder.site_date.setText(mList.get(position).getSiteDate());
         holder.site_pay.setText(mList.get(position).getSitePay());
-        formatPay = new DecimalFormat("#,###");
-        int fpay = Integer.parseInt(holder.site_pay.getText().toString());
-        String pay_format = formatPay.format(fpay);
-        holder.site_pay.setText(pay_format);
+
+
+//        formatPay = new DecimalFormat("#,###");
+//        int fpay = Integer.parseInt(holder.site_pay.getText().toString());
+//        String pay_format = formatPay.format(fpay);
+//        holder.site_pay.setText(pay_format);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

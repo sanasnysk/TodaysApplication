@@ -50,7 +50,7 @@ public class SiteListActivity extends AppCompatActivity {
     @SuppressLint("CutPasteId")
     private void initView() {
         Toolbar listToolbar = findViewById(R.id.customToolbar);
-        listToolbar.setTitle("팀 리스트 확인");
+        listToolbar.setTitle("현장 리스트 확인");
         setSupportActionBar(listToolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);

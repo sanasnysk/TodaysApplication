@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/yellow_light"
+    tools:context=".Journals.JournalAddActivity">
+
+    <include
+        android:id="@+id/custom_tb"
+        layout="@layout/custom_toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/layout_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/custom_tb">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="1dp"
+            android:orientation="vertical"
+            tools:ignore="RtlCompat,UselessParent,VisualLintBounds">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/text_background"
+                android:focusable="false"
+                android:importantForAutofill="no"
+                android:padding="3dp"
+                android:text="일지ID"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                tools:ignore="HardcodedText,TextFields,RtlCompat,TextContrastCheck" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/text_background"
+                android:focusable="false"
+                android:importantForAutofill="no"
+                android:padding="3dp"
+                android:text="일  자"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                tools:ignore="HardcodedText,TextFields,RtlCompat,TextContrastCheck" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/text_background"
+                android:focusable="false"
+                android:importantForAutofill="no"
+                android:padding="3dp"
+                android:text="현  장"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                tools:ignore="HardcodedText,TextFields,RtlCompat,TextContrastCheck" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/text_background"
+                android:focusable="false"
+                android:importantForAutofill="no"
+                android:padding="3dp"
+                android:text="일  일"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                tools:ignore="HardcodedText,TextFields,RtlCompat,TextContrastCheck" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/text_background"
+                android:focusable="false"
+                android:importantForAutofill="no"
+                android:padding="3dp"
+                android:text="임금"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                tools:ignore="HardcodedText,TextFields,RtlCompat,TextContrastCheck" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/text_background"
+                android:focusable="false"
+                android:importantForAutofill="no"
+                android:padding="3dp"
+                android:text="금  액"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                tools:ignore="HardcodedText,TextFields,RtlCompat,TextContrastCheck" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/text_background"
+                android:focusable="false"
+                android:importantForAutofill="no"
+                android:padding="3dp"
+                android:text="일일 메모"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                tools:ignore="HardcodedText,TextFields,RtlCompat,TextContrastCheck" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/text_background"
+                android:focusable="false"
+                android:importantForAutofill="no"
+                android:padding="3dp"
+                android:text="현장Id"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                tools:ignore="HardcodedText,TextFields,RtlCompat,TextContrastCheck" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/text_background"
+                android:focusable="false"
+                android:importantForAutofill="no"
+                android:padding="3dp"
+                android:text="팀/회사"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                tools:ignore="HardcodedText,TextFields,RtlCompat,TextContrastCheck" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/text_background"
+                android:focusable="false"
+                android:importantForAutofill="no"
+                android:padding="3dp"
+                android:text="팀Id"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                tools:ignore="HardcodedText,TextFields,RtlCompat,TextContrastCheck" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="10dp"
+            android:orientation="vertical"
+            tools:ignore="RtlCompat,VisualLintBounds">
+
+            <EditText
+                android:id="@+id/journal_add_edit_jnid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:layout_weight="1"
+                android:autofillHints="name"
+                android:hint="@string/일지id"
+                android:inputType="text"
+                android:padding="3dp"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                tools:ignore="VisualLintTextFieldSize,TouchTargetSizeCheck" />
+
+            <EditText
+                android:id="@+id/journal_add_edit_Date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:layout_weight="1"
+                android:autofillHints="name"
+                android:hint="@string/일자"
+                android:inputType="text"
+                android:padding="3dp"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                tools:ignore=",TextFields,VisualLintTextFieldSize,TouchTargetSizeCheck" />
+
+            <EditText
+                android:id="@+id/journal_add_edit_site"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:layout_weight="1"
+                android:autofillHints="name"
+                android:hint="@string/현장"
+                android:inputType="text"
+                android:padding="3dp"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                tools:ignore=",VisualLintTextFieldSize,TouchTargetSizeCheck" />
+
+            <EditText
+                android:id="@+id/journal_add_edit_oneday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:layout_weight="1"
+                android:autofillHints="name"
+                android:hint="@string/일일"
+                android:inputType="text"
+                android:padding="3dp"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                tools:ignore=",VisualLintTextFieldSize,TouchTargetSizeCheck" />
+
+            <EditText
+                android:id="@+id/journal_add_edit_pay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:layout_weight="1"
+                android:autofillHints="name"
+                android:focusable="false"
+                android:hint="@string/임금"
+                android:inputType="text"
+                android:padding="3dp"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                tools:ignore="TouchTargetSizeCheck,VisualLintTextFieldSize" />
+
+            <EditText
+                android:id="@+id/journal_add_edit_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:layout_weight="1"
+                android:autofillHints="name"
+                android:focusable="false"
+                android:hint="@string/일일금액"
+                android:inputType="text"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                tools:ignore="TouchTargetSizeCheck,VisualLintTextFieldSize" />
+
+            <EditText
+                android:id="@+id/journal_add_edit_memo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:layout_weight="1"
+                android:autofillHints="name"
+                android:hint="@string/일일메모"
+                android:inputType="text"
+                android:padding="3dp"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                tools:ignore="DuplicateSpeakableTextCheck,VisualLintTextFieldSize,TouchTargetSizeCheck" />
+
+            <EditText
+                android:id="@+id/journal_add_edit_stId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:layout_weight="1"
+                android:autofillHints="name"
+                android:hint="@string/stid"
+                android:inputType="text"
+                android:padding="3dp"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                tools:ignore=",VisualLintTextFieldSize,TouchTargetSizeCheck" />
+
+            <EditText
+                android:id="@+id/journal_add_edit_tmLeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:layout_weight="1"
+                android:autofillHints="name"
+                android:hint="@string/팀회사"
+                android:inputType="text"
+                android:padding="3dp"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                tools:ignore="DuplicateSpeakableTextCheck,VisualLintTextFieldSize,TouchTargetSizeCheck" />
+
+            <EditText
+                android:id="@+id/journal_add_edit_tmId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:layout_weight="1"
+                android:autofillHints="name"
+                android:hint="@string/tmid"
+                android:inputType="text"
+                android:padding="3dp"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                tools:ignore=",VisualLintTextFieldSize,TouchTargetSizeCheck" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/dialog_spinner_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/spinner_background"
+        android:layout_margin="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_add">
+
+        <TextView
+            android:id="@+id/dialog_spinner_txt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:padding="10dp"
+            android:layout_weight="3.5"
+            android:text="@string/siteSpinner"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            tools:ignore="RtlCompat" />
+
+        <Button
+            android:id="@+id/btn_spinner_down"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight=".5"
+            android:background="@drawable/ic_dropdown"
+            tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck,ImageContrastCheck" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,10 +12,12 @@ public class JournalTableContents {
     public static final String JOURNAL_ONE = "oneDay";
     public static final String SITE_PAY = "sitePay";
     public static final String JOURNAL_AMOUNT = "journalAmount";
-    public static final String SITE_STID = "siteId";
-    public static final String TEAM_TMID = "teamId";
-    public static final String TEAM_LEADER = "teamLeader";
     public static final String JOURNAL_MEMO = "journalMemo";
+    public static final String SITE_STID = "siteId";
+    public static final String TEAM_LEADER = "teamLeader";
+    public static final String TEAM_TMID = "teamId";
+
+
 
     //Create Table Journal
     public static final String CREATE_TABLE_JOURNAL = "CREATE TABLE "
@@ -23,6 +25,6 @@ public class JournalTableContents {
             + JOURNAL_JNID + "  TEXT ," + JOURNAL_DATE + "  TEXT ,"
             + SITE_NAME + " TEXT ," + JOURNAL_ONE + "  INTEGER ,"
             + SITE_PAY + " INTEGER ," + JOURNAL_AMOUNT + " INTEGER ,"
-            + SITE_STID + " TEXT ," + TEAM_TMID + " TEXT ,"
-            + TEAM_LEADER + " TEXT ," + JOURNAL_MEMO + " TEXT );";
+            + JOURNAL_MEMO + " TEXT ," + SITE_STID + " TEXT ,"
+            + TEAM_LEADER + " TEXT ," + TEAM_TMID + " TEXT );";
 }

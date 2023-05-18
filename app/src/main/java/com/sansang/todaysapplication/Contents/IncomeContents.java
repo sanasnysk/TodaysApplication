@@ -5,26 +5,27 @@ public class IncomeContents {
     String id;
     String incomeId;
     String incomeDate;
-    String siteName;
+    String teamLeader;
     String incomeDeposit;
     String incomeTax;
+    String incomeMemo;
     String siteId;
     String teamId;
-    String incomeMemo;
+
 
     public IncomeContents() {
     }
 
-    public IncomeContents(String id, String incomeId, String incomeDate, String siteName, String incomeDeposit, String incomeTax, String siteId, String teamId, String incomeMemo) {
+    public IncomeContents(String id, String incomeId, String incomeDate, String teamLeader, String incomeDeposit, String incomeTax, String incomeMemo, String siteId, String teamId) {
         this.id = id;
         this.incomeId = incomeId;
         this.incomeDate = incomeDate;
-        this.siteName = siteName;
+        this.teamLeader = teamLeader;
         this.incomeDeposit = incomeDeposit;
         this.incomeTax = incomeTax;
+        this.incomeMemo = incomeMemo;
         this.siteId = siteId;
         this.teamId = teamId;
-        this.incomeMemo = incomeMemo;
     }
 
     public String getId() {
@@ -52,11 +53,11 @@ public class IncomeContents {
     }
 
     public String getSiteName() {
-        return siteName;
+        return teamLeader;
     }
 
     public void setSiteName(String siteName) {
-        this.siteName = siteName;
+        this.teamLeader = siteName;
     }
 
     public String getIncomeDeposit() {
