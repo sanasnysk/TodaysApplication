@@ -186,7 +186,7 @@ public class JournalEditActivity extends AppCompatActivity {
         Intent positionIntent = getIntent();
 
         int id = positionIntent.getExtras().getInt( "id" ); // int 형
-        String jid = positionIntent.getExtras().getString( "jid" ); //String 형
+        String jid = positionIntent.getExtras().getString( "jnid" ); //String 형
         String date = positionIntent.getExtras().getString( "date" );
         String site = positionIntent.getExtras().getString( "site" );
         float oneday = positionIntent.getExtras().getFloat( "oneDay" );

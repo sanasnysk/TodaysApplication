@@ -9,13 +9,14 @@ public class CostContents {
     String costDetail;
     String costPrice;
     String costAmount;
-    String siteId;
     String costMemo;
+    String siteId;
+
 
     public CostContents() {
     }
 
-    public CostContents(String id, String costId, String costDate, String siteName, String costDetail, String costPrice, String costAmount, String siteId, String costMemo) {
+    public CostContents(String id, String costId, String costDate, String siteName, String costDetail, String costPrice, String costAmount, String costMemo, String siteId) {
         this.id = id;
         this.costId = costId;
         this.costDate = costDate;
@@ -23,8 +24,8 @@ public class CostContents {
         this.costDetail = costDetail;
         this.costPrice = costPrice;
         this.costAmount = costAmount;
-        this.siteId = siteId;
         this.costMemo = costMemo;
+        this.siteId = siteId;
     }
 
     public String getId() {
@@ -67,11 +68,11 @@ public class CostContents {
         this.costDetail = costDetail;
     }
 
-    public String getcostPrice() {
+    public String getCostPrice() {
         return costPrice;
     }
 
-    public void setcostPrice(String costPrice) {
+    public void setCostPrice(String costPrice) {
         this.costPrice = costPrice;
     }
 
@@ -83,19 +84,19 @@ public class CostContents {
         this.costAmount = costAmount;
     }
 
-    public String getSiteId() {
-        return siteId;
-    }
-
-    public void setSiteId(String siteId) {
-        this.siteId = siteId;
-    }
-
     public String getCostMemo() {
         return costMemo;
     }
 
     public void setCostMemo(String costMemo) {
         this.costMemo = costMemo;
+    }
+
+    public String getSiteId() {
+        return siteId;
+    }
+
+    public void setSiteId(String siteId) {
+        this.siteId = siteId;
     }
 }

@@ -585,7 +585,7 @@ public class JournalTableActivity extends AppCompatActivity {
                             //ID Journal
                             positionIntent.putExtra( "id", cus.getInt( 0 ) );
                             //Journal ID
-                            positionIntent.putExtra( "jid", cus.getString( 1 ) );
+                            positionIntent.putExtra( "jnid", cus.getString( 1 ) );
                             //Journal Date
                             positionIntent.putExtra( "date", cus.getString( 2 ) );
                             //Journal Site Name
@@ -596,14 +596,14 @@ public class JournalTableActivity extends AppCompatActivity {
                             positionIntent.putExtra( "pay", cus.getInt( 5 ) );
                             //Journal Amount
                             positionIntent.putExtra( "amount", cus.getInt( 6 ) );
-                            //Journal Team Leader
-                            positionIntent.putExtra( "leader", cus.getString( 7 ) );
-                            //Journal Memo
-                            positionIntent.putExtra( "memo", cus.getString( 8 ) );
-                            //Journal stId
-                            positionIntent.putExtra("stId", cus.getString(9));
+                            //Journal Team Memo
+                            positionIntent.putExtra( "memo", cus.getString( 7 ) );
+                            //Journal stid
+                            positionIntent.putExtra( "stid", cus.getString( 8 ) );
+                            //Journal leader
+                            positionIntent.putExtra("leader", cus.getString(9));
                             //Journal tmId
-                            positionIntent.putExtra("tmId", cus.getString(10));
+                            positionIntent.putExtra("tmid", cus.getString(10));
 
                             String site = positionIntent.getExtras().getString( "site" );
                             Toast.makeText( JournalTableActivity.this,
@@ -866,7 +866,7 @@ public class JournalTableActivity extends AppCompatActivity {
                             //ID Journal
                             positionIntent.putExtra( "id", cus.getInt( 0 ) );
                             //Journal ID
-                            positionIntent.putExtra( "jid", cus.getString( 1 ) );
+                            positionIntent.putExtra( "jnid", cus.getString( 1 ) );
                             //Journal Date
                             positionIntent.putExtra( "date", cus.getString( 2 ) );
                             //Journal Site Name
@@ -878,13 +878,13 @@ public class JournalTableActivity extends AppCompatActivity {
                             //Journal Amount
                             positionIntent.putExtra( "amount", cus.getInt( 6 ) );
                             //Journal Team Leader
-                            positionIntent.putExtra( "leader", cus.getString( 7 ) );
-                            //Journal Memo
-                            positionIntent.putExtra( "memo", cus.getString( 8 ) );
-                            //Journal stId
-                            positionIntent.putExtra("stId", cus.getString(9));
+                            positionIntent.putExtra( "memo", cus.getString( 7 ) );
+                            //Journal stid
+                            positionIntent.putExtra( "stid", cus.getString( 8 ) );
+                            //Journal leader
+                            positionIntent.putExtra("leader", cus.getString(9));
                             //Journal tmId
-                            positionIntent.putExtra("tmId", cus.getString(10));
+                            positionIntent.putExtra("tmid", cus.getString(10));
 
                             String site = positionIntent.getExtras().getString( "site" );
                             Toast.makeText( JournalTableActivity.this,

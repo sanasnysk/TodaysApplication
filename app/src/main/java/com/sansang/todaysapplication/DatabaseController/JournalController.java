@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JournalController {
-    private final Context context;
+    private Context context;
     private TodayDatabase todayDatabase;
     private SQLiteDatabase sqLiteDatabase;
 
@@ -28,9 +28,10 @@ public class JournalController {
     }
 
 
-    public void open() throws SQLException {
+    public JournalController open() throws SQLException {
         todayDatabase = new TodayDatabase( context );
         sqLiteDatabase = todayDatabase.getWritableDatabase();
+        return this;
     }
 
     public void close() {
@@ -344,16 +345,17 @@ public class JournalController {
 
     //--- Site Spinner Item Journal add & update Result oneDay & dailyPay
     public List<String> getAllSpinnerSite() {
+        sqLiteDatabase = todayDatabase.getReadableDatabase();
         List<String> listItem = new ArrayList<String>();
         //-- Select All Query
         String spinnerQuery = "SELECT * FROM site_table  ORDER BY ID DESC";
-        sqLiteDatabase = todayDatabase.getReadableDatabase();
+
         Cursor curSpinner = sqLiteDatabase.rawQuery( spinnerQuery, null );
 
         //-- looping through all rows and adding to list
         if (curSpinner.moveToFirst()) {
             do {
-                listItem.add( curSpinner.getString( 2 ) );
+                listItem.add(curSpinner.getString(2));
             } while (curSpinner.moveToNext());
         }
 

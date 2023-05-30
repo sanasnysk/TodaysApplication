@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.Toolbar;
 
+import com.sansang.todaysapplication.Costs.CostAddActivity;
+import com.sansang.todaysapplication.Costs.CostListActivity;
 import com.sansang.todaysapplication.Incmoes.IncomeListActivity;
 import com.sansang.todaysapplication.Journals.JournalListActivity;
 import com.sansang.todaysapplication.Sites.SiteListActivity;
@@ -67,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                 startActivity(intent_siteList);
                 //finish();
 
-                Toast.makeText(this, "site add go to", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "site list go to", Toast.LENGTH_SHORT).show();
                 return true;
 
             case R.id.team_list_option:
@@ -75,10 +77,16 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                 startActivity(intent_teamadd);
                 //finish();
 
-                Toast.makeText(this, "team add go to", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "team list go to", Toast.LENGTH_SHORT).show();
                 return true;
 
-            case R.id.settling_table_option:
+            case R.id.cost_list_option:
+                Intent intent_cost = new Intent(getApplicationContext(), CostListActivity.class);
+                startActivity(intent_cost);
+
+                Toast.makeText(this, "cost add go to", Toast.LENGTH_SHORT).show();
+
+            case R.id.settling_list_option:
                 Toast.makeText(this, "setting go to", Toast.LENGTH_SHORT).show();
                 return true;
 

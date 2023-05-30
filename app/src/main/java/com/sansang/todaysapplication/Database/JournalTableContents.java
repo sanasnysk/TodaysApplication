@@ -3,7 +3,7 @@ package com.sansang.todaysapplication.Database;
 public class JournalTableContents {
     //---- Journal Table Constants ----
     //Table Name Journal
-    public static final String JOURNAL_TABLE= "journal_table";
+    public static final String JOURNAL_TABLE = "journal_table";
     //Contacts Journal Columns Name
     public static final String JOURNAL_ID = "id";
     public static final String JOURNAL_JNID = "journalId";
@@ -16,7 +16,6 @@ public class JournalTableContents {
     public static final String SITE_STID = "siteId";
     public static final String TEAM_LEADER = "teamLeader";
     public static final String TEAM_TMID = "teamId";
-
 
 
     //Create Table Journal

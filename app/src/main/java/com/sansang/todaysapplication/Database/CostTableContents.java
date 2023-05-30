@@ -12,15 +12,15 @@ public class CostTableContents {
     public static final String COST_DETAIL = "costDetail";
     public static final String COST_PRICE = "costPrice";
     public static final String COST_AMOUNT = "costAmount";
+    public static final String COST_MEMO = "costMemo";
     public static final String SITE_STID = "siteId";
-    public static final String INCOME_MEMO = "Memo";
 
     //Create Table Income
     public static final String CREATE_TABLE_COST = "CREATE TABLE "
             + COST_TABLE + "(" + COST_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + COST_CSID + " TEXT," + COST_DATE + " TEXT,"
-            + SITE_NAME + " TEXT," + COST_DETAIL + " INTEGER,"
+            + SITE_NAME + " TEXT," + COST_DETAIL + " TEXT,"
             + COST_PRICE + " INTEGER," + COST_AMOUNT + " INTEGER,"
-            + SITE_STID + " TEXT ," + INCOME_MEMO + " TEXT );";
+            + COST_MEMO + " TEXT ," + SITE_STID + " TEXT );";
 
 }

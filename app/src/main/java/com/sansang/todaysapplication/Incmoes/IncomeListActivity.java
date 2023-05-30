@@ -130,6 +130,7 @@ public class IncomeListActivity extends AppCompatActivity {
             case R.id.toolbar_table_list:
                 Toast.makeText(this, "수입 테이블로 이동", Toast.LENGTH_SHORT).show();
                 Intent intent_incometable = new Intent(getApplicationContext(), IncomeTableActivity.class);
+                intent_incometable.putExtra("leader", incomeAdapter.getItemId(1));
                 startActivity(intent_incometable);
                 finish();
                 return true;

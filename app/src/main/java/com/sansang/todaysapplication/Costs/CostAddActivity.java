@@ -1,16 +1,14 @@
-package com.sansang.todaysapplication.Journals;
+package com.sansang.todaysapplication.Costs;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.icu.util.Calendar;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,31 +23,37 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.sansang.todaysapplication.Database.TodayDatabase;
+import com.sansang.todaysapplication.DatabaseController.CostController;
 import com.sansang.todaysapplication.DatabaseController.JournalController;
+import com.sansang.todaysapplication.DatabaseController.SiteController;
 import com.sansang.todaysapplication.NumberTextWatcher.NumberTextWatcher;
 import com.sansang.todaysapplication.R;
 
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class JournalAddActivity extends AppCompatActivity {
+public class CostAddActivity extends AppCompatActivity {
     private int mYear, mMonth, mDay, mHour, mMinute;
     long mNow;
     Date mDate;
-    private EditText etxt_jnId, etxt_date, etxt_Site, etxt_one, etxt_Pay, etxt_Amount, etxt_Memo, etxt_stId, etxt_tmLeader, etxt_tmId;
+    private EditText editx_csid, edtxt_date, edtxt_site, edtxt_detail, edtxt_price, edtxt_amount,edtxt_memo, edtxt_stid;
     private TodayDatabase todayDatabase;
-    private SQLiteDatabase sqLiteDatabase;
+    private CostController costController;
     private JournalController journalController;
+    private SiteController sitesController;
+    private final DecimalFormat decimalFormat = new DecimalFormat("#,###");
+    private String result_price, result_amount = "";
     //ListView Dialog
     private Button btn_spinner_down;
     private TextView dialog_spinner_txt;
@@ -62,18 +66,20 @@ public class JournalAddActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_journal_add);
+        setContentView(R.layout.activity_cost_add);
 
         todayDatabase = new TodayDatabase(this);
+        costController = new CostController(this);
         journalController = new JournalController(this);
+        sitesController = new SiteController(this);
 
         initView();
-        jourAutoId();
+
     }
 
     private void initView() {
         Toolbar siteToolbar = findViewById(R.id.customToolbar);
-        siteToolbar.setTitle("싸이트 추가하기");
+        siteToolbar.setTitle("수입 추가하기");
         setSupportActionBar(siteToolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -81,81 +87,31 @@ public class JournalAddActivity extends AppCompatActivity {
         siteToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToJournalListActivity();
+                goToCostListActivity();
             }
         });
 
-        //--- findView
-        etxt_jnId = findViewById( R.id.journal_add_edit_jnid );
-        etxt_date = findViewById( R.id.journal_add_edit_Date );
-        etxt_Site = findViewById( R.id.journal_add_edit_site );
-        etxt_one = findViewById( R.id.journal_add_edit_oneday );
-        etxt_Pay = findViewById( R.id.journal_add_edit_pay );
-        etxt_Amount = findViewById( R.id.journal_add_edit_amount );
-        etxt_Memo = findViewById( R.id.journal_add_edit_memo );
-        etxt_stId = findViewById( R.id.journal_add_edit_stId );
-        etxt_tmLeader = findViewById( R.id.journal_add_edit_tmLeader );
-        etxt_tmId = findViewById( R.id.journal_add_edit_tmId );
+        editx_csid = findViewById( R.id.edtxt_cost_add_csid );
+        edtxt_date = findViewById( R.id.edtxt_cost_add_date );
+        edtxt_site = findViewById( R.id.edtxt_cost_add_site );
+        edtxt_detail = findViewById( R.id.edtxt_cost_add_detail );
+        edtxt_price = findViewById( R.id.edtxt_cost_add_price );
+        edtxt_amount = findViewById( R.id.edtxt_cost_add_amount );
+        edtxt_memo = findViewById( R.id.edtxt_cost_add_memo );
+        edtxt_stid = findViewById( R.id.edtxt_cost_add_stid );
 
-        etxt_Pay.setText("0");
-        etxt_Amount.setText("0");
+        //--> EditText 항목 쓰기방지(read-only) or android:focusable="false"
+        editx_csid.setInputType( InputType.TYPE_NULL );
+        edtxt_site.setInputType( InputType.TYPE_NULL );
+        edtxt_date.setInputType( InputType.TYPE_NULL );
+        edtxt_date.setFocusable( false );
+        edtxt_detail.requestFocus();
 
-        etxt_one.requestFocus();
+        edtxt_date.setText(dateTime());
 
-        etxt_date.setText(dateTime());
-
-        //--> Comma in
-        etxt_Pay.addTextChangedListener( new NumberTextWatcher( etxt_Pay ) );
-        etxt_Amount.addTextChangedListener( new NumberTextWatcher( etxt_Amount ) );
-
-        //----- One day add Text Changed Listener -----
-        etxt_one.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (etxt_one == null) {
-                    //Do nothing
-                    float soneday = 0;
-                    int pay = Integer.parseInt( etxt_Pay.getText().toString() );
-                    int amount = (int) (soneday * pay);
-                    etxt_Amount.setText( String.valueOf( amount ) );
-
-                } else if (etxt_one.length() > 0) {
-
-                    float oneday = Float.parseFloat( s.toString() );
-
-                    String sPay = etxt_Pay.getText().toString().replace( ",", "" );
-                    int pay = Integer.parseInt(sPay);
-
-                    int amount = (int) (oneday * pay);
-                    etxt_Amount.setText( String.valueOf( amount ) );
-                } else {
-                    //Do nothing
-                }
-
-            }
-
-            @Override
-            public void afterTextChanged( Editable s) {
-            }
-        } );
-
-        //----- EditText Journal Date On Click Listener -----
-        etxt_date.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Get Current Date
-                final Calendar c = Calendar.getInstance();
-                mYear = c.get( Calendar.YEAR );
-                mMonth = c.get( Calendar.MONTH );
-                mDay = c.get( Calendar.DAY_OF_MONTH );
-
-                dateChange();
-            }
-        } );
+        costAutoId();
+        dateChange();
+        textChangedListener();
 
         //ListView Dialog
         dialog_spinner_txt = findViewById(R.id.dialog_spinner_txt);
@@ -169,45 +125,41 @@ public class JournalAddActivity extends AppCompatActivity {
 
     }
 
-    public void goToJournalListActivity(){
-        Intent intent = new Intent(getApplicationContext(), JournalListActivity.class);
-        startActivity(intent);
-        finish();
-    }
-
-    //----- Journal Table AutoId -----
+    //--- Income Auto Id
     @SuppressLint("SetTextI18n")
-    private void jourAutoId() {
+    private void costAutoId() {
         //Data Load
         try {
-            journalController.open();
+            costController.open();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        final Cursor cus = journalController.journalAutoId();
+        final Cursor cus = costController.costAutoId();
         final int rows = cus.getCount();
-        String journalid = "jn_";
+        String costid = "cs_";
         int idNo = 1;
-        int r = cus.getInt( 0 );
 
-        if (cus == null) {
-            etxt_jnId.setText( journalid + idNo );
+        if (rows == 0) {
+            editx_csid.setText( costid + idNo );
         } else {
-            int rid = r + idNo;
-            etxt_jnId.setText(journalid + rid);
+            int r = cus.getInt( 0 );
+            int rid = idNo + r;
+            editx_csid.setText(costid + rid);
         }
     }
 
-    @SuppressLint("ResourceType")
-    private void showAlertDialog(){
+    @SuppressLint("MissingInflatedId")
+    private void showAlertDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
         View view = inflater.inflate(R.layout.alert_dialog, null);
         builder.setView(view);
 
-        final TextView title = view.findViewById(R.id.textview_alterdialog_title);
+        final TextView title = view.findViewById(R.id.dialog_spinner_txt);
+
         final ListView listview = view.findViewById(R.id.listview_alterdialog_list);
         final AlertDialog dialog = builder.create();
+        //title.setText("현장을 선택 하세요?");
 
         // database handler
         try {
@@ -216,7 +168,7 @@ public class JournalAddActivity extends AppCompatActivity {
             throw new RuntimeException(e);
         }
 
-        // ListView Dropdown elements
+        // Spinner Drop down elements
         List<String> data = journalController.getAllSpinnerSite();
 
         String[] item_data = data.toArray(new String[0]);
@@ -240,24 +192,21 @@ public class JournalAddActivity extends AppCompatActivity {
         SimpleAdapter simpleAdapter = new SimpleAdapter(getApplicationContext(), dialogItemList, R.layout.alert_dialog_row,
                 new String[]{TAG_IMAGE, TAG_TEXT},
                 new int[]{R.id.alertDialogItemImageView, R.id.alertDialogItemTextView} );
-
         listview.setAdapter(simpleAdapter);
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //textview_result.setText(parent.getItemAtPosition(position).toString());
                 dialog_spinner_txt.setText(text[position]);
+
                 // Showing selected  item
-                // On selecting a spinner item
+                // On selecting a  item
                 String site = dialog_spinner_txt.getText().toString();
                 if (site.equals("현장을 선택 하세요?")) {
-                    //Do nothing....
+                    //Do nothing.
                 } else {
                     // Showing selected spinner item
                     Toast.makeText( parent.getContext(), "You selected: " + site,
                             Toast.LENGTH_SHORT ).show();
-
-                    etxt_Site.setText( site );
 
                     // outer for loop
                     //---Data Edit Site_Name Team_Leader Daily_Pay 출력
@@ -276,50 +225,44 @@ public class JournalAddActivity extends AppCompatActivity {
                                 return;
                             } else if (cus.moveToPosition( p )) {
 
-                                String tleader = cus.getString( 0 );
-                                etxt_tmLeader.setText( tleader );
+                                String siteName = cus.getString( 0 );
+                                edtxt_site.setText( siteName );
                                 String spay = cus.getString( 1 );
-                                etxt_Pay.setText( spay);
+                                //etxt_Pay.setText( spay);
                                 String stId = cus.getString(2);
-                                etxt_stId.setText(stId);
-                                String tmId = cus.getString(3);
-                                etxt_tmId.setText(tmId);
+                                edtxt_stid.setText(stId);
 
-                                etxt_one.requestFocus();
+                                edtxt_detail.requestFocus();
 
                             }
                         }
 
                     }
-
-                    if (etxt_one == null) {
-                        float soneday = 0;
-                        int pay = Integer.parseInt( etxt_Pay.getText().toString().replace( ",", "" ) );
-                        float amount = soneday * pay;
-                        etxt_Amount.setText( String.valueOf( amount ) );
-
-                    } else if (etxt_one.length() > 0) {
-
-                        float oneday = Float.parseFloat( etxt_one.getText().toString() );
-                        int pay = Integer.parseInt( etxt_Pay.getText().toString().replace( ",", "" ) );
-                        int amount = (int) (oneday * pay);
-                        etxt_Amount.setText( String.valueOf( amount ) );
-
-                    } else {
-                        //Do nothing
-                    }
                 }
+
                 dialog.dismiss();
             }
         });
 
+        costController.close();
+
         dialog.setCancelable(true);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
-        //dialog.getWindow().setLayout(900,1200);
+
     }
 
+    public void goToCostListActivity(){
+        Intent intent = new Intent(getApplicationContext(), CostListActivity.class);
+        startActivity(intent);
+        finish();
+    }
 
+    public void textChangedListener(){
+        edtxt_price.addTextChangedListener(new NumberTextWatcher(edtxt_price));
+        edtxt_amount.addTextChangedListener(new NumberTextWatcher(edtxt_amount));
+
+    }
 
     @SuppressLint("SimpleDateFormat")
     private String dateTime() {
@@ -331,7 +274,7 @@ public class JournalAddActivity extends AppCompatActivity {
     }
 
     private void dateChange(){
-        etxt_date.setOnClickListener(new View.OnClickListener() {
+        edtxt_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Calendar calendar = Calendar.getInstance();
@@ -344,24 +287,20 @@ public class JournalAddActivity extends AppCompatActivity {
         });
     }
 
-    //----- DatePickerDialog -----
     private void DatePickerDialog() {
         DatePickerDialog datePickerDialog = new DatePickerDialog( this,
                 new DatePickerDialog.OnDateSetListener() {
-
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        //for
                         Calendar calendar = Calendar.getInstance();
                         calendar.set( year, month, dayOfMonth );
                         year = calendar.get( Calendar.YEAR );
                         month = calendar.get( Calendar.MONTH ) + 1;
                         dayOfMonth = calendar.get( Calendar.DAY_OF_MONTH );
-
                         @SuppressLint("DefaultLocale")
-                        String startDate = String.format( "%d-%02d-%02d", year, month, dayOfMonth );
-
-                        etxt_date.setText( startDate );
+                        String siteDate = String.format( "%d-%02d-%02d", year, month, dayOfMonth );
+                        edtxt_date.setText( siteDate );
+                        //etxtDate.setText( year + "-" + (month + 1) + "-" + dayOfMonth );
                     }
                 }, mYear, mMonth, mDay );
 
@@ -378,48 +317,44 @@ public class JournalAddActivity extends AppCompatActivity {
     @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected( MenuItem item) {
-        switch (item.getItemId())
-        {
+        switch (item.getItemId()) {
             case R.id.toolbar_save_add:
-                if (etxt_date.length() == 0 || etxt_Site.length() == 0) {
-                    Toast.makeText( JournalAddActivity.this,
-                            "날짜와 이름을 입력하세요?", Toast.LENGTH_LONG ).show();
-                } else if (etxt_one.length() == 0) {
-                    Toast.makeText( JournalAddActivity.this,
-                            "일량을 입력하세요?", Toast.LENGTH_SHORT ).show();
-                } else {
-                    String jid = etxt_jnId.getText().toString();
-                    String date = etxt_date.getText().toString();
-                    String site = etxt_Site.getText().toString();
-                    String day = etxt_one.getText().toString();
-                    String pay = etxt_Pay.getText().toString().replace( ",", "" );
-                    String amount = etxt_Amount.getText().toString().replace( ",", "" );
-                    String memo = etxt_Memo.getText().toString();
-                    String sid = etxt_stId.getText().toString();
-                    String tleader = etxt_tmLeader.getText().toString();
-                    String tid = etxt_tmId.getText().toString();
+                if (edtxt_site.length() == 0 || edtxt_detail.length() == 0){
+                    Toast.makeText( CostAddActivity.this,
+                            "현장 또는 내용을 입력 하세요?", Toast.LENGTH_SHORT ).show();
+                }else {
+                    String csid = editx_csid.getText().toString();
+                    String date = edtxt_date.getText().toString();
+                    String site = edtxt_site.getText().toString();
+                    String detail = edtxt_detail.getText().toString();
+                    String price = edtxt_price.getText().toString().replace(",", "");
+                    String amount = edtxt_amount.getText().toString().replace( ",", "" );
+                    String memo = edtxt_memo.getText().toString();
+                    String stid = edtxt_stid.getText().toString();
 
                     try {
-                        journalController.open();
+                        costController.open();
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
-                    journalController.insertJournal( jid,date,site,day,pay,amount,memo,sid,tleader,tid );
+                    costController.insertCost( csid, date, site, detail, price, amount, memo, stid );
 
                     Toast.makeText(getApplicationContext(),
-                            "일지 내용을 저장 했습니다.", Toast.LENGTH_SHORT).show();
+                            "경비 내용을  추가", Toast.LENGTH_SHORT).show();
 
-                    Intent inSavejournal = new Intent( getApplicationContext(), JournalListActivity.class );
-                    startActivity( inSavejournal );
+                    Intent savecostintent = new Intent( getApplicationContext(), CostListActivity.class );
+                    startActivity( savecostintent );
+
                     finish();
                 }
+
                 return true;
 
             case R.id.toolbar_close_add:
                 Toast.makeText(getApplicationContext(),
-                        "일지 쓰기를 종료합니다.", Toast.LENGTH_SHORT).show();
-                Intent intentAddClose = new Intent( getApplicationContext(), JournalListActivity.class );
-                startActivity( intentAddClose );
+                        "경비 추가 끝내기", Toast.LENGTH_SHORT).show();
+                Intent intent_addClose = new Intent( getApplicationContext(), CostListActivity.class );
+                startActivity( intent_addClose );
                 finish();
                 return true;
 
@@ -427,5 +362,4 @@ public class JournalAddActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
 }

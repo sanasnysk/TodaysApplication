@@ -28,7 +28,13 @@
         tools:ignore="HardcodedText" />
 
     <item
-        android:id="@+id/settling_table_option"
+        android:id="@+id/cost_list_option"
+        android:title="경비 리스트"
+        app:showAsAction="never"
+        tools:ignore="HardcodedText" />
+
+    <item
+        android:id="@+id/settling_list_option"
         android:title="결산 보기"
         app:showAsAction="never"
         tools:ignore="HardcodedText" />

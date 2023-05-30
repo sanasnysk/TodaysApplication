@@ -132,11 +132,11 @@ public class SiteAddActivity extends AppCompatActivity {
         siteController.open();
         final Cursor cus = siteController.siteAutoId();
         final int rows = cus.getCount();
-        String siteId = "s_";
+        String siteId = "st_";
         int idNo = 1;
 
         if (rows == 0) {
-            etxt_stId.setText( "s_" + idNo );
+            etxt_stId.setText( siteId + idNo );
         } else {
             int r = cus.getInt( 0 );
             int rid = idNo + r;

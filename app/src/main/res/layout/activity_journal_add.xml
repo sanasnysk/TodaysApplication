@@ -200,6 +200,7 @@
                 android:padding="3dp"
                 android:textAlignment="center"
                 android:textSize="18sp"
+                android:focusable="false"
                 tools:ignore="VisualLintTextFieldSize,TouchTargetSizeCheck" />
 
             <EditText
@@ -215,6 +216,7 @@
                 android:padding="3dp"
                 android:textAlignment="center"
                 android:textSize="18sp"
+                android:focusable="false"
                 tools:ignore=",TextFields,VisualLintTextFieldSize,TouchTargetSizeCheck" />
 
             <EditText
@@ -306,6 +308,7 @@
                 android:padding="3dp"
                 android:textAlignment="center"
                 android:textSize="18sp"
+                android:focusable="false"
                 tools:ignore=",VisualLintTextFieldSize,TouchTargetSizeCheck" />
 
             <EditText
@@ -321,6 +324,7 @@
                 android:padding="3dp"
                 android:textAlignment="center"
                 android:textSize="18sp"
+                android:focusable="false"
                 tools:ignore="DuplicateSpeakableTextCheck,VisualLintTextFieldSize,TouchTargetSizeCheck" />
 
             <EditText
@@ -336,6 +340,7 @@
                 android:padding="3dp"
                 android:textAlignment="center"
                 android:textSize="18sp"
+                android:focusable="false"
                 tools:ignore=",VisualLintTextFieldSize,TouchTargetSizeCheck" />
 
         </LinearLayout>

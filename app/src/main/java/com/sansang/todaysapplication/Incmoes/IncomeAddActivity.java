@@ -30,7 +30,6 @@ import com.sansang.todaysapplication.Database.TodayDatabase;
 import com.sansang.todaysapplication.DatabaseController.IncomeController;
 import com.sansang.todaysapplication.DatabaseController.JournalController;
 import com.sansang.todaysapplication.DatabaseController.SiteController;
-import com.sansang.todaysapplication.Journals.JournalListActivity;
 import com.sansang.todaysapplication.NumberTextWatcher.NumberTextWatcher;
 import com.sansang.todaysapplication.R;
 
@@ -170,13 +169,13 @@ public class IncomeAddActivity extends AppCompatActivity {
 
         // database handler
         try {
-            journalController.open();
+            incomeController.open();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
         // Spinner Drop down elements
-        List<String> data = journalController.getAllSpinnerSite();
+        List<String> data = incomeController.getAllSpinnerSite();
 
         String[] item_data = data.toArray(new String[0]);
         int size = 0;
@@ -217,7 +216,7 @@ public class IncomeAddActivity extends AppCompatActivity {
 
                     // outer for loop
                     //---Data Edit Site_Name Team_Leader Daily_Pay 출력
-                    final Cursor cus = journalController.siteSpinnerResult( site );
+                    final Cursor cus = incomeController.siteSpinnerResult( site );
                     final int rows = cus.getCount();
                     final int clums = cus.getColumnCount();
 
@@ -253,12 +252,12 @@ public class IncomeAddActivity extends AppCompatActivity {
             }
         });
 
-        journalController.close();
+        incomeController.close();
 
         dialog.setCancelable(true);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
-        //dialog.getWindow().setLayout(900,1200);
+
     }
 
     @SuppressLint("SimpleDateFormat")
@@ -305,7 +304,7 @@ public class IncomeAddActivity extends AppCompatActivity {
     }
 
     public void goToIncomeListActivity(){
-        Intent intent = new Intent(getApplicationContext(), JournalListActivity.class);
+        Intent intent = new Intent(getApplicationContext(), IncomeListActivity.class);
         startActivity(intent);
         finish();
     }

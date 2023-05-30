@@ -20,7 +20,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.sansang.todaysapplication.Adapter.JournalAdapter;
 import com.sansang.todaysapplication.Database.TodayDatabase;
 import com.sansang.todaysapplication.DatabaseController.JournalController;
-import com.sansang.todaysapplication.MainActivity;
 import com.sansang.todaysapplication.R;
 
 import java.sql.SQLException;
@@ -115,6 +114,7 @@ public class JournalListActivity extends AppCompatActivity {
             case R.id.toolbar_table_list:
                 Toast.makeText(this, "일지 테이블로 이동하여 일지 수정하기", Toast.LENGTH_SHORT).show();
                 Intent intent_table = new Intent(getApplicationContext(), JournalTableActivity.class);
+                intent_table.putExtra("leader", journalAdapter.getItemId(1));
                 startActivity(intent_table);
                 finish();
                 return true;

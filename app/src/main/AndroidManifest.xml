@@ -12,6 +12,18 @@
         android:theme="@style/Theme.TodaysApplication"
         tools:targetApi="31" >
         <activity
+            android:name=".Costs.CostTableActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Costs.CostListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Costs.CostEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Costs.CostAddActivity"
+            android:exported="false" />
+        <activity
             android:name=".Incmoes.IncomeTableActivity"
             android:exported="false" />
         <activity
