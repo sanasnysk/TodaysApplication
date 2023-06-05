@@ -2,7 +2,6 @@ package com.sansang.todaysapplication.Teams;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,7 +28,6 @@ public class TeamListActivity extends AppCompatActivity {
     private RecyclerView rv_team;
     private TeamsAdapter teamsAdapter;
     TodayDatabase todayDatabase;
-    SQLiteDatabase sqLiteDatabase;
     TeamController teamController;
     private final int count = -1;
     RecyclerView.LayoutManager layoutManager;
@@ -39,27 +37,16 @@ public class TeamListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_team_list);
 
-        initView();
-
         todayDatabase = new TodayDatabase(this);
         teamController = new TeamController(this);
-        sqLiteDatabase = todayDatabase.getReadableDatabase();
 
-        rv_team = findViewById(R.id.recyclerview_team);
-        rv_team.setHasFixedSize(true);
-
-        layoutManager = new LinearLayoutManager(this);
-        ((LinearLayoutManager) layoutManager).setReverseLayout(true);
-        ((LinearLayoutManager) layoutManager).setStackFromEnd(true);
-        rv_team.setLayoutManager(layoutManager);
-
-        getTeamRecyclerView();
+        initView();
     }
 
     @SuppressLint("CutPasteId")
     private void initView() {
         Toolbar listToolbar = findViewById(R.id.customToolbar);
-        listToolbar.setTitle("팀 리스트 확인");
+        listToolbar.setTitle("팀 리스트 ");
         setSupportActionBar(listToolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -70,6 +57,16 @@ public class TeamListActivity extends AppCompatActivity {
                 goToMainActivity();
             }
         });
+
+        rv_team = findViewById(R.id.recyclerview_team);
+        rv_team.setHasFixedSize(true);
+
+        layoutManager = new LinearLayoutManager(this);
+        ((LinearLayoutManager) layoutManager).setReverseLayout(true);
+        ((LinearLayoutManager) layoutManager).setStackFromEnd(true);
+        rv_team.setLayoutManager(layoutManager);
+
+        getTeamRecyclerView();
 
     }
 

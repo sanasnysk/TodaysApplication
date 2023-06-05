@@ -30,8 +30,7 @@ public class TeamAddActivity extends AppCompatActivity {
     private int mYear, mMonth, mDay, mHour, mMinute;
     long mNow;
     Date mDate;
-    @SuppressLint("SimpleDateFormat")
-    SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat mFormat;
     //SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
     private EditText etxt_tmid,etxt_tmleader,etxt_tmmobile,etxt_tmdate,etxt_tmmemo;
     private TodayDatabase todayDatabase;
@@ -45,8 +44,48 @@ public class TeamAddActivity extends AppCompatActivity {
 
         initView();
 
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private void initView() {
+        Toolbar communityToolbar = findViewById(R.id.customToolbar);
+        communityToolbar.setTitle("팀 추가하기");
+        setSupportActionBar(communityToolbar);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
+        communityToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToTeamListActivity();
+            }
+        });
+
+        mFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        todayDatabase = new TodayDatabase( this );
+        teamController = new TeamController( this );
+
+        etxt_tmid = findViewById(R.id.tmId_etxt);
+        etxt_tmleader = findViewById(R.id.tmLeader_etxt);
+        etxt_tmmobile = findViewById(R.id.tmMobile_etxt);
+        etxt_tmdate = findViewById(R.id.tmDate_etxt);
+        etxt_tmmemo = findViewById(R.id.tmMemo_etxt);
+
+        //Focus
+        etxt_tmid.setFocusable( false );
+        etxt_tmleader.requestFocus();
+        etxt_tmdate.setFocusable( false );
+        etxt_tmdate.setText(DateTime());
+
         teamAutoId();
-        DateTime();
+        dateChange();
+    }
+
+    public void goToTeamListActivity(){
+        Intent intent = new Intent(getApplicationContext(), TeamListActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @SuppressLint("SetTextI18n")
@@ -66,45 +105,6 @@ public class TeamAddActivity extends AppCompatActivity {
             etxt_tmid.setText(teamId + rid);
         }
 
-    }
-
-
-    private void initView() {
-        Toolbar communityToolbar = findViewById(R.id.customToolbar);
-        communityToolbar.setTitle("팀 추가하기");
-        setSupportActionBar(communityToolbar);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-
-        communityToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goToTeamListActivity();
-            }
-        });
-
-        todayDatabase = new TodayDatabase( this );
-        teamController = new TeamController( this );
-
-        etxt_tmid = findViewById(R.id.tmId_etxt);
-        etxt_tmleader = findViewById(R.id.tmLeader_etxt);
-        etxt_tmmobile = findViewById(R.id.tmMobile_etxt);
-        etxt_tmdate = findViewById(R.id.tmDate_etxt);
-        etxt_tmmemo = findViewById(R.id.tmMemo_etxt);
-
-        //Focus
-        etxt_tmid.setFocusable( false );
-        etxt_tmleader.requestFocus();
-        etxt_tmdate.setFocusable( false );
-        etxt_tmdate.setText(DateTime());
-
-        dateChange();
-    }
-
-    public void goToTeamListActivity(){
-        Intent intent = new Intent(getApplicationContext(), TeamListActivity.class);
-        startActivity(intent);
-        finish();
     }
 
     private String DateTime() {

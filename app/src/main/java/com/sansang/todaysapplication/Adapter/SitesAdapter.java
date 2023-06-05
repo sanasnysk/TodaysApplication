@@ -16,10 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.sansang.todaysapplication.Contents.SiteContents;
-import com.sansang.todaysapplication.NumberTextWatcher.NumberTextWatcher;
 import com.sansang.todaysapplication.R;
 import com.sansang.todaysapplication.Sites.SiteAddActivity;
-import com.sansang.todaysapplication.Sites.SiteEditActivity;
 import com.sansang.todaysapplication.Sites.SiteTableActivity;
 
 import java.text.DecimalFormat;
@@ -49,26 +47,11 @@ public class SitesAdapter extends RecyclerView.Adapter<SitesAdapter.ViewHolder> 
         holder.site_date.setText(mList.get(position).getSiteDate());
         holder.site_pay.setText(mList.get(position).getSitePay());
 
-
-//        formatPay = new DecimalFormat("#,###");
-//        int fpay = Integer.parseInt(holder.site_pay.getText().toString());
-//        String pay_format = formatPay.format(fpay);
-//        holder.site_pay.setText(pay_format);
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick( View v ) {
-                Intent siteEdit = new Intent(v.getContext(), SiteEditActivity.class);
-                siteEdit.putExtra("sId", mList.get(position).getId());
-                siteEdit.putExtra("stId", mList.get(position).getSiteId());
-                siteEdit.putExtra("stName", mList.get(position).getSiteName());
-                siteEdit.putExtra("stPay", mList.get(position).getSitePay());
-                siteEdit.putExtra("stManager", mList.get(position).getSiteManager());
-                siteEdit.putExtra("stDate", mList.get(position).getSiteDate());
-                siteEdit.putExtra("stMemo", mList.get(position).getSiteMemo());
-                siteEdit.putExtra("tmLeader", mList.get(position).getTeamLeader());
-                siteEdit.putExtra("tmId", mList.get(position).getTeamId());
-
+                Intent siteEdit = new Intent(v.getContext(), SiteTableActivity.class);
+                siteEdit.putExtra("leader", holder.site_leader.getText().toString());
                 v.getContext().startActivity(siteEdit);
 
                 ((Activity) v.getContext()).finish();
@@ -128,7 +111,7 @@ public class SitesAdapter extends RecyclerView.Adapter<SitesAdapter.ViewHolder> 
                     case 1002:
 
                         Intent tableIntent = new Intent(itemView.getContext(), SiteTableActivity.class);
-                        tableIntent.putExtra("tmLeader", site_leader.getText().toString());
+                        tableIntent.putExtra("leader", site_leader.getText().toString());
                         itemView.getContext().startActivity(tableIntent);
 
                         ((Activity)itemView.getContext()).finish();//kotlin 은 (context as Activity).finish();

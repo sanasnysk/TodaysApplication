@@ -3,7 +3,6 @@ package com.sansang.todaysapplication.Sites;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
@@ -33,8 +32,6 @@ public class SiteTableActivity extends AppCompatActivity {
     public TableLayout site_table;
     private TodayDatabase todayDatabase;
     private SiteController siteController;
-    private SQLiteDatabase sqLiteDatabase;
-    private final DecimalFormat formatDouble =new DecimalFormat("#,###.##"); //금액 콤마 소숫점;
     private final DecimalFormat formatPay = new DecimalFormat("#,###"); //금액 콤마 소숫점 없음;
 
     @Override
@@ -51,7 +48,7 @@ public class SiteTableActivity extends AppCompatActivity {
 
     private void initView() {
         Toolbar siteToolbar = findViewById(R.id.customToolbar);
-        siteToolbar.setTitle("싸이트 수정하기");
+        siteToolbar.setTitle("현장 테이블");
         setSupportActionBar(siteToolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -103,12 +100,12 @@ public class SiteTableActivity extends AppCompatActivity {
 
     private void getIntentResultSite() {
         Intent positionIntent = getIntent();
-        String site = positionIntent.getExtras().getString("tmLeader");
-        String name = positionIntent.getExtras().getString("tmLeader");
-        if (site == null){
-            etxt_Search.setText("");
+        String leader = positionIntent.getExtras().getString("leader");
+        String team_leader = positionIntent.getExtras().getString("leader");
+        if (leader != null){
+            etxt_Search.setText(leader);
         }else {
-            etxt_Search.setText(name);
+            etxt_Search.setText(team_leader);
         }
     }
 

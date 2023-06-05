@@ -45,8 +45,7 @@ public class JournalEditActivity extends AppCompatActivity {
     private int mYear, mMonth, mDay, mHour, mMinute;
     long mNow;
     Date mDate;
-    private EditText edtxt_id, edtxt_jnid,edtxt_date, edtxt_Site, edtxt_one,
-            edtxt_Pay,  edtxt_Amount, edtxt_memo, edtxt_stid,edtxt_leader,edtxt_tmid;
+    private EditText edtxt_id, edtxt_jnid,edtxt_date, edtxt_Site, edtxt_one, edtxt_Pay,  edtxt_Amount, edtxt_memo, edtxt_stid,edtxt_leader,edtxt_tmid;
     private TodayDatabase todayDatabase;
     private JournalController journalController;
     //ListView Dialog
@@ -71,7 +70,7 @@ public class JournalEditActivity extends AppCompatActivity {
 
     private void initView() {
         Toolbar siteToolbar = findViewById(R.id.customToolbar);
-        siteToolbar.setTitle("싸이트 추가하기");
+        siteToolbar.setTitle("일지 수정하기");
         setSupportActionBar(siteToolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -450,7 +449,7 @@ public class JournalEditActivity extends AppCompatActivity {
                 }
                 return true;
 
-            case R.id.toolbar_close_add:
+            case R.id.toolbar_close_update:
                 Toast.makeText(getApplicationContext(),
                         "일지 수정을 종료합니다.", Toast.LENGTH_SHORT).show();
                 Intent intent_update = new Intent( getApplicationContext(), JournalListActivity.class );

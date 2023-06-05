@@ -89,83 +89,6 @@ public class IncomeController {
         return csListId;
     }
 
-    public Cursor incomeAllSelect() {
-        //sqLiteDB = todayDatabase.getReadableDatabase();
-        String selectQuery = " SELECT * FROM " + IncomeTableContents.INCOME_TABLE +
-                " ORDER BY id DESC ";
-        Cursor cusSearch = sqLiteDatabase.rawQuery( selectQuery, null );
-        if (cusSearch != null) {
-            int r = cusSearch.getCount();
-            for (int i = 0; i < r; i++) {
-                cusSearch.moveToFirst();
-            }
-        } else {
-            cusSearch.close();
-            return null;
-        }
-        return cusSearch;
-    }
-
-    public Cursor incomeSearchSelect(String search) {
-        //sqLiteDB = todayDatabase.getReadableDatabase();
-
-        String selectQuery = " SELECT * FROM " + IncomeTableContents.INCOME_TABLE +
-                " WHERE " + IncomeTableContents.TEAM_LEADER +
-                "  LIKE  '%" + search + "%'" +
-                " ORDER BY id DESC ";
-
-        Cursor cusSearch = sqLiteDatabase.rawQuery( selectQuery, null );
-        if (cusSearch != null) {
-            int r = cusSearch.getCount();
-            for (int i = 0; i < r; i++) {
-                cusSearch.moveToNext();
-            }
-        } else {
-            cusSearch.close();
-            return null;
-        }
-        return cusSearch;
-    }
-
-    //--Income Search sum(collect) sum(tax) sum(cost) ---
-    public Cursor sumSearchIncome(String search) {
-        //sqLiteDB = todayDatabase.getReadableDatabase();
-        String tableSearchQuery = "SELECT total(" + JournalTableContents.JOURNAL_ONE +
-                ") ones, sum(" + JournalTableContents.JOURNAL_AMOUNT +
-                ") amounts, i.deposits, i.taxs, (sum(" + JournalTableContents.JOURNAL_AMOUNT +
-                ") - i.collects) balance, round((sum(" + JournalTableContents.JOURNAL_AMOUNT +
-                ") - i.collects),1)/" + JournalTableContents.SITE_PAY +
-                " oneBalace FROM " + JournalTableContents.JOURNAL_TABLE +
-                " j LEFT JOIN (SELECT " + IncomeTableContents.TEAM_TMID +
-                " tmid, sum(" + IncomeTableContents.INCOME_DEPOSIT +
-                ") deposits, sum(" + IncomeTableContents.INCOME_TAX +
-                ") taxs, sum(" + IncomeTableContents.INCOME_DEPOSIT +
-                ") + sum(" + IncomeTableContents.INCOME_TAX +
-                ") collects FROM " + IncomeTableContents.INCOME_TABLE +
-                " GROUP BY " + IncomeTableContents.TEAM_TMID +
-                ") i ON i.tmid = j." + JournalTableContents.TEAM_TMID +
-                " WHERE " + JournalTableContents.TEAM_LEADER +
-                " LIKE '%"+ search + "%'GROUP BY j." + JournalTableContents.TEAM_TMID + ";";
-
-        String selectDateQuery = "SELECT sum(" + IncomeTableContents.INCOME_DEPOSIT + ")," +
-                " sum(" + IncomeTableContents.INCOME_TAX + ") " +
-                "FROM " + IncomeTableContents.INCOME_TABLE +
-                " WHERE " + IncomeTableContents.TEAM_LEADER + "  LIKE  '%" + search +
-                "%' ORDER BY id DESC ";
-
-        Cursor cusSearch = sqLiteDatabase.rawQuery( tableSearchQuery, null );
-        if (cusSearch != null) {
-            int r = cusSearch.getCount();
-            for (int i = 0; i < r; i++) {
-                cusSearch.moveToNext();
-            }
-        } else {
-            cusSearch.close();
-            return null;
-        }
-        return cusSearch;
-    }
-
     public Cursor selectIncomeDateLeader(String leader, String start, String end) {
         //sqLiteDB = todayDatabase.getReadableDatabase();
 
@@ -295,6 +218,84 @@ public class IncomeController {
 
     //--------------------------------------------------------------------------------------
 
+    /*
+    public Cursor incomeAllSelect() {
+        //sqLiteDB = todayDatabase.getReadableDatabase();
+        String selectQuery = " SELECT * FROM " + IncomeTableContents.INCOME_TABLE +
+                " ORDER BY id DESC ";
+        Cursor cusSearch = sqLiteDatabase.rawQuery( selectQuery, null );
+        if (cusSearch != null) {
+            int r = cusSearch.getCount();
+            for (int i = 0; i < r; i++) {
+                cusSearch.moveToFirst();
+            }
+        } else {
+            cusSearch.close();
+            return null;
+        }
+        return cusSearch;
+    }
+
+    public Cursor incomeSearchSelect(String search) {
+        //sqLiteDB = todayDatabase.getReadableDatabase();
+
+        String selectQuery = " SELECT * FROM " + IncomeTableContents.INCOME_TABLE +
+                " WHERE " + IncomeTableContents.TEAM_LEADER +
+                "  LIKE  '%" + search + "%'" +
+                " ORDER BY id DESC ";
+
+        Cursor cusSearch = sqLiteDatabase.rawQuery( selectQuery, null );
+        if (cusSearch != null) {
+            int r = cusSearch.getCount();
+            for (int i = 0; i < r; i++) {
+                cusSearch.moveToNext();
+            }
+        } else {
+            cusSearch.close();
+            return null;
+        }
+        return cusSearch;
+    }
+
+    //--Income Search sum(collect) sum(tax) sum(cost) ---
+    public Cursor sumSearchIncome(String search) {
+        //sqLiteDB = todayDatabase.getReadableDatabase();
+        String tableSearchQuery = "SELECT total(" + JournalTableContents.JOURNAL_ONE +
+                ") ones, sum(" + JournalTableContents.JOURNAL_AMOUNT +
+                ") amounts, i.deposits, i.taxs, (sum(" + JournalTableContents.JOURNAL_AMOUNT +
+                ") - i.collects) balance, round((sum(" + JournalTableContents.JOURNAL_AMOUNT +
+                ") - i.collects),1)/" + JournalTableContents.SITE_PAY +
+                " oneBalace FROM " + JournalTableContents.JOURNAL_TABLE +
+                " j LEFT JOIN (SELECT " + IncomeTableContents.TEAM_TMID +
+                " tmid, sum(" + IncomeTableContents.INCOME_DEPOSIT +
+                ") deposits, sum(" + IncomeTableContents.INCOME_TAX +
+                ") taxs, sum(" + IncomeTableContents.INCOME_DEPOSIT +
+                ") + sum(" + IncomeTableContents.INCOME_TAX +
+                ") collects FROM " + IncomeTableContents.INCOME_TABLE +
+                " GROUP BY " + IncomeTableContents.TEAM_TMID +
+                ") i ON i.tmid = j." + JournalTableContents.TEAM_TMID +
+                " WHERE " + JournalTableContents.TEAM_LEADER +
+                " LIKE '%"+ search + "%'GROUP BY j." + JournalTableContents.TEAM_TMID + ";";
+
+        String selectDateQuery = "SELECT sum(" + IncomeTableContents.INCOME_DEPOSIT + ")," +
+                " sum(" + IncomeTableContents.INCOME_TAX + ") " +
+                "FROM " + IncomeTableContents.INCOME_TABLE +
+                " WHERE " + IncomeTableContents.TEAM_LEADER + "  LIKE  '%" + search +
+                "%' ORDER BY id DESC ";
+
+        Cursor cusSearch = sqLiteDatabase.rawQuery( tableSearchQuery, null );
+        if (cusSearch != null) {
+            int r = cusSearch.getCount();
+            for (int i = 0; i < r; i++) {
+                cusSearch.moveToNext();
+            }
+        } else {
+            cusSearch.close();
+            return null;
+        }
+        return cusSearch;
+    }
+
     public Cursor incomeDateSelect(String start, String end) {
         //sqLiteDB = todayDatabase.getReadableDatabase();
 
@@ -406,5 +407,6 @@ public class IncomeController {
         }
         return cusSearch;
     }
+    */
 
 }

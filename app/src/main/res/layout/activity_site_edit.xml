@@ -32,7 +32,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:background="@color/blue_200"
             android:padding="2dp"
             android:text="@string/stid"
@@ -65,10 +65,10 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="17dp"
+            android:layout_marginTop="30dp"
             android:background="@color/blue_200"
             android:padding="2dp"
-            android:text="@string/siteName"
+            android:text="@string/site"
             android:textAlignment="center"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -82,14 +82,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="8dp"
-            android:hint="@string/siteName"
+            android:hint="@string/site_name"
             android:importantForAutofill="no"
             android:inputType="text"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/stName_txt"
-            app:layout_constraintTop_toBottomOf="@id/stId_edit_etxt"
+            app:layout_constraintBottom_toBottomOf="@id/stName_txt"
             tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
 
         <TextView
@@ -97,10 +97,10 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="17dp"
+            android:layout_marginTop="30dp"
             android:background="@color/blue_200"
             android:padding="2dp"
-            android:text="@string/sitePay"
+            android:text="@string/pay"
             android:textAlignment="center"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -113,14 +113,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="8dp"
-            android:hint="@string/sitePay"
+            android:hint="@string/site_pay"
             android:importantForAutofill="no"
-            android:inputType="text"
+            android:inputType="number"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/stPay_txt"
-            app:layout_constraintTop_toBottomOf="@id/stName_edit_etxt"
+            app:layout_constraintBottom_toBottomOf="@id/stPay_txt"
             tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
 
         <TextView
@@ -128,10 +128,10 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="17dp"
+            android:layout_marginTop="30dp"
             android:background="@color/blue_200"
             android:padding="2dp"
-            android:text="@string/siteManager"
+            android:text="@string/manager"
             android:textAlignment="center"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -145,14 +145,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="8dp"
-            android:hint="@string/siteManager"
+            android:hint="@string/site_manager"
             android:importantForAutofill="no"
             android:inputType="text"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/stManager_txt"
-            app:layout_constraintTop_toBottomOf="@id/stPay_edit_etxt"
+            app:layout_constraintBottom_toBottomOf="@id/stManager_txt"
             tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
 
         <TextView
@@ -160,10 +160,10 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="17dp"
+            android:layout_marginTop="30dp"
             android:background="@color/blue_200"
             android:padding="2dp"
-            android:text="@string/siteDate"
+            android:text="@string/day"
             android:textAlignment="center"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -177,7 +177,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="8dp"
-            android:hint="@string/siteDate"
+            android:hint="@string/registration_date"
             android:importantForAutofill="no"
             android:inputType="text"
             android:textSize="18sp"
@@ -185,7 +185,7 @@
             android:focusable="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/stDate_txt"
-            app:layout_constraintTop_toBottomOf="@id/stManager_edit_etxt"
+            app:layout_constraintBottom_toBottomOf="@id/stDate_txt"
             tools:ignore="DuplicateSpeakableTextCheck,TextFields,TouchTargetSizeCheck" />
 
         <TextView
@@ -193,10 +193,10 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="17dp"
+            android:layout_marginTop="30dp"
             android:background="@color/blue_200"
             android:padding="2dp"
-            android:text="@string/siteMemo"
+            android:text="@string/memos"
             android:textAlignment="center"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -210,14 +210,48 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="8dp"
-            android:hint="@string/siteMemo"
+            android:hint="@string/memo"
             android:importantForAutofill="no"
             android:inputType="text"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/stMemo_txt"
-            app:layout_constraintTop_toBottomOf="@id/stDate_edit_etxt"
+            app:layout_constraintBottom_toBottomOf="@id/stMemo_txt"
+            tools:ignore="DuplicateSpeakableTextCheck,TextFields,TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/tmLeader_st_txt"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="30dp"
+            android:background="@color/blue_200"
+            android:padding="2dp"
+            android:text="@string/leaders"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/stMemo_txt"
+            tools:ignore="TextSizeCheck" />
+
+        <EditText
+            android:id="@+id/tmLeader_st_edit_etxt"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="8dp"
+            android:hint="@string/team_leader"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:focusable="false"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tmLeader_st_txt"
+            app:layout_constraintBottom_toBottomOf="@id/tmLeader_st_txt"
             tools:ignore="DuplicateSpeakableTextCheck,TextFields,TouchTargetSizeCheck" />
 
         <TextView
@@ -225,7 +259,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="17dp"
+            android:layout_marginTop="30dp"
             android:background="@color/blue_200"
             android:padding="2dp"
             android:text="@string/tmid"
@@ -233,7 +267,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/stMemo_txt"
+            app:layout_constraintTop_toBottomOf="@+id/tmLeader_st_txt"
             tools:ignore="TextSizeCheck" />
 
         <EditText
@@ -250,48 +284,17 @@
             android:focusable="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tmId_st_txt"
-            app:layout_constraintTop_toBottomOf="@id/stMemo_edit_etxt"
+            app:layout_constraintBottom_toBottomOf="@id/tmId_st_txt"
             tools:ignore="DuplicateSpeakableTextCheck,TextFields,TouchTargetSizeCheck" />
 
-        <TextView
-            android:id="@+id/tmLeader_st_txt"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="17dp"
-            android:background="@color/blue_200"
-            android:padding="2dp"
-            android:text="@string/teamLeader"
-            android:textAlignment="center"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tmId_st_txt"
-            tools:ignore="TextSizeCheck" />
 
-        <EditText
-            android:id="@+id/tmLeader_st_edit_etxt"
-            android:layout_width="240dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="8dp"
-            android:hint="@string/teamLeader"
-            android:importantForAutofill="no"
-            android:inputType="text"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:focusable="false"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tmLeader_st_txt"
-            app:layout_constraintTop_toBottomOf="@id/tmId_st_edit_etxt"
-            tools:ignore="DuplicateSpeakableTextCheck,TextFields,TouchTargetSizeCheck" />
 
         <TextView
             android:id="@+id/sid_st_txt"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="17dp"
+            android:layout_marginTop="30dp"
             android:background="@color/blue_200"
             android:padding="2dp"
             android:text="@string/id"
@@ -299,7 +302,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tmLeader_st_txt"
+            app:layout_constraintTop_toBottomOf="@+id/tmId_st_txt"
             tools:ignore="TextSizeCheck" />
 
         <EditText
@@ -316,19 +319,20 @@
             android:focusable="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/sid_st_txt"
-            app:layout_constraintTop_toBottomOf="@id/tmLeader_st_edit_etxt"
+            app:layout_constraintBottom_toBottomOf="@id/sid_st_txt"
             tools:ignore="DuplicateSpeakableTextCheck,TextFields,TouchTargetSizeCheck" />
 
         <LinearLayout
             android:id="@+id/dialog_spinner_layout"
-            android:layout_width="match_parent"
+            android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:background="@drawable/spinner_background"
-            android:layout_margin="15dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/sId_edit_etxt">
+            app:layout_constraintStart_toEndOf="@+id/tmLeader_st_txt"
+            app:layout_constraintBottom_toBottomOf="@id/tmLeader_st_txt">
 
             <TextView
                 android:id="@+id/dialog_spinner_txt"

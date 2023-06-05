@@ -12,10 +12,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.Toolbar;
 
-import com.sansang.todaysapplication.Costs.CostAddActivity;
 import com.sansang.todaysapplication.Costs.CostListActivity;
 import com.sansang.todaysapplication.Incmoes.IncomeListActivity;
 import com.sansang.todaysapplication.Journals.JournalListActivity;
+import com.sansang.todaysapplication.Settlement.SettlementActivity;
 import com.sansang.todaysapplication.Sites.SiteListActivity;
 import com.sansang.todaysapplication.Teams.TeamListActivity;
 
@@ -84,10 +84,13 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                 Intent intent_cost = new Intent(getApplicationContext(), CostListActivity.class);
                 startActivity(intent_cost);
 
-                Toast.makeText(this, "cost add go to", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "cost add go to", Toast.LENGTH_SHORT).show();
+                return true;
 
             case R.id.settling_list_option:
-                Toast.makeText(this, "setting go to", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "setting go to", Toast.LENGTH_SHORT).show();
+                Intent intent_settlement = new Intent(getApplicationContext(), SettlementActivity.class);
+                startActivity(intent_settlement);
                 return true;
 
             case R.id.main_close_option:

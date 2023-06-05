@@ -1,12 +1,5 @@
 package com.sansang.todaysapplication.Costs;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
@@ -17,26 +10,25 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.sansang.todaysapplication.Adapter.CostAdapter;
-import com.sansang.todaysapplication.Contents.IncomeContents;
-import com.sansang.todaysapplication.Contents.JournalContents;
 import com.sansang.todaysapplication.Database.TodayDatabase;
 import com.sansang.todaysapplication.DatabaseController.CostController;
 import com.sansang.todaysapplication.MainActivity;
 import com.sansang.todaysapplication.R;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class CostListActivity extends AppCompatActivity {
-    private ArrayList<JournalContents> jList;
-    private ArrayList<IncomeContents> iList;
-    private ArrayList<String> sjList;
-    private ArrayList<String> siList;
     private RecyclerView rcv_cost;
     private CostAdapter costAdapter;
     TodayDatabase todayDatabase;
-    SQLiteDatabase sqLiteDatabase;
     CostController costController;
     private final int count = -1;
     RecyclerView.LayoutManager layoutManager;
@@ -47,7 +39,6 @@ public class CostListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cost_list);
 
         todayDatabase = new TodayDatabase(this);
-        sqLiteDatabase = todayDatabase.getReadableDatabase();
         costController = new CostController(this);
 
         initView();
@@ -55,7 +46,7 @@ public class CostListActivity extends AppCompatActivity {
 
     private void initView(){
         Toolbar siteToolbar = findViewById(R.id.customToolbar);
-        siteToolbar.setTitle("수입 추가하기");
+        siteToolbar.setTitle("경비 리스트");
         setSupportActionBar(siteToolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -73,12 +64,12 @@ public class CostListActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         rcv_cost.setLayoutManager(layoutManager);
 
-        getAllJournalRecyclerView();
+        getAllCostRecyclerView();
 
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    private void getAllJournalRecyclerView(){
+    private void getAllCostRecyclerView(){
         try {
             costController.open();
         } catch (SQLException e) {
@@ -118,6 +109,7 @@ public class CostListActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),
                         "일지쓰기로 이동 합니다.", Toast.LENGTH_SHORT).show();
                 Intent intent_cost_table = new Intent(getApplicationContext(), CostTableActivity.class);
+                intent_cost_table.putExtra("site", costAdapter.getItemId(1));
                 startActivity(intent_cost_table);
                 finish();
                 return true;

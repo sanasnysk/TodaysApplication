@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:backgroundTint="@color/blue_500"
+        android:backgroundTintMode="screen"
+        android:background="@drawable/cardview_background"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/yellow_light">
+
+            <ImageView
+                android:id="@+id/img_settlement"
+                android:layout_width="60dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="1dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/img_00034s"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/year_settlement_txt"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:layout_marginStart="1dp"
+                android:background="@drawable/text_background"
+                android:focusable="false"
+                android:textSize="18sp"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textStyle="normal"
+                android:text="@string/year"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/img_settlement"/>
+
+            <TextView
+                android:id="@+id/year_settlement_edt"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:background="@drawable/text_background"
+                android:focusable="false"
+                android:text="@string/settlement"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="italic"
+                app:layout_constraintBottom_toBottomOf="@id/year_settlement_txt"
+                app:layout_constraintStart_toEndOf="@id/year_settlement_txt"
+                tools:ignore="TextSizeCheck" />
+
+            <TextView
+                android:id="@+id/one_settlement_txt"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:layout_marginStart="1dp"
+                android:background="@drawable/text_background"
+                android:focusable="false"
+                android:textSize="18sp"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textStyle="normal"
+                android:text="@string/ones"
+                app:layout_constraintBottom_toBottomOf="@id/year_settlement_edt"
+                app:layout_constraintStart_toEndOf="@id/year_settlement_edt"/>
+
+            <TextView
+                android:id="@+id/one_settlement_edt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:layout_marginEnd="3dp"
+                android:background="@drawable/text_background"
+                android:focusable="false"
+                android:text="@string/settlement"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="italic"
+                app:layout_constraintBottom_toBottomOf="@id/one_settlement_txt"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/one_settlement_txt"
+                tools:ignore="TextSizeCheck" />
+
+            <TextView
+                android:id="@+id/amount_settlement_txt"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:layout_marginStart="1dp"
+                android:background="@drawable/text_background"
+                android:focusable="false"
+                android:textSize="18sp"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textStyle="normal"
+                android:text="@string/amount"
+                app:layout_constraintTop_toBottomOf="@id/year_settlement_txt"
+                app:layout_constraintStart_toEndOf="@id/img_settlement"/>
+
+            <TextView
+                android:id="@+id/amount_settlement_edt"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:background="@drawable/text_background"
+                android:focusable="false"
+                android:text="@string/settlement"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="italic"
+                app:layout_constraintBottom_toBottomOf="@id/amount_settlement_txt"
+                app:layout_constraintStart_toEndOf="@id/amount_settlement_txt"
+                tools:ignore="TextSizeCheck" />
+
+            <TextView
+                android:id="@+id/cost_settlement_txt"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:layout_marginStart="1dp"
+                android:background="@drawable/text_background"
+                android:focusable="false"
+                android:textSize="18sp"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textStyle="normal"
+                android:text="@string/costs"
+                app:layout_constraintBottom_toBottomOf="@id/amount_settlement_txt"
+                app:layout_constraintStart_toEndOf="@id/amount_settlement_edt"/>
+
+            <TextView
+                android:id="@+id/cost_settlement_edt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:layout_marginEnd="3dp"
+                android:background="@drawable/text_background"
+                android:focusable="false"
+                android:text="@string/settlement"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="italic"
+                app:layout_constraintBottom_toBottomOf="@id/amount_settlement_txt"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/cost_settlement_txt"
+                tools:ignore="TextSizeCheck" />
+
+            <TextView
+                android:id="@+id/income_settlement_txt"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:layout_marginStart="1dp"
+                android:background="@drawable/text_background"
+                android:focusable="false"
+                android:textSize="18sp"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textStyle="normal"
+                android:text="@string/deposits"
+                app:layout_constraintTop_toBottomOf="@id/amount_settlement_txt"
+                app:layout_constraintStart_toEndOf="@id/img_settlement"/>
+
+            <TextView
+                android:id="@+id/income_settlement_edt"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:background="@drawable/text_background"
+                android:focusable="false"
+                android:text="@string/settlement"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="italic"
+                app:layout_constraintBottom_toBottomOf="@id/income_settlement_txt"
+                app:layout_constraintStart_toEndOf="@id/income_settlement_txt"
+                tools:ignore="TextSizeCheck" />
+
+            <TextView
+                android:id="@+id/tax_settlement_txt"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:layout_marginStart="1dp"
+                android:background="@drawable/text_background"
+                android:focusable="false"
+                android:textSize="18sp"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textStyle="normal"
+                android:text="@string/taxs"
+                app:layout_constraintBottom_toBottomOf="@id/income_settlement_edt"
+                app:layout_constraintStart_toEndOf="@id/income_settlement_edt"/>
+
+            <TextView
+                android:id="@+id/tax_settlement_edt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:layout_marginEnd="3dp"
+                android:background="@drawable/text_background"
+                android:focusable="false"
+                android:text="@string/settlement"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="italic"
+                app:layout_constraintBottom_toBottomOf="@id/tax_settlement_txt"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tax_settlement_txt"
+                tools:ignore="TextSizeCheck" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

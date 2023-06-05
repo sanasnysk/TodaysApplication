@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.icu.util.Calendar;
@@ -48,7 +47,6 @@ public class JournalAddActivity extends AppCompatActivity {
     Date mDate;
     private EditText etxt_jnId, etxt_date, etxt_Site, etxt_one, etxt_Pay, etxt_Amount, etxt_Memo, etxt_stId, etxt_tmLeader, etxt_tmId;
     private TodayDatabase todayDatabase;
-    private SQLiteDatabase sqLiteDatabase;
     private JournalController journalController;
     //ListView Dialog
     private Button btn_spinner_down;
@@ -73,7 +71,7 @@ public class JournalAddActivity extends AppCompatActivity {
 
     private void initView() {
         Toolbar siteToolbar = findViewById(R.id.customToolbar);
-        siteToolbar.setTitle("싸이트 추가하기");
+        siteToolbar.setTitle("일지 추가하기");
         setSupportActionBar(siteToolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);

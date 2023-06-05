@@ -75,7 +75,7 @@ public class SiteEditActivity extends AppCompatActivity {
 
     private void initView(){
         Toolbar siteToolbar = findViewById(R.id.customToolbar);
-        siteToolbar.setTitle("싸이트 수정하기");
+        siteToolbar.setTitle("현장 수정하기");
         setSupportActionBar(siteToolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -104,6 +104,8 @@ public class SiteEditActivity extends AppCompatActivity {
         etxt_stDate.setText(dateTime());
 
         dateChange();
+        payTextWatcher();
+        intentResult();
 
         btn_down = findViewById(R.id.btn_spinner_down);
         btn_down.setOnClickListener(new View.OnClickListener() {
@@ -113,8 +115,6 @@ public class SiteEditActivity extends AppCompatActivity {
             }
         });
 
-        intentResult();
-        payTextWatcher();
     }
 
     public void goToSiteListActivity(){

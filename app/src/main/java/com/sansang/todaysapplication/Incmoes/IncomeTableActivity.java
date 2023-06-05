@@ -67,7 +67,7 @@ public class IncomeTableActivity extends AppCompatActivity {
 
     private void initView() {
         Toolbar siteToolbar = findViewById(R.id.customToolbar);
-        siteToolbar.setTitle("수입 테이블 리스트");
+        siteToolbar.setTitle("수입 테이블");
         setSupportActionBar(siteToolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -135,7 +135,7 @@ public class IncomeTableActivity extends AppCompatActivity {
 
         Cursor csDate, cusDate = null;
 
-        String startQuery = "select date('now', 'start of month', 'localtime')";
+        String startQuery = "select date('now', 'start of month', '-1 month', 'localtime')";
 
         String endQuery = "select date('now', 'start of month', '+1 month', '-1 day','localtime')";
         //String endQuery = "select datetime('now','localtime')";

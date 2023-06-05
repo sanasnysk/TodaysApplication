@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -53,7 +52,6 @@ public class SiteAddActivity extends AppCompatActivity {
     private EditText etxt_stId,etxt_stName,etxt_stPay,etxt_stManager,etxt_stDate,etxt_stMemo,etxt_tmId,etxt_tmLeader;
 
     private TodayDatabase todayDatabase;
-    private SQLiteDatabase sqLiteDatabase;
     private SiteController siteController;
     private final DecimalFormat decimalFormat = new DecimalFormat("#,###");
     private String result="";
@@ -81,7 +79,7 @@ public class SiteAddActivity extends AppCompatActivity {
 
     private void initView() {
         Toolbar siteToolbar = findViewById(R.id.customToolbar);
-        siteToolbar.setTitle("싸이트 추가하기");
+        siteToolbar.setTitle("현장 추가하기");
         setSupportActionBar(siteToolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);

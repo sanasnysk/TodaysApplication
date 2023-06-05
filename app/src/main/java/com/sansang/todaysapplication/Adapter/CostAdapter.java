@@ -46,6 +46,7 @@ public class CostAdapter extends RecyclerView.Adapter<CostAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull CostAdapter.ViewHolder holder, int position) {
         formatday = new DecimalFormat("#,###.#");
         formatPay = new DecimalFormat("#,###");
+
         if (!cursor_m.moveToPosition(position))
             return;
         String site = cursor_m.getString(cursor_m.getColumnIndex("sites"));
@@ -141,7 +142,7 @@ public class CostAdapter extends RecyclerView.Adapter<CostAdapter.ViewHolder> {
 
                     case 1002:
                         Intent tableIntent = new Intent(itemView.getContext(), CostTableActivity.class);
-                        tableIntent.putExtra("site_name", site_name.getText().toString());
+                        tableIntent.putExtra("site", site_name.getText().toString());
                         itemView.getContext().startActivity(tableIntent);
 
                         ((Activity) itemView.getContext()).finish();//kotlin 은 (context as Activity).finish();

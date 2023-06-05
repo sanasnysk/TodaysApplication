@@ -18,21 +18,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.sansang.todaysapplication.Adapter.IncomeAdapter;
-import com.sansang.todaysapplication.Contents.IncomeContents;
-import com.sansang.todaysapplication.Contents.JournalContents;
 import com.sansang.todaysapplication.Database.IncomeTableContents;
 import com.sansang.todaysapplication.Database.JournalTableContents;
 import com.sansang.todaysapplication.Database.TodayDatabase;
 import com.sansang.todaysapplication.DatabaseController.JournalController;
 import com.sansang.todaysapplication.R;
 
-import java.util.ArrayList;
-
 public class IncomeListActivity extends AppCompatActivity {
-    private ArrayList<JournalContents> journalContents;
-    private ArrayList<IncomeContents> incomeContents;
-    private ArrayList<String> site_journal_list;
-    private ArrayList<String> site_income_list;
     private RecyclerView recyclerView_income;
     private IncomeAdapter incomeAdapter;
     TodayDatabase todayDatabase;

@@ -1,15 +1,11 @@
 package com.sansang.todaysapplication.DatabaseController;
 
-import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.sansang.todaysapplication.Contents.IncomeContents;
-import com.sansang.todaysapplication.Contents.JournalContents;
 import com.sansang.todaysapplication.Database.CostTableContents;
-import com.sansang.todaysapplication.Database.IncomeTableContents;
 import com.sansang.todaysapplication.Database.JournalTableContents;
 import com.sansang.todaysapplication.Database.SiteTableContents;
 import com.sansang.todaysapplication.Database.TodayDatabase;
@@ -19,14 +15,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JournalController {
-    private Context context;
+    private final Context context;
     private TodayDatabase todayDatabase;
     private SQLiteDatabase sqLiteDatabase;
 
-    public JournalController( Context context ) {
-        this.context = context;
+    public JournalController( Context con ) {
+        this.context = con;
     }
-
 
     public JournalController open() throws SQLException {
         todayDatabase = new TodayDatabase( context );
@@ -257,10 +252,56 @@ public class JournalController {
 
     }
 
+    //--- Site Spinner Item Journal add & update Result oneDay & dailyPay
+    public List<String> getAllSpinnerSite() {
+        sqLiteDatabase = todayDatabase.getReadableDatabase();
+        List<String> listItem = new ArrayList<String>();
+        //-- Select All Query
+        String spinnerQuery = "SELECT * FROM site_table  ORDER BY ID DESC";
+
+        Cursor curSpinner = sqLiteDatabase.rawQuery( spinnerQuery, null );
+
+        //-- looping through all rows and adding to list
+        if (curSpinner.moveToFirst()) {
+            do {
+                listItem.add(curSpinner.getString(2));
+            } while (curSpinner.moveToNext());
+        }
+
+        //-- closing connection
+        curSpinner.close();
+        sqLiteDatabase.close();
+
+        //-- returning Items
+        return listItem;
+    }
+
+    //----Journal add and update Site Result oneday and dailypay
+    public Cursor siteSpinnerResult( String spinSite) {
+        sqLiteDatabase = todayDatabase.getReadableDatabase();
+        String siteItemResultQuery = "SELECT " + SiteTableContents.TEAM_LEADER +
+                ", " + SiteTableContents.SITE_PAY +
+                ", " + SiteTableContents.SITE_STID +
+                ", " + SiteTableContents.TEAM_TMID +
+                " FROM " + SiteTableContents.SITE_TABLE +
+                " where " + SiteTableContents.SITE_NAME + " LIKE '%" + spinSite + "%'";
+
+        Cursor cusAllSite = sqLiteDatabase.rawQuery( siteItemResultQuery, null );
+        if (cusAllSite.moveToFirst()) {
+            do {
+                cusAllSite.getString( 0 );
+                cusAllSite.getString( 1 );
+            } while (cusAllSite.moveToNext());
+        }
+        cusAllSite.moveToFirst();
+        sqLiteDatabase.close();
+        return cusAllSite;
+    }
+
     //----------------------------------- end -------------------------------------------------- **
 
 
-
+/*
     //--- Search Site Journal
     public Cursor searchJournal(String search) {
         sqLiteDatabase = todayDatabase.getReadableDatabase();
@@ -317,8 +358,6 @@ public class JournalController {
         return cusSearch;
     }
 
-
-
     //--- Search Team Journal
     public Cursor searchTeamJournal(String search, String start, String end) {
         sqLiteDatabase = todayDatabase.getReadableDatabase();
@@ -339,32 +378,6 @@ public class JournalController {
             return null;
         }
         return cusSearch;
-    }
-
-
-
-    //--- Site Spinner Item Journal add & update Result oneDay & dailyPay
-    public List<String> getAllSpinnerSite() {
-        sqLiteDatabase = todayDatabase.getReadableDatabase();
-        List<String> listItem = new ArrayList<String>();
-        //-- Select All Query
-        String spinnerQuery = "SELECT * FROM site_table  ORDER BY ID DESC";
-
-        Cursor curSpinner = sqLiteDatabase.rawQuery( spinnerQuery, null );
-
-        //-- looping through all rows and adding to list
-        if (curSpinner.moveToFirst()) {
-            do {
-                listItem.add(curSpinner.getString(2));
-            } while (curSpinner.moveToNext());
-        }
-
-        //-- closing connection
-        curSpinner.close();
-        sqLiteDatabase.close();
-
-        //-- returning Items
-        return listItem;
     }
 
     //--- Team and startDay and endDay sum(oneDay) sum(amount)
@@ -435,28 +448,6 @@ public class JournalController {
             return null;
         }
         return cusSearch;
-    }
-
-    //----Journal add and update Site Result oneday and dailypay
-    public Cursor siteSpinnerResult( String spinSite) {
-        sqLiteDatabase = todayDatabase.getReadableDatabase();
-        String siteItemResultQuery = "SELECT " + SiteTableContents.TEAM_LEADER +
-                ", " + SiteTableContents.SITE_PAY +
-                ", " + SiteTableContents.SITE_STID +
-                ", " + SiteTableContents.TEAM_TMID +
-                " FROM " + SiteTableContents.SITE_TABLE +
-                " where " + SiteTableContents.SITE_NAME + " LIKE '%" + spinSite + "%'";
-
-        Cursor cusAllSite = sqLiteDatabase.rawQuery( siteItemResultQuery, null );
-        if (cusAllSite.moveToFirst()) {
-            do {
-                cusAllSite.getString( 0 );
-                cusAllSite.getString( 1 );
-            } while (cusAllSite.moveToNext());
-        }
-        cusAllSite.moveToFirst();
-        sqLiteDatabase.close();
-        return cusAllSite;
     }
 
     @SuppressLint("Recycle")
@@ -594,4 +585,5 @@ public class JournalController {
         }
         return iList;
     }
+    */
 }

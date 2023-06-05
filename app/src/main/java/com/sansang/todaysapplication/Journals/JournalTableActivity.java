@@ -33,7 +33,6 @@ import com.sansang.todaysapplication.R;
 
 import java.sql.SQLException;
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class JournalTableActivity extends AppCompatActivity {
@@ -66,7 +65,7 @@ public class JournalTableActivity extends AppCompatActivity {
 
     private void initView() {
         Toolbar siteToolbar = findViewById(R.id.customToolbar);
-        siteToolbar.setTitle("일지 테이블 리스트");
+        siteToolbar.setTitle("일지 테이블");
         setSupportActionBar(siteToolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -118,16 +117,6 @@ public class JournalTableActivity extends AppCompatActivity {
             etxt_Search.setText(site_name);
         }
 
-    }
-
-    @SuppressLint("SimpleDateFormat")
-    private String dateTime() {
-        mNow = System.currentTimeMillis();
-        mDate = new Date(mNow);
-        SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd");
-        //SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-
-        return mFormat.format(mDate);
     }
 
     private void tableDateTime() {

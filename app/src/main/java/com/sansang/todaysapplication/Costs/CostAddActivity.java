@@ -28,13 +28,10 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.sansang.todaysapplication.Database.TodayDatabase;
 import com.sansang.todaysapplication.DatabaseController.CostController;
-import com.sansang.todaysapplication.DatabaseController.JournalController;
-import com.sansang.todaysapplication.DatabaseController.SiteController;
 import com.sansang.todaysapplication.NumberTextWatcher.NumberTextWatcher;
 import com.sansang.todaysapplication.R;
 
 import java.sql.SQLException;
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -50,10 +47,6 @@ public class CostAddActivity extends AppCompatActivity {
     private EditText editx_csid, edtxt_date, edtxt_site, edtxt_detail, edtxt_price, edtxt_amount,edtxt_memo, edtxt_stid;
     private TodayDatabase todayDatabase;
     private CostController costController;
-    private JournalController journalController;
-    private SiteController sitesController;
-    private final DecimalFormat decimalFormat = new DecimalFormat("#,###");
-    private String result_price, result_amount = "";
     //ListView Dialog
     private Button btn_spinner_down;
     private TextView dialog_spinner_txt;
@@ -70,8 +63,6 @@ public class CostAddActivity extends AppCompatActivity {
 
         todayDatabase = new TodayDatabase(this);
         costController = new CostController(this);
-        journalController = new JournalController(this);
-        sitesController = new SiteController(this);
 
         initView();
 
@@ -79,7 +70,7 @@ public class CostAddActivity extends AppCompatActivity {
 
     private void initView() {
         Toolbar siteToolbar = findViewById(R.id.customToolbar);
-        siteToolbar.setTitle("수입 추가하기");
+        siteToolbar.setTitle("경비 추가하기");
         setSupportActionBar(siteToolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -163,13 +154,13 @@ public class CostAddActivity extends AppCompatActivity {
 
         // database handler
         try {
-            journalController.open();
+            costController.open();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
         // Spinner Drop down elements
-        List<String> data = journalController.getAllSpinnerSite();
+        List<String> data = costController.getAllSpinnerSite();
 
         String[] item_data = data.toArray(new String[0]);
         int size = 0;
@@ -210,7 +201,7 @@ public class CostAddActivity extends AppCompatActivity {
 
                     // outer for loop
                     //---Data Edit Site_Name Team_Leader Daily_Pay 출력
-                    final Cursor cus = journalController.siteSpinnerResult( site );
+                    final Cursor cus = costController.siteSpinnerResult( site );
                     final int rows = cus.getCount();
                     final int clums = cus.getColumnCount();
 

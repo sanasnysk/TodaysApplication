@@ -2,7 +2,6 @@ package com.sansang.todaysapplication.Sites;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,7 +28,6 @@ public class SiteListActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private SitesAdapter sitesAdapter;
     TodayDatabase todayDatabase;
-    SQLiteDatabase sqLiteDatabase;
     SiteController siteController;
     private final int count = -1;
     RecyclerView.LayoutManager layoutManager;
@@ -40,7 +38,6 @@ public class SiteListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_site_list);
 
         todayDatabase = new TodayDatabase(this);
-        sqLiteDatabase = todayDatabase.getReadableDatabase();
         siteController = new SiteController(this);
 
         initView();
@@ -50,7 +47,7 @@ public class SiteListActivity extends AppCompatActivity {
     @SuppressLint("CutPasteId")
     private void initView() {
         Toolbar listToolbar = findViewById(R.id.customToolbar);
-        listToolbar.setTitle("현장 리스트 확인");
+        listToolbar.setTitle("현장 리스트");
         setSupportActionBar(listToolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -113,7 +110,7 @@ public class SiteListActivity extends AppCompatActivity {
 
             case R.id.toolbar_table_list:
                 Intent intent_table = new Intent(getApplicationContext(), SiteTableActivity.class);
-                intent_table.putExtra("tmLeader", sitesAdapter.getItemId(1));
+                intent_table.putExtra("leader", sitesAdapter.getItemId(1));
                 startActivity(intent_table);
                 finish();
 

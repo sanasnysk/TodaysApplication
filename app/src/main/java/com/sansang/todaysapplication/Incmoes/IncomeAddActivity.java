@@ -34,7 +34,6 @@ import com.sansang.todaysapplication.NumberTextWatcher.NumberTextWatcher;
 import com.sansang.todaysapplication.R;
 
 import java.sql.SQLException;
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -52,8 +51,6 @@ public class IncomeAddActivity extends AppCompatActivity {
     private IncomeController incomeController;
     private SiteController siteController;
     private JournalController journalController;
-    private final DecimalFormat decimalFormat = new DecimalFormat("#,###");
-    private String result_deposit, result_tax;
     //ListView Dialog
     private Button btn_spinner_down;
     private TextView dialog_spinner_txt;
@@ -136,15 +133,15 @@ public class IncomeAddActivity extends AppCompatActivity {
         }
         final Cursor cus = incomeController.incomeAutoId();
         final int rows = cus.getCount();
-        String journalid = "ic_";
+        String incomeid = "ic_";
         int idNo = 1;
 
         if (rows == 0) {
-            edtxt_icid.setText( journalid + idNo );
+            edtxt_icid.setText( incomeid + idNo );
         } else {
             int r = cus.getInt( 0 );
             int rid = idNo + r;
-            edtxt_icid.setText(journalid + rid);
+            edtxt_icid.setText(incomeid + rid);
         }
     }
 

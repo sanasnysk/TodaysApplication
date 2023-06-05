@@ -175,7 +175,7 @@
                 android:layout_marginEnd="1dp"
                 android:padding="1dp"
                 android:background="@color/white"
-                android:text="@string/leader"
+                android:text="@string/team_leader"
                 android:textColor="@color/black"
                 android:textAlignment="center"
                 android:textSize="16sp"/>

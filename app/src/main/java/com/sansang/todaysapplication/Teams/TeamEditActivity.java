@@ -29,8 +29,7 @@ public class TeamEditActivity extends AppCompatActivity {
     private int mYear, mMonth, mDay, mHour, mMinute;
     long mNow;
     Date mDate;
-    @SuppressLint("SimpleDateFormat")
-    SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    SimpleDateFormat mFormat;
     private EditText etxt_id,etxt_tmid,etxt_tmleader,etxt_tmmobile,etxt_tmdate,etxt_tmmemo;
     private TodayDatabase todayDatabase;
     private TeamController teamController;
@@ -40,9 +39,13 @@ public class TeamEditActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_team_edit);
 
+        todayDatabase = new TodayDatabase( this );
+        teamController = new TeamController( this );
+
         initView();
     }
 
+    @SuppressLint("SimpleDateFormat")
     private void initView() {
         Toolbar editToolbar = findViewById(R.id.customToolbar);
         editToolbar.setTitle("팀 수정하기");
@@ -57,8 +60,7 @@ public class TeamEditActivity extends AppCompatActivity {
             }
         });
 
-        todayDatabase = new TodayDatabase( this );
-        teamController = new TeamController( this );
+        mFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
         etxt_id = findViewById(R.id.tid_edit_etxt);
         etxt_tmid = findViewById(R.id.tmId_edit_etxt);

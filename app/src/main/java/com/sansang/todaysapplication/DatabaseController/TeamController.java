@@ -125,8 +125,6 @@ public class TeamController {
     }
 
     public ArrayList<TeamContents> getList(){
-        // 읽기가 가능하게 DB 열기
-        //sqLiteDB = todaysDB.getReadableDatabase();
         //String List
         String id;
         String tid;
