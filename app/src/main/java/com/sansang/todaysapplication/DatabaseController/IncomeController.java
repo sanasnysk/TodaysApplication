@@ -173,7 +173,8 @@ public class IncomeController {
 
         List<String> listItem = new ArrayList<String>();
         //-- Select All Query
-        String spinnerQuery = "SELECT siteName || ' 리더 : ' || teamLeader leader FROM site_table  ORDER BY ID DESC";
+        String spinnerQuery = "SELECT siteName  FROM site_table  ORDER BY ID DESC";
+        //String spinnerQuery = "SELECT siteName || ' 리더 : ' || teamLeader leader FROM site_table  ORDER BY ID DESC";
 
         Cursor curSpinner = sqLiteDatabase.rawQuery( spinnerQuery, null );
 
@@ -201,7 +202,6 @@ public class IncomeController {
                 ", " + SiteTableContents.TEAM_TMID +
                 " FROM " + SiteTableContents.SITE_TABLE +
                 " where " + SiteTableContents.SITE_NAME +
-                " || ' 리더 : ' || " + SiteTableContents.TEAM_LEADER +
                 " LIKE '%" + spinSite + "%'";
 
         Cursor cusAllSite = sqLiteDatabase.rawQuery( siteItemResultQuery, null );
@@ -217,196 +217,5 @@ public class IncomeController {
     }
 
     //--------------------------------------------------------------------------------------
-
-    /*
-    public Cursor incomeAllSelect() {
-        //sqLiteDB = todayDatabase.getReadableDatabase();
-        String selectQuery = " SELECT * FROM " + IncomeTableContents.INCOME_TABLE +
-                " ORDER BY id DESC ";
-        Cursor cusSearch = sqLiteDatabase.rawQuery( selectQuery, null );
-        if (cusSearch != null) {
-            int r = cusSearch.getCount();
-            for (int i = 0; i < r; i++) {
-                cusSearch.moveToFirst();
-            }
-        } else {
-            cusSearch.close();
-            return null;
-        }
-        return cusSearch;
-    }
-
-    public Cursor incomeSearchSelect(String search) {
-        //sqLiteDB = todayDatabase.getReadableDatabase();
-
-        String selectQuery = " SELECT * FROM " + IncomeTableContents.INCOME_TABLE +
-                " WHERE " + IncomeTableContents.TEAM_LEADER +
-                "  LIKE  '%" + search + "%'" +
-                " ORDER BY id DESC ";
-
-        Cursor cusSearch = sqLiteDatabase.rawQuery( selectQuery, null );
-        if (cusSearch != null) {
-            int r = cusSearch.getCount();
-            for (int i = 0; i < r; i++) {
-                cusSearch.moveToNext();
-            }
-        } else {
-            cusSearch.close();
-            return null;
-        }
-        return cusSearch;
-    }
-
-    //--Income Search sum(collect) sum(tax) sum(cost) ---
-    public Cursor sumSearchIncome(String search) {
-        //sqLiteDB = todayDatabase.getReadableDatabase();
-        String tableSearchQuery = "SELECT total(" + JournalTableContents.JOURNAL_ONE +
-                ") ones, sum(" + JournalTableContents.JOURNAL_AMOUNT +
-                ") amounts, i.deposits, i.taxs, (sum(" + JournalTableContents.JOURNAL_AMOUNT +
-                ") - i.collects) balance, round((sum(" + JournalTableContents.JOURNAL_AMOUNT +
-                ") - i.collects),1)/" + JournalTableContents.SITE_PAY +
-                " oneBalace FROM " + JournalTableContents.JOURNAL_TABLE +
-                " j LEFT JOIN (SELECT " + IncomeTableContents.TEAM_TMID +
-                " tmid, sum(" + IncomeTableContents.INCOME_DEPOSIT +
-                ") deposits, sum(" + IncomeTableContents.INCOME_TAX +
-                ") taxs, sum(" + IncomeTableContents.INCOME_DEPOSIT +
-                ") + sum(" + IncomeTableContents.INCOME_TAX +
-                ") collects FROM " + IncomeTableContents.INCOME_TABLE +
-                " GROUP BY " + IncomeTableContents.TEAM_TMID +
-                ") i ON i.tmid = j." + JournalTableContents.TEAM_TMID +
-                " WHERE " + JournalTableContents.TEAM_LEADER +
-                " LIKE '%"+ search + "%'GROUP BY j." + JournalTableContents.TEAM_TMID + ";";
-
-        String selectDateQuery = "SELECT sum(" + IncomeTableContents.INCOME_DEPOSIT + ")," +
-                " sum(" + IncomeTableContents.INCOME_TAX + ") " +
-                "FROM " + IncomeTableContents.INCOME_TABLE +
-                " WHERE " + IncomeTableContents.TEAM_LEADER + "  LIKE  '%" + search +
-                "%' ORDER BY id DESC ";
-
-        Cursor cusSearch = sqLiteDatabase.rawQuery( tableSearchQuery, null );
-        if (cusSearch != null) {
-            int r = cusSearch.getCount();
-            for (int i = 0; i < r; i++) {
-                cusSearch.moveToNext();
-            }
-        } else {
-            cusSearch.close();
-            return null;
-        }
-        return cusSearch;
-    }
-
-    public Cursor incomeDateSelect(String start, String end) {
-        //sqLiteDB = todayDatabase.getReadableDatabase();
-
-        String selectDateQuery = "SELECT * FROM " + IncomeTableContents.INCOME_TABLE +
-                " WHERE " + IncomeTableContents.INCOME_DATE +
-                " BETWEEN Date('" + start + "') AND Date('" + end + "') ORDER BY id DESC ";
-
-        Cursor cusSearch = sqLiteDatabase.rawQuery( selectDateQuery, null );
-        if (cusSearch != null) {
-            int r = cusSearch.getCount();
-            for (int i = 0; i < r; i++) {
-                cusSearch.moveToNext();
-            }
-        } else {
-            cusSearch.close();
-            return null;
-        }
-        return cusSearch;
-    }
-
-    //--startday and endday sum(collect) sum(tax) sum(cost) ------------------------------------
-    public Cursor sumDateIncome(String start, String end) {
-        //sqLiteDB = todayDatabase.getReadableDatabase();
-
-        String selectDateQuery = "SELECT sum(" + IncomeTableContents.INCOME_DEPOSIT + ")," +
-                " sum(" + IncomeTableContents.INCOME_TAX + ") " +
-                "FROM " + IncomeTableContents.INCOME_TABLE +
-                " WHERE " + IncomeTableContents.INCOME_DATE +
-                "  BETWEEN Date('" + start + "') AND Date('" + end + "') ORDER BY id DESC ";
-
-        Cursor cusSearch = sqLiteDatabase.rawQuery( selectDateQuery, null );
-        if (cusSearch != null) {
-            int r = cusSearch.getCount();
-            for (int i = 0; i < r; i++) {
-                cusSearch.moveToNext();
-            }
-        } else {
-            cusSearch.close();
-            return null;
-        }
-        return cusSearch;
-    }
-
-    //--Income and startday and endday sum(collect) sum(tax) sum(cost) ----------------------
-    public Cursor sumSiteDateIncome(String start, String end, String search) {
-        //sqLiteDB = todayDatabase.getReadableDatabase();
-
-        String selectDateQuery = "SELECT sum(" + IncomeTableContents.INCOME_DEPOSIT + ")," +
-                " sum(" + IncomeTableContents.INCOME_TAX + ") " +
-                "FROM " + IncomeTableContents.INCOME_TABLE +
-                " WHERE " + IncomeTableContents.TEAM_LEADER + "  LIKE  '%" + search +
-                "%' AND " + IncomeTableContents.INCOME_DATE +
-                "  BETWEEN Date('" + start + "') AND Date('" + end + "') ORDER BY id DESC ";
-
-        Cursor cusSearch = sqLiteDatabase.rawQuery( selectDateQuery, null );
-        if (cusSearch != null) {
-            int r = cusSearch.getCount();
-            for (int i = 0; i < r; i++) {
-                cusSearch.moveToNext();
-            }
-        } else {
-            cusSearch.close();
-            return null;
-        }
-        return cusSearch;
-    }
-
-    //--Income and startday and endday sum(collect) sum(tax) sum(cost) ----------------------
-    public Cursor sumSiteIncome(String search) {
-        //sqLiteDB = todayDatabase.getReadableDatabase();
-
-        String selectDateQuery = "SELECT sum(" + IncomeTableContents.INCOME_DEPOSIT + ")," +
-                " sum(" + IncomeTableContents.INCOME_TAX + ") " +
-                "FROM " + IncomeTableContents.INCOME_TABLE +
-                " WHERE " + IncomeTableContents.TEAM_LEADER + "  LIKE  '%" + search +
-                "%' ORDER BY id DESC ";
-
-        Cursor cusSearch = sqLiteDatabase.rawQuery( selectDateQuery, null );
-        if (cusSearch != null) {
-            int r = cusSearch.getCount();
-            for (int i = 0; i < r; i++) {
-                cusSearch.moveToNext();
-            }
-        } else {
-            cusSearch.close();
-            return null;
-        }
-        return cusSearch;
-    }
-
-    //--- Income Total sum
-    public Cursor sumTotalIncome(){
-        //sqLiteDB = todayDatabase.getReadableDatabase();
-
-        String selectDateQuery = "SELECT sum(" + IncomeTableContents.INCOME_DEPOSIT + ")," +
-                " sum(" + IncomeTableContents.INCOME_TAX + ") " +
-                "FROM " + IncomeTableContents.INCOME_TABLE +
-                " ORDER BY id DESC ";
-
-        Cursor cusSearch = sqLiteDatabase.rawQuery( selectDateQuery, null );
-        if (cusSearch != null) {
-            int r = cusSearch.getCount();
-            for (int i = 0; i < r; i++) {
-                cusSearch.moveToNext();
-            }
-        } else {
-            cusSearch.close();
-            return null;
-        }
-        return cusSearch;
-    }
-    */
 
 }

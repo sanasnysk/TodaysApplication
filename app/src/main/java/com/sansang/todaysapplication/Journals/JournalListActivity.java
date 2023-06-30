@@ -92,6 +92,8 @@ public class JournalListActivity extends AppCompatActivity {
         journalAdapter = new JournalAdapter(this, cursor);
         recyclerView.setAdapter(journalAdapter);
         journalAdapter.notifyDataSetChanged();
+
+        journalController.close();
     }
 
     @Override

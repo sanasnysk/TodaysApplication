@@ -24,9 +24,10 @@ public class SiteController {
         context = con;
     }
 
-    public void open() throws SQLException{
+    public SiteController open() throws SQLException{
         todayDatabase = new TodayDatabase(context);
         sqLiteDatabase = todayDatabase.getWritableDatabase();
+        return this;
     }
 
     public void close(){

@@ -99,6 +99,8 @@ public class SiteEditActivity extends AppCompatActivity {
         etxt_tmLeader = findViewById(R.id.tmLeader_st_edit_etxt);
         etxt_sid = findViewById(R.id.sId_edit_etxt);
 
+        txt_dialog_spinner = findViewById(R.id.dialog_spinner_txt);
+
         etxt_stName.requestFocus();
 
         etxt_stDate.setText(dateTime());
@@ -145,6 +147,8 @@ public class SiteEditActivity extends AppCompatActivity {
         etxt_stMemo.setText(memo);
         etxt_tmLeader.setText(leader);
         etxt_tmId.setText(tmId);
+
+        txt_dialog_spinner.setText(leader);
     }
 
     private void payTextWatcher(){
@@ -290,6 +294,7 @@ public class SiteEditActivity extends AppCompatActivity {
                             }
                         }
                     }
+                    siteController.close();
                 }
 
                 dialog.dismiss();
@@ -329,6 +334,8 @@ public class SiteEditActivity extends AppCompatActivity {
                     siteController.open();
                     siteController.updateSite(sid, stId, name, pay, manager, date, memo, leader,tmId);
 
+                    siteController.close();
+
                     Intent intent_update = new Intent(getApplicationContext(), SiteListActivity.class);
                     startActivity(intent_update);
                     finish();
@@ -341,6 +348,8 @@ public class SiteEditActivity extends AppCompatActivity {
                 if (etxt_sid.length() > 0) {
                     siteController.open();
                     siteController.deleteSite(id);
+
+                    siteController.close();
 
                     Toast.makeText(SiteEditActivity.this,
                             sid + "를 삭제 했습니다.", Toast.LENGTH_LONG).show();

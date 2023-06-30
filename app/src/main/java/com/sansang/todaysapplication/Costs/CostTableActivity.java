@@ -28,7 +28,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.sansang.todaysapplication.Database.TodayDatabase;
 import com.sansang.todaysapplication.DatabaseController.CostController;
-import com.sansang.todaysapplication.DatabaseController.SiteController;
 import com.sansang.todaysapplication.R;
 
 import java.sql.SQLException;
@@ -42,7 +41,6 @@ public class CostTableActivity extends AppCompatActivity {
     private TodayDatabase todayDatabase;
     private SQLiteDatabase sqLiteDatabase;
     private CostController costController;
-    private SiteController siteController;
     private DecimalFormat formatPay = new DecimalFormat("#,###");
 
     @Override
@@ -52,7 +50,6 @@ public class CostTableActivity extends AppCompatActivity {
 
         todayDatabase = new TodayDatabase(this);
         costController = new CostController(this);
-        siteController = new SiteController(this);
 
         initView();
     }
@@ -517,6 +514,7 @@ public class CostTableActivity extends AppCompatActivity {
         }else {
             txt_inputAmount.setText("0 원 ");//--> amount
         }
+        costController.close();
     }
 
     //---EditText Search Journal Data Table
@@ -794,6 +792,7 @@ public class CostTableActivity extends AppCompatActivity {
         }else {
             txt_inputAmount.setText("0 원 ");//--> amount
         }
+        costController.close();
     }
 
     @Override

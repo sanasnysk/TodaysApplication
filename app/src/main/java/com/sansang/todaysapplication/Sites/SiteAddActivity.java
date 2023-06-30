@@ -140,6 +140,7 @@ public class SiteAddActivity extends AppCompatActivity {
             int rid = idNo + r;
             etxt_stId.setText(siteId + rid);
         }
+        siteController.close();
     }
 
     @SuppressLint("ResourceType")
@@ -218,6 +219,7 @@ public class SiteAddActivity extends AppCompatActivity {
                             }
                         }
                     }
+                    siteController.close();
                 }
 
                 dialog.dismiss();
@@ -326,7 +328,10 @@ public class SiteAddActivity extends AppCompatActivity {
 
                     siteController.open();
                     siteController.insertSite(stid,stname,stpay,stmanager,stdate,stmemo,tmleader,tmid);
+
                     Toast.makeText(getApplicationContext(), "새로운 현장을 저장 했습니다.", Toast.LENGTH_SHORT).show();
+
+                    siteController.close();
 
                     Intent intent_site = new Intent(getApplicationContext(), SiteListActivity.class);
                     startActivity(intent_site);

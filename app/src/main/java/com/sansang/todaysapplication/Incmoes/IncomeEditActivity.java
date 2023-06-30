@@ -31,8 +31,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.sansang.todaysapplication.Database.TodayDatabase;
 import com.sansang.todaysapplication.DatabaseController.IncomeController;
-import com.sansang.todaysapplication.DatabaseController.JournalController;
-import com.sansang.todaysapplication.DatabaseController.SiteController;
 import com.sansang.todaysapplication.R;
 
 import java.sql.SQLException;
@@ -52,8 +50,6 @@ public class IncomeEditActivity extends AppCompatActivity {
     private EditText edtxt_id,edtxt_icid, edtxt_date, edtxt_leader, edtxt_deposit, edtxt_tax, edtxt_memo, edtxt_stid, edtxt_tmid;
     private TodayDatabase todayDatabase;
     private IncomeController incomeController;
-    private SiteController siteController;
-    private JournalController journalController;
     private final DecimalFormat decimalFormat = new DecimalFormat("#,###");
     private String result_deposit, result_tax;
     //ListView Dialog
@@ -73,8 +69,6 @@ public class IncomeEditActivity extends AppCompatActivity {
 
         todayDatabase = new TodayDatabase(this);
         incomeController = new IncomeController(this);
-        siteController = new SiteController(this);
-        journalController = new JournalController(this);
 
         initView();
 
@@ -103,6 +97,8 @@ public class IncomeEditActivity extends AppCompatActivity {
         edtxt_memo = findViewById(R.id.edtxt_income_edit_memo);
         edtxt_stid = findViewById(R.id.edtxt_income_edit_stid);
         edtxt_tmid = findViewById(R.id.edtxt_income_edit_tmid);
+
+        dialog_spinner_txt = findViewById(R.id.dialog_spinner_txt);
 
         edtxt_date.setInputType(InputType.TYPE_NULL);
         edtxt_date.setFocusable(false);
@@ -156,6 +152,8 @@ public class IncomeEditActivity extends AppCompatActivity {
         edtxt_memo.setText( memo );
         edtxt_stid.setText( stid );
         edtxt_tmid.setText(tmid);
+
+        dialog_spinner_txt.setText(leader);
     }
 
     private void depositTextWatcher(){
@@ -393,10 +391,11 @@ public class IncomeEditActivity extends AppCompatActivity {
                     }
                     incomeController.updateIncome( id, icid, date, leader, deposit, tax, memo, stid, tmid );
 
+                    incomeController.close();
+
                     Intent intentIncomeupdate = new Intent( getApplicationContext(), IncomeListActivity.class );
                     startActivity( intentIncomeupdate );
                     finish();
-                    incomeController.close();
                 }
                 return true;
 
@@ -410,6 +409,8 @@ public class IncomeEditActivity extends AppCompatActivity {
                         throw new RuntimeException(e);
                     }
                     incomeController.deleteIncome(id);
+
+                    incomeController.close();
 
                     Toast.makeText( IncomeEditActivity.this,
                             "Deleted" + iid, Toast.LENGTH_LONG ).show();

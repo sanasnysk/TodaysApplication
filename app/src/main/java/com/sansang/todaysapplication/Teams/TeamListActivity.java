@@ -80,6 +80,7 @@ public class TeamListActivity extends AppCompatActivity {
         rv_team.setAdapter(teamsAdapter);
         teamsAdapter.notifyDataSetChanged();
 
+        teamController.close();
     }
 
     public void goToMainActivity(){

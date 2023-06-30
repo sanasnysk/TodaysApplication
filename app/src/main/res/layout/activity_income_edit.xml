@@ -154,6 +154,7 @@
             android:padding="3dp"
             android:textAlignment="center"
             android:textSize="18sp"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@id/txt_income_edit_leader"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/txt_income_edit_leader"
@@ -327,14 +328,15 @@
 
         <LinearLayout
             android:id="@+id/dialog_spinner_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
             android:layout_margin="15dp"
             android:background="@drawable/spinner_background"
             android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="@id/txt_income_edit_leader"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/edtxt_income_edit_tmid">
+            app:layout_constraintStart_toEndOf="@id/txt_income_edit_leader"
+            app:layout_constraintTop_toTopOf="@+id/txt_income_edit_leader">
 
             <TextView
                 android:id="@+id/dialog_spinner_txt"
@@ -343,7 +345,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_weight="3.5"
                 android:padding="10dp"
-                android:text="@string/select_leader"
+                android:text="@string/siteSpinner"
                 android:textAlignment="center"
                 android:textSize="20sp"
                 android:textStyle="bold"

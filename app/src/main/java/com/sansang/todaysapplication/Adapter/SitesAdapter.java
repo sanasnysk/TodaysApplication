@@ -42,10 +42,16 @@ public class SitesAdapter extends RecyclerView.Adapter<SitesAdapter.ViewHolder> 
 
     @SuppressLint("SetTextI18n,RecyclerView")
     public void onBindViewHolder(@NonNull SitesAdapter.ViewHolder holder, int position ) {
+        formatPay = new DecimalFormat("#,###");
+
         holder.site_name.setText(mList.get(position).getSiteName());
         holder.site_leader.setText(mList.get(position).getTeamLeader());
         holder.site_date.setText(mList.get(position).getSiteDate());
         holder.site_pay.setText(mList.get(position).getSitePay());
+
+        int pay = Integer.parseInt(holder.site_pay.getText().toString());
+        String pay_format = formatPay.format(pay);
+        holder.site_pay.setText(pay_format);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

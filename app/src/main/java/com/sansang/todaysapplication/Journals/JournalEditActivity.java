@@ -45,7 +45,7 @@ public class JournalEditActivity extends AppCompatActivity {
     private int mYear, mMonth, mDay, mHour, mMinute;
     long mNow;
     Date mDate;
-    private EditText edtxt_id, edtxt_jnid,edtxt_date, edtxt_Site, edtxt_one, edtxt_Pay,  edtxt_Amount, edtxt_memo, edtxt_stid,edtxt_leader,edtxt_tmid;
+    private EditText edtxt_id, edtxt_jnid, edtxt_date, edtxt_Site, edtxt_one, edtxt_Pay, edtxt_Amount, edtxt_memo, edtxt_stid, edtxt_leader, edtxt_tmid;
     private TodayDatabase todayDatabase;
     private JournalController journalController;
     //ListView Dialog
@@ -84,16 +84,18 @@ public class JournalEditActivity extends AppCompatActivity {
 
         //--- findView
         edtxt_id = findViewById(R.id.edxt_edit_journal_id);
-        edtxt_jnid = findViewById( R.id.edxt_edit_journal_jnid );
-        edtxt_date = findViewById( R.id.edxt_edit_journal_date );
-        edtxt_Site = findViewById( R.id.edxt_edit_journal_site );
-        edtxt_one = findViewById( R.id.edxt_edit_journal_one );
-        edtxt_Pay = findViewById( R.id.edxt_edit_journal_pay );
-        edtxt_Amount = findViewById( R.id.edxt_edit_journal_amount );
-        edtxt_memo = findViewById( R.id.edxt_edit_journal_memo );
-        edtxt_stid = findViewById( R.id.edxt_edit_journal_stid );
-        edtxt_leader = findViewById( R.id.edxt_edit_journal_tmleader );
-        edtxt_tmid = findViewById( R.id.edxt_edit_journal_tmid );
+        edtxt_jnid = findViewById(R.id.edxt_edit_journal_jnid);
+        edtxt_date = findViewById(R.id.edxt_edit_journal_date);
+        edtxt_Site = findViewById(R.id.edxt_edit_journal_site);
+        edtxt_one = findViewById(R.id.edxt_edit_journal_one);
+        edtxt_Pay = findViewById(R.id.edxt_edit_journal_pay);
+        edtxt_Amount = findViewById(R.id.edxt_edit_journal_amount);
+        edtxt_memo = findViewById(R.id.edxt_edit_journal_memo);
+        edtxt_stid = findViewById(R.id.edxt_edit_journal_stid);
+        edtxt_leader = findViewById(R.id.edxt_edit_journal_tmleader);
+        edtxt_tmid = findViewById(R.id.edxt_edit_journal_tmid);
+
+        dialog_spinner_txt = findViewById(R.id.dialog_spinner_txt);
 
         edtxt_Pay.setText("0");
         edtxt_Amount.setText("0");
@@ -107,60 +109,13 @@ public class JournalEditActivity extends AppCompatActivity {
         edtxt_date.setText(dateTime());
 
         //--> Comma in
-        edtxt_Pay.addTextChangedListener( new NumberTextWatcher( edtxt_Pay ) );
-        edtxt_Amount.addTextChangedListener( new NumberTextWatcher( edtxt_Amount ) );
+        edtxt_Pay.addTextChangedListener(new NumberTextWatcher(edtxt_Pay));
+        edtxt_Amount.addTextChangedListener(new NumberTextWatcher(edtxt_Amount));
 
         //intent Result
         intentResult();
-
-        //----- One day add Text Changed Listener -----
-        edtxt_one.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (edtxt_one == null) {
-                    //Do nothing
-                    float soneday = 0;
-                    int pay = Integer.parseInt( edtxt_Pay.getText().toString() );
-                    int amount = (int) (soneday * pay);
-                    edtxt_Amount.setText( String.valueOf( amount ) );
-
-                } else if (edtxt_one.length() > 0) {
-
-                    float oneday = Float.parseFloat( s.toString() );
-
-                    String sPay = edtxt_Pay.getText().toString().replace( ",", "" );
-                    int pay = Integer.parseInt(sPay);
-
-                    int amount = (int) (oneday * pay);
-                    edtxt_Amount.setText( String.valueOf( amount ) );
-                } else {
-                    //Do nothing
-                }
-
-            }
-
-            @Override
-            public void afterTextChanged( Editable s) {
-            }
-        } );
-
-        //----- EditText Journal Date On Click Listener -----
-        edtxt_date.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Get Current Date
-                final Calendar c = Calendar.getInstance();
-                mYear = c.get( Calendar.YEAR );
-                mMonth = c.get( Calendar.MONTH );
-                mDay = c.get( Calendar.DAY_OF_MONTH );
-
-                dateChange();
-            }
-        } );
+        dateChange();
+        oneAddTextChangedListener();
 
         //ListView Dialog
         dialog_spinner_txt = findViewById(R.id.dialog_spinner_txt);
@@ -174,39 +129,78 @@ public class JournalEditActivity extends AppCompatActivity {
 
     }
 
-    public void goToSiteListActivity(){
+    public void goToSiteListActivity() {
         Intent intent = new Intent(getApplicationContext(), JournalListActivity.class);
         startActivity(intent);
         finish();
     }
 
-    public void intentResult(){
+    public void intentResult() {
         //--- Result Intent Data
         Intent positionIntent = getIntent();
 
-        int id = positionIntent.getExtras().getInt( "id" ); // int 형
-        String jid = positionIntent.getExtras().getString( "jnid" ); //String 형
-        String date = positionIntent.getExtras().getString( "date" );
-        String site = positionIntent.getExtras().getString( "site" );
-        float oneday = positionIntent.getExtras().getFloat( "oneDay" );
-        int pay = positionIntent.getExtras().getInt( "pay" );
-        int amount = positionIntent.getExtras().getInt( "amount" );
-        String memo = positionIntent.getExtras().getString( "memo" );
-        String stid = positionIntent.getExtras().getString( "stid" );
-        String leader = positionIntent.getExtras().getString( "leader" );
-        String tmid = positionIntent.getExtras().getString( "tmid" );
+        int id = positionIntent.getExtras().getInt("id"); // int 형
+        String jid = positionIntent.getExtras().getString("jnid"); //String 형
+        String date = positionIntent.getExtras().getString("date");
+        String site = positionIntent.getExtras().getString("site");
+        float oneday = positionIntent.getExtras().getFloat("oneDay");
+        int pay = positionIntent.getExtras().getInt("pay");
+        int amount = positionIntent.getExtras().getInt("amount");
+        String memo = positionIntent.getExtras().getString("memo");
+        String stid = positionIntent.getExtras().getString("stid");
+        String leader = positionIntent.getExtras().getString("leader");
+        String tmid = positionIntent.getExtras().getString("tmid");
 
-        edtxt_id.setText( String.valueOf( id ) );
-        edtxt_jnid.setText( jid );
-        edtxt_date.setText( date );
-        edtxt_Site.setText( site );
-        edtxt_one.setText( String.valueOf( oneday ) );
-        edtxt_Pay.setText( String.valueOf( pay ) );
-        edtxt_Amount.setText( String.valueOf( amount ) );
-        edtxt_memo.setText( memo );
-        edtxt_stid.setText( stid );
+        edtxt_id.setText(String.valueOf(id));
+        edtxt_jnid.setText(jid);
+        edtxt_date.setText(date);
+        edtxt_Site.setText(site);
+        edtxt_one.setText(String.valueOf(oneday));
+        edtxt_Pay.setText(String.valueOf(pay));
+        edtxt_Amount.setText(String.valueOf(amount));
+        edtxt_memo.setText(memo);
+        edtxt_stid.setText(stid);
         edtxt_leader.setText(leader);
         edtxt_tmid.setText(tmid);
+
+        dialog_spinner_txt.setText(site);
+    }
+
+    private void oneAddTextChangedListener() {
+        //----- One day add Text Changed Listener -----
+        edtxt_one.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (edtxt_one == null) {
+                    //Do nothing
+                    float soneday = 0;
+                    int pay = Integer.parseInt(edtxt_Pay.getText().toString());
+                    int amount = (int) (soneday * pay);
+                    edtxt_Amount.setText(String.valueOf(amount));
+
+                } else if (edtxt_one.length() > 0) {
+
+                    float oneday = Float.parseFloat(s.toString());
+
+                    String sPay = edtxt_Pay.getText().toString().replace(",", "");
+                    int pay = Integer.parseInt(sPay);
+
+                    int amount = (int) (oneday * pay);
+                    edtxt_Amount.setText(String.valueOf(amount));
+                } else {
+                    //Do nothing
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
     }
 
     @SuppressLint("SimpleDateFormat")
@@ -218,7 +212,7 @@ public class JournalEditActivity extends AppCompatActivity {
         return mFormat.format(mDate);
     }
 
-    private void dateChange(){
+    private void dateChange() {
         edtxt_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -234,30 +228,30 @@ public class JournalEditActivity extends AppCompatActivity {
 
     //----- DatePickerDialog -----
     private void DatePickerDialog() {
-        DatePickerDialog datePickerDialog = new DatePickerDialog( this,
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this,
                 new DatePickerDialog.OnDateSetListener() {
 
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         //for
                         Calendar calendar = Calendar.getInstance();
-                        calendar.set( year, month, dayOfMonth );
-                        year = calendar.get( Calendar.YEAR );
-                        month = calendar.get( Calendar.MONTH ) + 1;
-                        dayOfMonth = calendar.get( Calendar.DAY_OF_MONTH );
+                        calendar.set(year, month, dayOfMonth);
+                        year = calendar.get(Calendar.YEAR);
+                        month = calendar.get(Calendar.MONTH) + 1;
+                        dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
                         @SuppressLint("DefaultLocale")
-                        String startDate = String.format( "%d-%02d-%02d", year, month, dayOfMonth );
+                        String startDate = String.format("%d-%02d-%02d", year, month, dayOfMonth);
 
-                        edtxt_date.setText( startDate );
+                        edtxt_date.setText(startDate);
                     }
-                }, mYear, mMonth, mDay );
+                }, mYear, mMonth, mDay);
 
         datePickerDialog.show();
     }
 
     @SuppressLint("ResourceType")
-    private void showAlertDialog(){
+    private void showAlertDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
         View view = inflater.inflate(R.layout.alert_dialog, null);
@@ -279,15 +273,14 @@ public class JournalEditActivity extends AppCompatActivity {
 
         String[] item_data = data.toArray(new String[0]);
         int size = 0;
-        for (String temp:data){
+        for (String temp : data) {
             item_data[size++] = temp;
         }
         text = item_data;
 
         dialogItemList = new ArrayList<>();
 
-        for(int i=0;i<data.size();i++)
-        {
+        for (int i = 0; i < data.size(); i++) {
             Map<String, Object> itemMap = new HashMap<>();
             itemMap.put(TAG_IMAGE, image[0]);
             itemMap.put(TAG_TEXT, text[i]);
@@ -297,7 +290,7 @@ public class JournalEditActivity extends AppCompatActivity {
 
         SimpleAdapter simpleAdapter = new SimpleAdapter(getApplicationContext(), dialogItemList, R.layout.alert_dialog_row,
                 new String[]{TAG_IMAGE, TAG_TEXT},
-                new int[]{R.id.alertDialogItemImageView, R.id.alertDialogItemTextView} );
+                new int[]{R.id.alertDialogItemImageView, R.id.alertDialogItemTextView});
 
         listview.setAdapter(simpleAdapter);
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -312,14 +305,14 @@ public class JournalEditActivity extends AppCompatActivity {
                     //Do nothing....
                 } else {
                     // Showing selected spinner item
-                    Toast.makeText( parent.getContext(), "You selected: " + site,
-                            Toast.LENGTH_SHORT ).show();
+                    Toast.makeText(parent.getContext(), "You selected: " + site,
+                            Toast.LENGTH_SHORT).show();
 
-                    edtxt_Site.setText( site );
+                    edtxt_Site.setText(site);
 
                     // outer for loop
                     //---Data Edit Site_Name Team_Leader Daily_Pay 출력
-                    final Cursor cus = journalController.siteSpinnerResult( site );
+                    final Cursor cus = journalController.siteSpinnerResult(site);
                     final int rows = cus.getCount();
                     final int clums = cus.getColumnCount();
 
@@ -332,12 +325,12 @@ public class JournalEditActivity extends AppCompatActivity {
 
                             if (rows == 0) {
                                 return;
-                            } else if (cus.moveToPosition( p )) {
+                            } else if (cus.moveToPosition(p)) {
 
-                                String tleader = cus.getString( 0 );
-                                edtxt_leader.setText( tleader );
-                                String spay = cus.getString( 1 );
-                                edtxt_Pay.setText( spay);
+                                String tleader = cus.getString(0);
+                                edtxt_leader.setText(tleader);
+                                String spay = cus.getString(1);
+                                edtxt_Pay.setText(spay);
                                 String stId = cus.getString(2);
                                 edtxt_stid.setText(stId);
                                 String tmId = cus.getString(3);
@@ -352,20 +345,21 @@ public class JournalEditActivity extends AppCompatActivity {
 
                     if (edtxt_one == null) {
                         float soneday = 0;
-                        int pay = Integer.parseInt( edtxt_Pay.getText().toString().replace( ",", "" ) );
+                        int pay = Integer.parseInt(edtxt_Pay.getText().toString().replace(",", ""));
                         float amount = soneday * pay;
-                        edtxt_Amount.setText( String.valueOf( amount ) );
+                        edtxt_Amount.setText(String.valueOf(amount));
 
                     } else if (edtxt_one.length() > 0) {
 
-                        float oneday = Float.parseFloat( edtxt_one.getText().toString() );
-                        int pay = Integer.parseInt( edtxt_Pay.getText().toString().replace( ",", "" ) );
+                        float oneday = Float.parseFloat(edtxt_one.getText().toString());
+                        int pay = Integer.parseInt(edtxt_Pay.getText().toString().replace(",", ""));
                         int amount = (int) (oneday * pay);
-                        edtxt_Amount.setText( String.valueOf( amount ) );
+                        edtxt_Amount.setText(String.valueOf(amount));
 
                     } else {
                         //Do nothing
                     }
+                    journalController.close();
                 }
                 dialog.dismiss();
             }
@@ -378,7 +372,7 @@ public class JournalEditActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu( Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.edit_toolbar_menu, menu);
 
         return true;
@@ -386,24 +380,23 @@ public class JournalEditActivity extends AppCompatActivity {
 
     @SuppressLint("NonConstantResourceId")
     @Override
-    public boolean onOptionsItemSelected( MenuItem item) {
-        switch (item.getItemId())
-        {
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
             case R.id.toolbar_edit_update:
                 if (edtxt_date.length() == 0 || edtxt_Site.length() == 0) {
-                    Toast.makeText( JournalEditActivity.this,
-                            "날짜와 이름을 입력하세요?", Toast.LENGTH_LONG ).show();
+                    Toast.makeText(JournalEditActivity.this,
+                            "날짜와 이름을 입력하세요?", Toast.LENGTH_LONG).show();
                 } else if (edtxt_one.length() == 0) {
-                    Toast.makeText( JournalEditActivity.this,
-                            "일량을 입력하세요?", Toast.LENGTH_SHORT ).show();
+                    Toast.makeText(JournalEditActivity.this,
+                            "일량을 입력하세요?", Toast.LENGTH_SHORT).show();
                 } else {
                     String id = edtxt_id.getText().toString();
                     String jnid = edtxt_jnid.getText().toString();
                     String date = edtxt_date.getText().toString();
                     String site = edtxt_Site.getText().toString();
                     String day = edtxt_one.getText().toString();
-                    String pay = edtxt_Pay.getText().toString().replace( ",", "" );
-                    String amount = edtxt_Amount.getText().toString().replace( ",", "" );
+                    String pay = edtxt_Pay.getText().toString().replace(",", "");
+                    String amount = edtxt_Amount.getText().toString().replace(",", "");
                     String memo = edtxt_memo.getText().toString();
                     String sid = edtxt_stid.getText().toString();
                     String tleader = edtxt_leader.getText().toString();
@@ -414,13 +407,15 @@ public class JournalEditActivity extends AppCompatActivity {
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
-                    journalController.updateJournalData(id, jnid,date,site,day,pay,amount,memo,sid,tleader,tid );
+                    journalController.updateJournalData(id, jnid, date, site, day, pay, amount, memo, sid, tleader, tid);
+
+                    journalController.close();
 
                     Toast.makeText(getApplicationContext(),
                             "일지 내용을 수정 했습니다.", Toast.LENGTH_SHORT).show();
 
-                    Intent intent_update = new Intent( getApplicationContext(), JournalListActivity.class );
-                    startActivity( intent_update );
+                    Intent intent_update = new Intent(getApplicationContext(), JournalListActivity.class);
+                    startActivity(intent_update);
                     finish();
                 }
                 return true;
@@ -435,6 +430,8 @@ public class JournalEditActivity extends AppCompatActivity {
                         throw new RuntimeException(e);
                     }
                     journalController.deleteJournalData(id);
+
+                    journalController.close();
 
                     Toast.makeText(JournalEditActivity.this,
                             site + "를 삭제 했습니다.", Toast.LENGTH_LONG).show();
@@ -452,8 +449,8 @@ public class JournalEditActivity extends AppCompatActivity {
             case R.id.toolbar_close_update:
                 Toast.makeText(getApplicationContext(),
                         "일지 수정을 종료합니다.", Toast.LENGTH_SHORT).show();
-                Intent intent_update = new Intent( getApplicationContext(), JournalListActivity.class );
-                startActivity( intent_update );
+                Intent intent_update = new Intent(getApplicationContext(), JournalListActivity.class);
+                startActivity(intent_update);
                 finish();
                 return true;
 

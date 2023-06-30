@@ -28,7 +28,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.sansang.todaysapplication.Database.TodayDatabase;
 import com.sansang.todaysapplication.DatabaseController.JournalController;
-import com.sansang.todaysapplication.DatabaseController.SiteController;
 import com.sansang.todaysapplication.R;
 
 import java.sql.SQLException;
@@ -44,7 +43,6 @@ public class JournalTableActivity extends AppCompatActivity {
     private TodayDatabase todayDatabase;
     private SQLiteDatabase sqLiteDatabase;
     private JournalController journalController;
-    private SiteController siteController;
     private TableLayout table_journal;
     private DecimalFormat formatDouble;
     private  DecimalFormat formatPay;
@@ -56,7 +54,6 @@ public class JournalTableActivity extends AppCompatActivity {
 
         todayDatabase = new TodayDatabase(this);
         journalController = new JournalController(this);
-        siteController = new SiteController(this);
 
         initView();
 
@@ -282,6 +279,7 @@ public class JournalTableActivity extends AppCompatActivity {
                 }else {
                     //Do nothing
                 }
+                journalController.close();
             }
 
             @Override
@@ -327,7 +325,7 @@ public class JournalTableActivity extends AppCompatActivity {
                 }else {
                     //Do nothing
                 }
-
+                journalController.close();
             }
         } );
     }
@@ -924,6 +922,7 @@ public class JournalTableActivity extends AppCompatActivity {
             String formatted_inputAmount = formatPay.format( amount );
             txt_inputAmount.setText( formatted_inputAmount + "원" );
         }
+        journalController.close();
 
     }
 
@@ -954,6 +953,7 @@ public class JournalTableActivity extends AppCompatActivity {
             txt_inputDay.setText( 0 );
             txt_inputAmount.setText( 0 );
         }
+        journalController.close();
     }
 
     @Override

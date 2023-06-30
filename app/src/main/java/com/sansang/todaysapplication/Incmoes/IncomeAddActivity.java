@@ -28,8 +28,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.sansang.todaysapplication.Database.TodayDatabase;
 import com.sansang.todaysapplication.DatabaseController.IncomeController;
-import com.sansang.todaysapplication.DatabaseController.JournalController;
-import com.sansang.todaysapplication.DatabaseController.SiteController;
 import com.sansang.todaysapplication.NumberTextWatcher.NumberTextWatcher;
 import com.sansang.todaysapplication.R;
 
@@ -49,8 +47,6 @@ public class IncomeAddActivity extends AppCompatActivity {
     private EditText edtxt_icid, edtxt_date, edtxt_leader, edtxt_deposit, edtxt_tax, edtxt_memo,edtxt_stid,edtxt_tmid;
     private TodayDatabase todayDatabase;
     private IncomeController incomeController;
-    private SiteController siteController;
-    private JournalController journalController;
     //ListView Dialog
     private Button btn_spinner_down;
     private TextView dialog_spinner_txt;
@@ -67,8 +63,6 @@ public class IncomeAddActivity extends AppCompatActivity {
 
         todayDatabase = new TodayDatabase(this);
         incomeController = new IncomeController(this);
-        siteController = new SiteController(this);
-        journalController = new JournalController(this);
 
         initView();
 
@@ -143,6 +137,7 @@ public class IncomeAddActivity extends AppCompatActivity {
             int rid = idNo + r;
             edtxt_icid.setText(incomeid + rid);
         }
+        incomeController.close();
     }
 
     public void textChangedListener(){
@@ -337,6 +332,8 @@ public class IncomeAddActivity extends AppCompatActivity {
                         throw new RuntimeException(e);
                     }
                     incomeController.insertIncome( incId, incDate, incLeader, incDeposit, incTax, incMemo, incStid, incTmid );
+
+                    incomeController.close();
 
                     Toast.makeText(getApplicationContext(),
                             "수입 내용을  추가", Toast.LENGTH_SHORT).show();

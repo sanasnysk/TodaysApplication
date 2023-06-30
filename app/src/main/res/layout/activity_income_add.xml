@@ -14,298 +14,320 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/layout_add_1"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout_income_add"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="5dp"
+        android:layout_marginTop="52dp"
         android:layout_marginEnd="5dp"
-        android:layout_marginTop="48dp"
         android:background="@color/yellow_light"
-        android:baselineAligned="false"
-        android:orientation="horizontal"
-        android:weightSum="4"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/custom_tb"
-        tools:ignore="DisableBaselineAlignment,UselessLeaf">
+        app:layout_constraintTop_toBottomOf="@+id/custom_tb">
+
+        <TextView
+            android:id="@+id/txt_income_add_icid"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/text_background"
+            android:padding="3dp"
+            android:text="@string/icid"
+            android:textAlignment="center"
+            android:textColor="@color/teal_700"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@id/edtxt_income_add_icid"
+            app:layout_constraintHorizontal_bias="0.016"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TextContrastCheck" />
+
+        <EditText
+            android:id="@+id/edtxt_income_add_icid"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:hint="@string/income_id"
+            android:inputType="text"
+            android:padding="3dp"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@id/txt_income_add_icid"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/txt_income_add_icid"
+            app:layout_constraintTop_toTopOf="@id/txt_income_add_icid"
+            tools:ignore="Autofill,DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/txt_income_add_date"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/text_background"
+            android:padding="3dp"
+            android:text="@string/day"
+            android:textAlignment="center"
+            android:textColor="@color/teal_700"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@id/edtxt_income_add_date"
+            app:layout_constraintHorizontal_bias="0.016"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_income_add_icid"
+            tools:ignore="TextContrastCheck" />
+
+        <EditText
+            android:id="@+id/edtxt_income_add_date"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:hint="@string/income_date"
+            android:inputType="text"
+            android:padding="3dp"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@id/txt_income_add_date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/txt_income_add_date"
+            app:layout_constraintTop_toTopOf="@id/txt_income_add_date"
+            tools:ignore="Autofill,DuplicateSpeakableTextCheck,TextFields,TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/txt_income_add_leader"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/text_background"
+            android:padding="3dp"
+            android:text="@string/leaders"
+            android:textAlignment="center"
+            android:textColor="@color/teal_700"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@id/edtxt_income_add_leader"
+            app:layout_constraintHorizontal_bias="0.016"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_income_add_date"
+            tools:ignore="TextContrastCheck" />
+
+        <EditText
+            android:id="@+id/edtxt_income_add_leader"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:hint="@string/team_leader"
+            android:inputType="text"
+            android:padding="3dp"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@id/txt_income_add_leader"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/txt_income_add_leader"
+            app:layout_constraintTop_toTopOf="@id/txt_income_add_leader"
+            tools:ignore="Autofill,DuplicateSpeakableTextCheck,TextFields,TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/txt_income_add_deposit"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/text_background"
+            android:padding="3dp"
+            android:text="@string/deposit"
+            android:textAlignment="center"
+            android:textColor="@color/teal_700"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@id/edtxt_income_add_deposit"
+            app:layout_constraintHorizontal_bias="0.016"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_income_add_leader"
+            tools:ignore="TextContrastCheck" />
+
+        <EditText
+            android:id="@+id/edtxt_income_add_deposit"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:hint="@string/income_deposit"
+            android:inputType="number"
+            android:padding="3dp"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@id/txt_income_add_deposit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/txt_income_add_deposit"
+            app:layout_constraintTop_toTopOf="@id/txt_income_add_deposit"
+            tools:ignore="Autofill,DuplicateSpeakableTextCheck,TextFields,TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/txt_income_add_tax"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/text_background"
+            android:padding="3dp"
+            android:text="@string/taxs"
+            android:textAlignment="center"
+            android:textColor="@color/teal_700"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@id/edtxt_income_add_tax"
+            app:layout_constraintHorizontal_bias="0.016"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_income_add_deposit"
+            tools:ignore="TextContrastCheck" />
+
+        <EditText
+            android:id="@+id/edtxt_income_add_tax"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:hint="@string/income_tax"
+            android:inputType="number"
+            android:padding="3dp"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@id/txt_income_add_tax"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/txt_income_add_tax"
+            app:layout_constraintTop_toTopOf="@id/txt_income_add_tax"
+            tools:ignore="Autofill,DuplicateSpeakableTextCheck,TextFields,TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/txt_income_add_memo"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/text_background"
+            android:padding="3dp"
+            android:text="@string/memos"
+            android:textAlignment="center"
+            android:textColor="@color/teal_700"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@id/edtxt_income_add_memo"
+            app:layout_constraintHorizontal_bias="0.016"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_income_add_tax"
+            tools:ignore="TextContrastCheck" />
+
+        <EditText
+            android:id="@+id/edtxt_income_add_memo"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:hint="@string/income_memo"
+            android:inputType="text"
+            android:padding="3dp"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@id/txt_income_add_memo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/txt_income_add_memo"
+            app:layout_constraintTop_toTopOf="@id/txt_income_add_memo"
+            tools:ignore="Autofill,DuplicateSpeakableTextCheck,TextFields,TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/txt_income_add_stid"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/text_background"
+            android:padding="3dp"
+            android:text="@string/stid"
+            android:textAlignment="center"
+            android:textColor="@color/teal_700"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@id/edtxt_income_add_stid"
+            app:layout_constraintHorizontal_bias="0.016"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_income_add_memo"
+            tools:ignore="TextContrastCheck" />
+
+        <EditText
+            android:id="@+id/edtxt_income_add_stid"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:hint="@string/site_id"
+            android:inputType="text"
+            android:padding="3dp"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@id/txt_income_add_stid"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/txt_income_add_stid"
+            app:layout_constraintTop_toTopOf="@id/txt_income_add_stid"
+            tools:ignore="Autofill,DuplicateSpeakableTextCheck,TextFields,TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/txt_income_add_tmid"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/text_background"
+            android:padding="3dp"
+            android:text="@string/tmid"
+            android:textAlignment="center"
+            android:textColor="@color/teal_700"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@id/edtxt_income_add_tmid"
+            app:layout_constraintHorizontal_bias="0.016"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_income_add_stid"
+            tools:ignore="TextContrastCheck" />
+
+        <EditText
+            android:id="@+id/edtxt_income_add_tmid"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:hint="@string/team_id"
+            android:inputType="text"
+            android:padding="3dp"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@id/txt_income_add_tmid"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/txt_income_add_tmid"
+            app:layout_constraintTop_toTopOf="@id/txt_income_add_tmid"
+            tools:ignore="Autofill,DuplicateSpeakableTextCheck,TextFields,TouchTargetSizeCheck" />
 
         <LinearLayout
-            android:id="@+id/layout_add_1_1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginEnd="1dp"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            tools:ignore="RtlCompat,UselessParent,VisualLintBounds">
+            android:id="@+id/dialog_spinner_layout"
+            android:layout_width="250dp"
+            android:layout_height="45dp"
+            android:layout_margin="15dp"
+            android:background="@drawable/spinner_background"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="@id/txt_income_add_leader"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/txt_income_add_leader"
+            app:layout_constraintTop_toTopOf="@id/txt_income_add_leader">
 
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/dialog_spinner_txt"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp"
-                android:background="@drawable/text_background"
-                android:importantForAutofill="no"
-                android:padding="3dp"
-                android:text="@string/icid"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="3.5"
+                android:padding="10dp"
+                android:text="@string/siteSpinner"
                 android:textAlignment="center"
-                android:textSize="18sp"
-                tools:ignore="HardcodedText,TextFields,RtlCompat,TextContrastCheck" />
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:ignore="RtlCompat" />
 
-            <TextView
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/btn_spinner_down"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp"
-                android:background="@drawable/text_background"
-                android:importantForAutofill="no"
-                android:padding="3dp"
-                android:text="@string/day"
-                android:textAlignment="center"
-                android:textSize="18sp"
-                tools:ignore="HardcodedText,TextFields,RtlCompat,TextContrastCheck" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp"
-                android:background="@drawable/text_background"
-                android:importantForAutofill="no"
-                android:padding="3dp"
-                android:text="@string/leaders"
-                android:textAlignment="center"
-                android:textSize="18sp"
-                tools:ignore="HardcodedText,TextFields,RtlCompat,TextContrastCheck" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp"
-                android:background="@drawable/text_background"
-                android:importantForAutofill="no"
-                android:padding="3dp"
-                android:text="@string/deposits"
-                android:textAlignment="center"
-                android:textSize="18sp"
-                tools:ignore="HardcodedText,TextFields,RtlCompat,TextContrastCheck" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp"
-                android:background="@drawable/text_background"
-                android:importantForAutofill="no"
-                android:padding="3dp"
-                android:text="@string/taxs"
-                android:textAlignment="center"
-                android:textSize="18sp"
-                tools:ignore="HardcodedText,TextFields,RtlCompat,TextContrastCheck" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp"
-                android:background="@drawable/text_background"
-                android:importantForAutofill="no"
-                android:padding="3dp"
-                android:text="@string/memos"
-                android:textAlignment="center"
-                android:textSize="18sp"
-                tools:ignore="HardcodedText,TextFields,RtlCompat,TextContrastCheck" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp"
-                android:background="@drawable/text_background"
-                android:importantForAutofill="no"
-                android:padding="3dp"
-                android:text="@string/stid"
-                android:textAlignment="center"
-                android:textSize="18sp"
-                tools:ignore="HardcodedText,TextFields,RtlCompat,TextContrastCheck" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp"
-                android:background="@drawable/text_background"
-                android:importantForAutofill="no"
-                android:padding="3dp"
-                android:text="@string/tmid"
-                android:textAlignment="center"
-                android:textSize="18sp"
-                tools:ignore="HardcodedText,TextFields,RtlCompat,TextContrastCheck" />
+                android:layout_gravity="center_vertical"
+                android:layout_weight=".5"
+                android:background="@drawable/ic_dropdown"
+                tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck,ImageContrastCheck" />
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/layout_add_1_2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginEnd="10dp"
-            android:layout_weight="3"
-            android:orientation="vertical"
-            tools:ignore="RtlCompat">
-
-            <EditText
-                android:id="@+id/edtxt_income_add_icid"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp"
-                android:focusable="false"
-                android:hint="@string/income_id"
-                android:inputType="text"
-                android:padding="3dp"
-                android:textAlignment="center"
-                android:textSize="18sp"
-                tools:ignore="Autofill,DuplicateSpeakableTextCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
-
-            <EditText
-                android:id="@+id/edtxt_income_add_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp"
-                android:focusable="false"
-                android:hint="@string/income_date"
-                android:inputType="text"
-                android:padding="3dp"
-                android:textAlignment="center"
-                android:textSize="18sp"
-                tools:ignore="Autofill,DuplicateSpeakableTextCheck,TextFields,TouchTargetSizeCheck,VisualLintTextFieldSize" />
-
-            <EditText
-                android:id="@+id/edtxt_income_add_leader"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp"
-                android:enabled="true"
-                android:focusable="false"
-                android:hint="@string/team_leader"
-                android:inputType="text"
-                android:padding="3dp"
-                android:textAlignment="center"
-                android:textSize="18sp"
-                tools:ignore="Autofill,DuplicateSpeakableTextCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
-
-            <EditText
-                android:id="@+id/edtxt_income_add_deposit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp"
-                android:hint="@string/income_deposit"
-                android:inputType="number"
-                android:padding="3dp"
-                android:textAlignment="center"
-                android:textSize="18sp"
-                tools:ignore="Autofill,DuplicateSpeakableTextCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
-
-            <EditText
-                android:id="@+id/edtxt_income_add_tax"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp"
-                android:enabled="true"
-                android:hint="@string/income_tax"
-                android:inputType="number"
-                android:padding="3dp"
-                android:textAlignment="center"
-                android:textSize="18sp"
-                tools:ignore="Autofill,DuplicateSpeakableTextCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
-
-            <EditText
-                android:id="@+id/edtxt_income_add_memo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp"
-                android:enabled="true"
-                android:hint="@string/income_memo"
-                android:inputType="text"
-                android:padding="3dp"
-                android:textAlignment="center"
-                android:textSize="18sp"
-                tools:ignore="Autofill,DuplicateSpeakableTextCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
-
-            <EditText
-                android:id="@+id/edtxt_income_add_stid"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp"
-                android:focusable="false"
-                android:hint="@string/site_id"
-                android:inputType="text"
-                android:padding="3dp"
-                android:textAlignment="center"
-                android:textSize="18sp"
-                tools:ignore="Autofill,DuplicateSpeakableTextCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
-
-            <EditText
-                android:id="@+id/edtxt_income_add_tmid"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp"
-                android:focusable="false"
-                android:hint="@string/team_id"
-                android:inputType="text"
-                android:padding="3dp"
-                android:textAlignment="center"
-                android:textSize="18sp"
-                tools:ignore="Autofill,DuplicateSpeakableTextCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
-
-            <LinearLayout
-                android:id="@+id/dialog_spinner_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:background="@drawable/spinner_background"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/dialog_spinner_txt"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="3.5"
-                    android:padding="10dp"
-                    android:text="@string/select_leader"
-                    android:textAlignment="center"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    tools:ignore="RtlCompat" />
-
-                <Button
-                    android:id="@+id/btn_spinner_down"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight=".5"
-                    android:background="@drawable/ic_dropdown"
-                    tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck,ImageContrastCheck" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

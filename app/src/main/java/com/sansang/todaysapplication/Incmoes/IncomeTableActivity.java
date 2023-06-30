@@ -28,8 +28,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.sansang.todaysapplication.Database.TodayDatabase;
 import com.sansang.todaysapplication.DatabaseController.IncomeController;
-import com.sansang.todaysapplication.DatabaseController.JournalController;
-import com.sansang.todaysapplication.DatabaseController.SiteController;
 import com.sansang.todaysapplication.R;
 
 import java.sql.SQLException;
@@ -42,8 +40,6 @@ public class IncomeTableActivity extends AppCompatActivity {
     private TableLayout income_table;
     private TodayDatabase todayDatabase;
     private SQLiteDatabase sqLiteDatabase;
-    private JournalController journalController;
-    private SiteController siteController;
     private IncomeController incomeController;
     private DecimalFormat formatDouble;
     private DecimalFormat formatPay;
@@ -54,8 +50,6 @@ public class IncomeTableActivity extends AppCompatActivity {
         setContentView(R.layout.activity_income_table);
 
         todayDatabase = new TodayDatabase(this);
-        journalController = new JournalController(this);
-        siteController = new SiteController(this);
         incomeController = new IncomeController(this);
 
         formatDouble = new DecimalFormat("#,###.##");

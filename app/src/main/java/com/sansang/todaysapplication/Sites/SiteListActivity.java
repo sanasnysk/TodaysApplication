@@ -83,6 +83,8 @@ public class SiteListActivity extends AppCompatActivity {
         siteController.open();
         list = siteController.getAllSiteList();
 
+        siteController.close();
+
         sitesAdapter = new SitesAdapter(this.list);
         mRecyclerView.setAdapter(sitesAdapter);
         sitesAdapter.notifyDataSetChanged();

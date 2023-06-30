@@ -137,6 +137,7 @@ public class CostAddActivity extends AppCompatActivity {
             int rid = idNo + r;
             editx_csid.setText(costid + rid);
         }
+        costController.close();
     }
 
     @SuppressLint("MissingInflatedId")
@@ -329,6 +330,8 @@ public class CostAddActivity extends AppCompatActivity {
                         throw new RuntimeException(e);
                     }
                     costController.insertCost( csid, date, site, detail, price, amount, memo, stid );
+
+                    costController.close();
 
                     Toast.makeText(getApplicationContext(),
                             "경비 내용을  추가", Toast.LENGTH_SHORT).show();

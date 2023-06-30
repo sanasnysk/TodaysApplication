@@ -104,6 +104,7 @@ public class TeamAddActivity extends AppCompatActivity {
             int rid = idNo + r;
             etxt_tmid.setText(teamId + rid);
         }
+        teamController.close();
 
     }
 

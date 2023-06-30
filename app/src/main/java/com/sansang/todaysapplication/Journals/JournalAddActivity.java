@@ -84,16 +84,16 @@ public class JournalAddActivity extends AppCompatActivity {
         });
 
         //--- findView
-        etxt_jnId = findViewById( R.id.journal_add_edit_jnid );
-        etxt_date = findViewById( R.id.journal_add_edit_Date );
-        etxt_Site = findViewById( R.id.journal_add_edit_site );
-        etxt_one = findViewById( R.id.journal_add_edit_oneday );
-        etxt_Pay = findViewById( R.id.journal_add_edit_pay );
-        etxt_Amount = findViewById( R.id.journal_add_edit_amount );
-        etxt_Memo = findViewById( R.id.journal_add_edit_memo );
-        etxt_stId = findViewById( R.id.journal_add_edit_stId );
-        etxt_tmLeader = findViewById( R.id.journal_add_edit_tmLeader );
-        etxt_tmId = findViewById( R.id.journal_add_edit_tmId );
+        etxt_jnId = findViewById( R.id.edxt_add_journal_jnid );
+        etxt_date = findViewById( R.id.edxt_add_journal_date );
+        etxt_Site = findViewById( R.id.edxt_add_journal_site );
+        etxt_one = findViewById( R.id.edxt_add_journal_one );
+        etxt_Pay = findViewById( R.id.edxt_add_journal_pay );
+        etxt_Amount = findViewById( R.id.edxt_add_journal_amount );
+        etxt_Memo = findViewById( R.id.edxt_add_journal_memo );
+        etxt_stId = findViewById( R.id.edxt_add_journal_stid );
+        etxt_tmLeader = findViewById( R.id.edxt_add_journal_tmleader );
+        etxt_tmId = findViewById( R.id.edxt_add_journal_tmid );
 
         etxt_Pay.setText("0");
         etxt_Amount.setText("0");
@@ -102,58 +102,12 @@ public class JournalAddActivity extends AppCompatActivity {
 
         etxt_date.setText(dateTime());
 
+        dateChange();
+        oneAddTextChangedListener();
+
         //--> Comma in
         etxt_Pay.addTextChangedListener( new NumberTextWatcher( etxt_Pay ) );
         etxt_Amount.addTextChangedListener( new NumberTextWatcher( etxt_Amount ) );
-
-        //----- One day add Text Changed Listener -----
-        etxt_one.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (etxt_one == null) {
-                    //Do nothing
-                    float soneday = 0;
-                    int pay = Integer.parseInt( etxt_Pay.getText().toString() );
-                    int amount = (int) (soneday * pay);
-                    etxt_Amount.setText( String.valueOf( amount ) );
-
-                } else if (etxt_one.length() > 0) {
-
-                    float oneday = Float.parseFloat( s.toString() );
-
-                    String sPay = etxt_Pay.getText().toString().replace( ",", "" );
-                    int pay = Integer.parseInt(sPay);
-
-                    int amount = (int) (oneday * pay);
-                    etxt_Amount.setText( String.valueOf( amount ) );
-                } else {
-                    //Do nothing
-                }
-
-            }
-
-            @Override
-            public void afterTextChanged( Editable s) {
-            }
-        } );
-
-        //----- EditText Journal Date On Click Listener -----
-        etxt_date.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Get Current Date
-                final Calendar c = Calendar.getInstance();
-                mYear = c.get( Calendar.YEAR );
-                mMonth = c.get( Calendar.MONTH );
-                mDay = c.get( Calendar.DAY_OF_MONTH );
-
-                dateChange();
-            }
-        } );
 
         //ListView Dialog
         dialog_spinner_txt = findViewById(R.id.dialog_spinner_txt);
@@ -194,6 +148,7 @@ public class JournalAddActivity extends AppCompatActivity {
             int rid = r + idNo;
             etxt_jnId.setText(journalid + rid);
         }
+        journalController.close();
     }
 
     @SuppressLint("ResourceType")
@@ -317,7 +272,42 @@ public class JournalAddActivity extends AppCompatActivity {
         //dialog.getWindow().setLayout(900,1200);
     }
 
+    //----- One day add Text Changed Listener -----
+    private void oneAddTextChangedListener(){
+        etxt_one.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (etxt_one == null) {
+                    //Do nothing
+                    float soneday = 0;
+                    int pay = Integer.parseInt( etxt_Pay.getText().toString() );
+                    int amount = (int) (soneday * pay);
+                    etxt_Amount.setText( String.valueOf( amount ) );
+
+                } else if (etxt_one.length() > 0) {
+
+                    float oneday = Float.parseFloat( s.toString() );
+
+                    String sPay = etxt_Pay.getText().toString().replace( ",", "" );
+                    int pay = Integer.parseInt(sPay);
+
+                    int amount = (int) (oneday * pay);
+                    etxt_Amount.setText( String.valueOf( amount ) );
+                } else {
+                    //Do nothing
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged( Editable s) {
+            }
+        } );
+    }
 
     @SuppressLint("SimpleDateFormat")
     private String dateTime() {
@@ -403,6 +393,7 @@ public class JournalAddActivity extends AppCompatActivity {
                         throw new RuntimeException(e);
                     }
                     journalController.insertJournal( jid,date,site,day,pay,amount,memo,sid,tleader,tid );
+                    journalController.close();
 
                     Toast.makeText(getApplicationContext(),
                             "일지 내용을 저장 했습니다.", Toast.LENGTH_SHORT).show();

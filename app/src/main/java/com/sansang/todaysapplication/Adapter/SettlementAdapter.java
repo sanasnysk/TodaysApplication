@@ -56,28 +56,28 @@ public class SettlementAdapter extends RecyclerView.Adapter<SettlementAdapter.Vi
 
         int amount = Integer.parseInt(cursor_m.getString(cursor_m.getColumnIndex("amount")));
         if (amount != 0){
-            holder.edt_amount.setText(String.valueOf(amount));
+            holder.edt_amount.setText(String.valueOf(formatPay.format(amount)));
         }else {
             holder.edt_amount.setText("0");
         }
 
         int cost_a = Integer.parseInt(cursor_m.getString(cursor_m.getColumnIndex("costs")));
         if (cost_a != 0){
-            holder.edt_cost.setText(String.valueOf(cost_a));
+            holder.edt_cost.setText(String.valueOf(formatPay.format(cost_a)));
         }else {
             holder.edt_cost.setText("0");
         }
 
         int deposit_a = Integer.parseInt(cursor_m.getString(cursor_m.getColumnIndex("deposit")));
         if (deposit_a != 0){
-            holder.edt_income.setText(String.valueOf(deposit_a));
+            holder.edt_income.setText(String.valueOf(formatPay.format(deposit_a)));
         }else {
             holder.edt_income.setText("0");
         }
 
         int tax_a = Integer.parseInt(cursor_m.getString(cursor_m.getColumnIndex("tax")));
         if (tax_a != 0){
-            holder.edt_tax.setText(String.valueOf(tax_a));
+            holder.edt_tax.setText(String.valueOf(formatPay.format(tax_a)));
         }else {
             holder.edt_tax.setText("0");
         }

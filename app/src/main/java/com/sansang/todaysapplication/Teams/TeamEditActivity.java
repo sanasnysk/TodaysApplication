@@ -165,6 +165,8 @@ public class TeamEditActivity extends AppCompatActivity {
                     teamController.open();
                     teamController.updateTeam(id,tid,tleader,tmobile,tdate,tmemo);
 
+                    teamController.close();
+
                     Toast.makeText(getApplicationContext(),
                             "팀 정보를 수정 했습니다.", Toast.LENGTH_SHORT).show();
 
@@ -175,8 +177,6 @@ public class TeamEditActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),
                             "팀 정보를 수정하지 못 했습니다.", Toast.LENGTH_SHORT).show();
 
-//                    Intent intent = new Intent(getApplicationContext(), TeamListActivity.class);
-//                    startActivity(intent);
                     finish();
                 }
                 return true;
@@ -188,6 +188,8 @@ public class TeamEditActivity extends AppCompatActivity {
                     teamController.open();
                     teamController.deleteTeam(deleteid);
 
+                    teamController.close();
+
                     Toast.makeText(getApplicationContext(),
                             "팀 정보를 삭제 했습니다.", Toast.LENGTH_SHORT).show();
                     Intent intent_update = new Intent( getApplicationContext(), TeamListActivity.class );
@@ -196,8 +198,6 @@ public class TeamEditActivity extends AppCompatActivity {
                 }else {
                     Toast.makeText(getApplicationContext(),
                             "팀 정보를 삭제하지 못 했습니다.", Toast.LENGTH_SHORT).show();
-//                    Intent intent_update = new Intent( getApplicationContext(), TeamListActivity.class );
-//                    startActivity( intent_update );
                     finish();
                 }
                 return true;

@@ -91,6 +91,8 @@ public class CostEditActivity extends AppCompatActivity {
         edtxt_stid = findViewById( R.id.edtxt_cost_edit_stid );
         edtxt_id = findViewById(R.id.edtxt_cost_edit_id);
 
+        dialog_spinner_txt = findViewById(R.id.dialog_spinner_txt);
+
         //--> EditText 항목 쓰기방지(read-only) or android:focusable="false"
         edtxt_csid.setInputType( InputType.TYPE_NULL );
         edtxt_site.setInputType( InputType.TYPE_NULL );
@@ -145,6 +147,8 @@ public class CostEditActivity extends AppCompatActivity {
         edtxt_amount.setText( String.valueOf( amount ) );
         edtxt_memo.setText( memo );
         edtxt_stid.setText( stid );
+
+        dialog_spinner_txt.setText(site);
     }
 
     @SuppressLint("MissingInflatedId")
@@ -333,6 +337,8 @@ public class CostEditActivity extends AppCompatActivity {
                     }
                     costController.updateCost(id, csid, date, site, detail, price, amount, memo, stid );
 
+                    costController.close();
+
                     Toast.makeText(getApplicationContext(),
                             "경비 내용을 수정", Toast.LENGTH_SHORT).show();
 
@@ -354,6 +360,8 @@ public class CostEditActivity extends AppCompatActivity {
                         throw new RuntimeException(e);
                     }
                     costController.deleteCost(id);
+
+                    costController.close();
 
                     Toast.makeText( CostEditActivity.this,
                             "Deleted" + csid, Toast.LENGTH_LONG ).show();
