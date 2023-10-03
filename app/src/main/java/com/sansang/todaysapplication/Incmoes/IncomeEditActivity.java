@@ -31,6 +31,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.sansang.todaysapplication.Database.TodayDatabase;
 import com.sansang.todaysapplication.DatabaseController.IncomeController;
+import com.sansang.todaysapplication.NumberTextWatcher.NumberTextWatcher_ex;
 import com.sansang.todaysapplication.R;
 
 import java.sql.SQLException;
@@ -41,6 +42,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class IncomeEditActivity extends AppCompatActivity {
@@ -106,8 +108,9 @@ public class IncomeEditActivity extends AppCompatActivity {
         edtxt_date.setText(dateTime());
 
         dateChange();
-        depositTextWatcher();
-        taxTextWatcher();
+        //depositTextWatcher();
+        //taxTextWatcher();
+        textChangedListener();
 
         //ListView Dialog
         dialog_spinner_txt = findViewById(R.id.dialog_spinner_txt);
@@ -202,6 +205,16 @@ public class IncomeEditActivity extends AppCompatActivity {
         };
 
         edtxt_tax.addTextChangedListener(watcher_tax);
+    }
+
+    public void textChangedListener(){
+        //edtxt_price.addTextChangedListener(new NumberTextWatcher(edtxt_price));
+        //edtxt_amount.addTextChangedListener(new NumberTextWatcher(edtxt_amount));
+        Locale locale = new Locale("ko", "KR");
+        int numDecs = 2; // Let's use 2 decimals
+
+        edtxt_deposit.addTextChangedListener(new NumberTextWatcher_ex(edtxt_deposit,locale,numDecs));
+        edtxt_tax.addTextChangedListener(new NumberTextWatcher_ex(edtxt_tax,locale,numDecs));
     }
 
     @SuppressLint("MissingInflatedId")

@@ -117,6 +117,36 @@ public class SiteController {
         return cusSearch;
     }
 
+    // Recycler View List Cursor
+    public Cursor SiteRecyclerViewList(){
+        String srvlQuery = "SELECT  " +
+                SiteTableContents.SITE_ID + "," +
+                SiteTableContents.SITE_STID + "," +
+                SiteTableContents.SITE_NAME + "," +
+                SiteTableContents.SITE_PAY + "," +
+                SiteTableContents.SITE_MANAGER + "," +
+                SiteTableContents.SITE_DATE + "," +
+                SiteTableContents.SITE_MEMO + ", " +
+                SiteTableContents.TEAM_LEADER + "," +
+                SiteTableContents.TEAM_TMID +
+                " FROM " + SiteTableContents.SITE_TABLE +
+                " ORDER BY " + SiteTableContents.SITE_ID + " DESC ";
+
+        Cursor cursor = sqLiteDatabase.rawQuery(srvlQuery, null);
+
+        if (cursor != null){
+            int r = cursor.getCount();
+            for (int i = 0; i < r; i++){
+                cursor.moveToFirst();
+
+            }
+        }else {
+            cursor.close();
+            return null;
+        }
+        return cursor;
+    }
+
     //Recycler View List
     @SuppressLint("Recycle")
     public ArrayList<SiteContents> getAllSiteList(){

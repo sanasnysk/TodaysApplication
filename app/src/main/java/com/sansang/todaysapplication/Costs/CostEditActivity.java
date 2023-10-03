@@ -8,7 +8,10 @@ import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.InputType;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,16 +31,18 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.sansang.todaysapplication.Database.TodayDatabase;
 import com.sansang.todaysapplication.DatabaseController.CostController;
-import com.sansang.todaysapplication.NumberTextWatcher.NumberTextWatcher;
+import com.sansang.todaysapplication.NumberTextWatcher.NumberTextWatcher_ex;
 import com.sansang.todaysapplication.R;
 
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class CostEditActivity extends AppCompatActivity {
@@ -47,6 +52,8 @@ public class CostEditActivity extends AppCompatActivity {
     private EditText edtxt_csid, edtxt_date, edtxt_site, edtxt_detail, edtxt_price, edtxt_amount,edtxt_memo, edtxt_stid, edtxt_id;
     private TodayDatabase todayDatabase;
     private CostController costController;
+    private final DecimalFormat decimalFormat = new DecimalFormat("#,###");
+    private String result="";
     //ListView Dialog
     private Button btn_spinner_down;
     private TextView dialog_spinner_txt;
@@ -102,8 +109,10 @@ public class CostEditActivity extends AppCompatActivity {
 
         edtxt_date.setText(dateTime());
 
-        dateChange();
         textChangedListener();
+        //priceTextWatcher();
+        //amountTextWatcher();
+        dateChange();
         getIntentResult();
 
         //ListView Dialog
@@ -256,9 +265,60 @@ public class CostEditActivity extends AppCompatActivity {
     }
 
     public void textChangedListener(){
-        edtxt_price.addTextChangedListener(new NumberTextWatcher(edtxt_price));
-        edtxt_amount.addTextChangedListener(new NumberTextWatcher(edtxt_amount));
+        //edtxt_price.addTextChangedListener(new NumberTextWatcher(edtxt_price));
+        //edtxt_amount.addTextChangedListener(new NumberTextWatcher(edtxt_amount));
+        Locale locale = new Locale("ko", "KR");
+        int numDecs = 2; // Let's use 2 decimals
 
+        edtxt_price.addTextChangedListener(new NumberTextWatcher_ex(edtxt_price,locale,numDecs));
+        edtxt_amount.addTextChangedListener(new NumberTextWatcher_ex(edtxt_amount,locale,numDecs));
+    }
+
+    private void priceTextWatcher(){
+        //-- 숫자 입력 콤마
+        TextWatcher watcher_price = new TextWatcher() {
+            @Override
+            public void beforeTextChanged( CharSequence s, int start, int count, int after ) {
+
+            }
+            @Override
+            public void onTextChanged( CharSequence s, int start, int before, int count ) {
+                if(!TextUtils.isEmpty(s.toString()) && !s.toString().equals(result)){
+                    result = decimalFormat.format(Double.parseDouble(s.toString().replaceAll(",","")));
+                    edtxt_price.setText(result);
+                    edtxt_price.setSelection(result.length());
+                }
+            }
+            @Override
+            public void afterTextChanged( Editable s ) {
+
+            }
+        };
+
+        edtxt_price.addTextChangedListener(watcher_price);
+    }
+
+    public void amountTextWatcher(){
+        TextWatcher watcher_amount = new TextWatcher() {
+            @Override
+            public void beforeTextChanged( CharSequence s, int start, int count, int after ) {
+
+            }
+            @Override
+            public void onTextChanged( CharSequence s, int start, int before, int count ) {
+                if(!TextUtils.isEmpty(s.toString()) && !s.toString().equals(result)){
+                    result = decimalFormat.format(Double.parseDouble(s.toString().replaceAll(",","")));
+                    edtxt_amount.setText(result);
+                    edtxt_amount.setSelection(result.length());
+                }
+            }
+            @Override
+            public void afterTextChanged( Editable s ) {
+
+            }
+        };
+
+        edtxt_amount.addTextChangedListener(watcher_amount);
     }
 
     @SuppressLint("SimpleDateFormat")

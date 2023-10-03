@@ -298,6 +298,30 @@ public class JournalController {
         return cusAllSite;
     }
 
+    //--- Search Journal
+    public Cursor searchJournal(String search, String start, String end) {
+        sqLiteDatabase = todayDatabase.getReadableDatabase();
+        String selectQuery = " SELECT * FROM " + JournalTableContents.JOURNAL_TABLE +
+                " WHERE (" + JournalTableContents.TEAM_LEADER +
+                " || " + JournalTableContents.SITE_NAME +
+                " || " + JournalTableContents.JOURNAL_MEMO +
+                ")  LIKE  '%" + search + "%' AND " + JournalTableContents.JOURNAL_DATE +
+                " BETWEEN Date('" + start + "') AND Date('" + end + "') " +
+                "ORDER BY " + JournalTableContents.JOURNAL_ID + " DESC ";
+
+        Cursor cusSearch = sqLiteDatabase.rawQuery( selectQuery, null );
+        if (cusSearch != null) {
+            int r = cusSearch.getCount();
+            for (int i = 0; i < r; i++) {
+                cusSearch.moveToNext();
+            }
+        } else {
+            cusSearch.close();
+            return null;
+        }
+        return cusSearch;
+    }
+
     //----------------------------------- end -------------------------------------------------- **
 
 
@@ -346,28 +370,6 @@ public class JournalController {
                 "%' ORDER BY " + JournalTableContents.JOURNAL_ID + " DESC ";
 
         Cursor cusSearch = sqLiteDatabase.rawQuery( selectDateQuery, null );
-        if (cusSearch != null) {
-            int r = cusSearch.getCount();
-            for (int i = 0; i < r; i++) {
-                cusSearch.moveToNext();
-            }
-        } else {
-            cusSearch.close();
-            return null;
-        }
-        return cusSearch;
-    }
-
-    //--- Search Team Journal
-    public Cursor searchTeamJournal(String search, String start, String end) {
-        sqLiteDatabase = todayDatabase.getReadableDatabase();
-        String selectQuery = " SELECT * FROM " + JournalTableContents.JOURNAL_TABLE +
-                " WHERE " + JournalTableContents.TEAM_LEADER +
-                "  LIKE  '%" + search + "%' AND " + JournalTableContents.JOURNAL_DATE +
-                " BETWEEN Date('" + start + "') AND Date('" + end + "') " +
-                "ORDER BY " + JournalTableContents.JOURNAL_ID + " DESC ";
-
-        Cursor cusSearch = sqLiteDatabase.rawQuery( selectQuery, null );
         if (cusSearch != null) {
             int r = cusSearch.getCount();
             for (int i = 0; i < r; i++) {

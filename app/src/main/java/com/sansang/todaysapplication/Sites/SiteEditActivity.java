@@ -31,6 +31,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.sansang.todaysapplication.Database.TodayDatabase;
 import com.sansang.todaysapplication.DatabaseController.SiteController;
+import com.sansang.todaysapplication.NumberTextWatcher.NumberTextWatcher_ex;
 import com.sansang.todaysapplication.R;
 
 import java.text.DecimalFormat;
@@ -40,6 +41,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class SiteEditActivity extends AppCompatActivity {
@@ -106,7 +108,8 @@ public class SiteEditActivity extends AppCompatActivity {
         etxt_stDate.setText(dateTime());
 
         dateChange();
-        payTextWatcher();
+        //payTextWatcher();
+        textChangedListener();
         intentResult();
 
         btn_down = findViewById(R.id.btn_spinner_down);
@@ -173,6 +176,15 @@ public class SiteEditActivity extends AppCompatActivity {
         };
 
         etxt_stPay.addTextChangedListener(watcher_pay);
+    }
+
+    public void textChangedListener(){
+        //edtxt_price.addTextChangedListener(new NumberTextWatcher(edtxt_price));
+        //edtxt_amount.addTextChangedListener(new NumberTextWatcher(edtxt_amount));
+        Locale locale = new Locale("ko", "KR");
+        int numDecs = 2; // Let's use 2 decimals
+
+        etxt_stPay.addTextChangedListener(new NumberTextWatcher_ex(etxt_stPay,locale,numDecs));
     }
 
     @SuppressLint("SimpleDateFormat")

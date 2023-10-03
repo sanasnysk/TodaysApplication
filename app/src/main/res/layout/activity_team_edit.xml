@@ -143,7 +143,7 @@
             android:hint="@string/leader_mobile"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:inputType="number"
+            android:inputType="text"
             android:importantForAutofill="no"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tmMobile_txt"

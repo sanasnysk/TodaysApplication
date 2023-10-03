@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -15,20 +16,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.sansang.todaysapplication.Contents.SiteContents;
 import com.sansang.todaysapplication.R;
 import com.sansang.todaysapplication.Sites.SiteAddActivity;
 import com.sansang.todaysapplication.Sites.SiteTableActivity;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 
 public class SitesAdapter extends RecyclerView.Adapter<SitesAdapter.ViewHolder> {
-    private final ArrayList<SiteContents> mList;
+    private final Context context_m;
+    private final Cursor cursor_m;
     private DecimalFormat formatPay;
 
-    public SitesAdapter(ArrayList<SiteContents> list) {
-        this.mList = list;
+    public SitesAdapter(Context context, Cursor cursor) {
+        this.context_m = context;
+        this.cursor_m = cursor;
     }
 
     @NonNull
@@ -40,18 +41,28 @@ public class SitesAdapter extends RecyclerView.Adapter<SitesAdapter.ViewHolder> 
         return new ViewHolder(view);
     }
 
-    @SuppressLint("SetTextI18n,RecyclerView")
+    @SuppressLint("Range")
     public void onBindViewHolder(@NonNull SitesAdapter.ViewHolder holder, int position ) {
         formatPay = new DecimalFormat("#,###");
 
-        holder.site_name.setText(mList.get(position).getSiteName());
-        holder.site_leader.setText(mList.get(position).getTeamLeader());
-        holder.site_date.setText(mList.get(position).getSiteDate());
-        holder.site_pay.setText(mList.get(position).getSitePay());
-
-        int pay = Integer.parseInt(holder.site_pay.getText().toString());
-        String pay_format = formatPay.format(pay);
-        holder.site_pay.setText(pay_format);
+        if (!cursor_m.moveToPosition(position)){
+            return;
+        }else {
+            String sname = cursor_m.getString(cursor_m.getColumnIndex("siteName"));
+            holder.site_name.setText(sname);
+            String sleader = cursor_m.getString(cursor_m.getColumnIndex("teamLeader"));
+            holder.site_leader.setText(sleader);
+            String sdate = cursor_m.getString(cursor_m.getColumnIndex("Date"));
+            holder.site_date.setText(sdate);
+            String spay = cursor_m.getString(cursor_m.getColumnIndex("pay"));
+            //holder.site_pay.setText(spay);
+            if (spay != null) {
+                int fpay = Integer.parseInt(spay);
+                holder.site_pay.setText(formatPay.format(fpay));
+            } else {
+                holder.site_pay.setText("0");
+            }
+        }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +79,7 @@ public class SitesAdapter extends RecyclerView.Adapter<SitesAdapter.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        return (null != mList ? mList.size():0);
+        return (cursor_m.getCount());
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {

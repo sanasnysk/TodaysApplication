@@ -32,6 +32,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.sansang.todaysapplication.Database.TodayDatabase;
 import com.sansang.todaysapplication.DatabaseController.SiteController;
+import com.sansang.todaysapplication.NumberTextWatcher.NumberTextWatcher_ex;
 import com.sansang.todaysapplication.R;
 
 import java.text.DecimalFormat;
@@ -41,6 +42,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class SiteAddActivity extends AppCompatActivity {
@@ -107,7 +109,8 @@ public class SiteAddActivity extends AppCompatActivity {
         etxt_stDate.setText(dateTime());
 
         dateChange();
-        payTextWatcher();
+        //payTextWatcher();
+        textChangedListener();
 
         btn_down = findViewById(R.id.btn_spinner_down);
         btn_down.setOnClickListener(new View.OnClickListener() {
@@ -278,6 +281,15 @@ public class SiteAddActivity extends AppCompatActivity {
         etxt_stPay.addTextChangedListener(watcher_pay);
     }
 
+    public void textChangedListener(){
+        //edtxt_price.addTextChangedListener(new NumberTextWatcher(edtxt_price));
+        //edtxt_amount.addTextChangedListener(new NumberTextWatcher(edtxt_amount));
+        Locale locale = new Locale("ko", "KR");
+        int numDecs = 2; // Let's use 2 decimals
+
+        etxt_stPay.addTextChangedListener(new NumberTextWatcher_ex(etxt_stPay,locale,numDecs));
+    }
+
     private void DatePickerDialog() {
         DatePickerDialog datePickerDialog = new DatePickerDialog( this,
                 new DatePickerDialog.OnDateSetListener() {
@@ -319,7 +331,7 @@ public class SiteAddActivity extends AppCompatActivity {
                 }else {
                     String stid = etxt_stId.getText().toString().trim();
                     String stname = etxt_stName.getText().toString().trim();
-                    String stpay = etxt_stPay.getText().toString().trim();
+                    String stpay = etxt_stPay.getText().toString().replace(",", "" );
                     String stmanager = etxt_stManager.getText().toString().trim();
                     String stdate = etxt_stDate.getText().toString().trim();
                     String stmemo = etxt_stMemo.getText().toString().trim();

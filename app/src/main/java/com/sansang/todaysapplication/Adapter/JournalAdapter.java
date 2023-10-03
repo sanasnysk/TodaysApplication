@@ -29,7 +29,7 @@ public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.ViewHold
 
     public JournalAdapter( Context context, Cursor cursor ){
         this.context_m = context;
-        cursor_m = cursor;
+        this.cursor_m = cursor;
     }
 
     @NonNull

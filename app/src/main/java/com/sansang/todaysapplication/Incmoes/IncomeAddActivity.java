@@ -28,7 +28,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.sansang.todaysapplication.Database.TodayDatabase;
 import com.sansang.todaysapplication.DatabaseController.IncomeController;
-import com.sansang.todaysapplication.NumberTextWatcher.NumberTextWatcher;
+import com.sansang.todaysapplication.NumberTextWatcher.NumberTextWatcher_ex;
 import com.sansang.todaysapplication.R;
 
 import java.sql.SQLException;
@@ -38,6 +38,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class IncomeAddActivity extends AppCompatActivity {
@@ -141,9 +142,13 @@ public class IncomeAddActivity extends AppCompatActivity {
     }
 
     public void textChangedListener(){
-        edtxt_deposit.addTextChangedListener(new NumberTextWatcher(edtxt_deposit));
-        edtxt_tax.addTextChangedListener(new NumberTextWatcher(edtxt_tax));
+        //edtxt_deposit.addTextChangedListener(new NumberTextWatcher(edtxt_deposit));
+        //edtxt_tax.addTextChangedListener(new NumberTextWatcher(edtxt_tax));
+        Locale locale = new Locale("ko", "KR");
+        int numDecs = 2; // Let's use 2 decimals
 
+        edtxt_deposit.addTextChangedListener(new NumberTextWatcher_ex(edtxt_deposit,locale,numDecs));
+        edtxt_tax.addTextChangedListener(new NumberTextWatcher_ex(edtxt_tax,locale,numDecs));
     }
 
     @SuppressLint("MissingInflatedId")

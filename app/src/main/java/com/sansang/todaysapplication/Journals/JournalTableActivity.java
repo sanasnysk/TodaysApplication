@@ -513,7 +513,7 @@ public class JournalTableActivity extends AppCompatActivity {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        final Cursor cus = journalController.searchSiteJournal( searchSite, startDay, endDay );
+        final Cursor cus = journalController.searchJournal( searchSite, startDay, endDay );
         final int rows = cus.getCount();
         final int columns = cus.getColumnCount();
 

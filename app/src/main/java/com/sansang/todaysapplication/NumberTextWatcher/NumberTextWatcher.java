@@ -49,18 +49,18 @@ public class NumberTextWatcher implements TextWatcher {
 
             String v = s.toString().replace(String.valueOf(df.getDecimalFormatSymbols().getGroupingSeparator()), "");
             Number n = null;
+            int cp = et.getSelectionStart();
             try {
                 n = df.parse(v);
+                if (hasFractionalPart) {
+                    et.setText(df.format(n));
+                } else {
+                    et.setText(dfnd.format(n));
+                }
             } catch (java.text.ParseException e) {
                 e.printStackTrace();
             }
 
-            int cp = et.getSelectionStart();
-            if (hasFractionalPart) {
-                et.setText(df.format(n));
-            } else {
-                et.setText(dfnd.format(n));
-            }
             endlen = et.getText().length();
             int sel = (cp + (endlen - inilen));
             if (sel > 0 && sel <= et.getText().length()) {

@@ -61,23 +61,26 @@ public class SettlementAdapter extends RecyclerView.Adapter<SettlementAdapter.Vi
             holder.edt_amount.setText("0");
         }
 
-        int cost_a = Integer.parseInt(cursor_m.getString(cursor_m.getColumnIndex("costs")));
-        if (cost_a != 0){
-            holder.edt_cost.setText(String.valueOf(formatPay.format(cost_a)));
+        String cost_a = cursor_m.getString(cursor_m.getColumnIndex("costs"));
+        if (cost_a != null){
+            int fcost = Integer.parseInt(cost_a);
+            holder.edt_cost.setText(String.valueOf(formatPay.format(fcost)));
         }else {
             holder.edt_cost.setText("0");
         }
 
-        int deposit_a = Integer.parseInt(cursor_m.getString(cursor_m.getColumnIndex("deposit")));
-        if (deposit_a != 0){
-            holder.edt_income.setText(String.valueOf(formatPay.format(deposit_a)));
+        String deposit_a = cursor_m.getString(cursor_m.getColumnIndex("deposit"));
+        if (deposit_a != null){
+            int fdeposit = Integer.parseInt(deposit_a);
+            holder.edt_income.setText(String.valueOf(formatPay.format(fdeposit)));
         }else {
             holder.edt_income.setText("0");
         }
 
-        int tax_a = Integer.parseInt(cursor_m.getString(cursor_m.getColumnIndex("tax")));
-        if (tax_a != 0){
-            holder.edt_tax.setText(String.valueOf(formatPay.format(tax_a)));
+        String tax_a = cursor_m.getString(cursor_m.getColumnIndex("tax"));
+        if (tax_a != null){
+            int ftax = Integer.parseInt(tax_a);
+            holder.edt_tax.setText(String.valueOf(formatPay.format(ftax)));
         }else {
             holder.edt_tax.setText("0");
         }

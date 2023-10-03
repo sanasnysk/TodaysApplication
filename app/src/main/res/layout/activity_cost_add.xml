@@ -330,7 +330,7 @@
 
             <TextView
                 android:id="@+id/dialog_spinner_txt"
-                android:layout_width="250dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="3.5"
@@ -346,7 +346,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_weight=".5"
+                android:layout_weight="0.5"
                 android:background="@drawable/ic_dropdown"
                 tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck,ImageContrastCheck" />
 
