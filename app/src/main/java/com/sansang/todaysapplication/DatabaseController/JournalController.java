@@ -257,7 +257,7 @@ public class JournalController {
         sqLiteDatabase = todayDatabase.getReadableDatabase();
         List<String> listItem = new ArrayList<String>();
         //-- Select All Query
-        String spinnerQuery = "SELECT * FROM site_table  ORDER BY ID DESC";
+        String spinnerQuery = "SELECT * FROM site_table  ORDER BY siteId DESC";
 
         Cursor curSpinner = sqLiteDatabase.rawQuery( spinnerQuery, null );
 
@@ -276,12 +276,30 @@ public class JournalController {
         return listItem;
     }
 
+    // --- Site Spinner Item Journal Table date DESC
+    public List<String> siteSpinnerLimit(){
+        List<String> listItem = new ArrayList<String>();
+        String stQuery = "SELECT siteName FROM journal_table GROUP BY siteId ORDER BY journalDate DESC LIMIT 20";
+
+        Cursor cursorSite = sqLiteDatabase.rawQuery(stQuery, null);
+        //-- looping through all rows and adding to list
+        if (cursorSite.moveToFirst()){
+            do {
+                listItem.add(cursorSite.getString(0));
+            }while (cursorSite.moveToNext());
+        }
+        cursorSite.close();
+        sqLiteDatabase.close();
+
+        return listItem;
+    }
+
     //----Journal add and update Site Result oneday and dailypay
     public Cursor siteSpinnerResult( String spinSite) {
         sqLiteDatabase = todayDatabase.getReadableDatabase();
-        String siteItemResultQuery = "SELECT " + SiteTableContents.TEAM_LEADER +
+        String siteItemResultQuery = "SELECT " + SiteTableContents.SITE_STID +
                 ", " + SiteTableContents.SITE_PAY +
-                ", " + SiteTableContents.SITE_STID +
+                ", " + SiteTableContents.TEAM_LEADER +
                 ", " + SiteTableContents.TEAM_TMID +
                 " FROM " + SiteTableContents.SITE_TABLE +
                 " where " + SiteTableContents.SITE_NAME + " LIKE '%" + spinSite + "%'";

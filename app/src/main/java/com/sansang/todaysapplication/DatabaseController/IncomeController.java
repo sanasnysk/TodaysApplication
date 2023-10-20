@@ -193,6 +193,24 @@ public class IncomeController {
         return listItem;
     }
 
+    // --- Site Spinner Item Journal Table date DESC
+    public List<String> siteSpinnerLimit(){
+        List<String> listItem = new ArrayList<String>();
+        String stQuery = "SELECT siteName FROM journal_table GROUP BY siteId ORDER BY journalDate DESC LIMIT 20";
+
+        Cursor cursorSite = sqLiteDatabase.rawQuery(stQuery, null);
+        //-- looping through all rows and adding to list
+        if (cursorSite.moveToFirst()){
+            do {
+                listItem.add(cursorSite.getString(0));
+            }while (cursorSite.moveToNext());
+        }
+        cursorSite.close();
+        sqLiteDatabase.close();
+
+        return listItem;
+    }
+
     //----Journal add and update Site Result oneday and dailypay
     public Cursor siteSpinnerResult( String spinSite) {
         sqLiteDatabase = todayDatabase.getReadableDatabase();
