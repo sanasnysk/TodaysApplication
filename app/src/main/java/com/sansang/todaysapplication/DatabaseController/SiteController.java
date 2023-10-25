@@ -129,16 +129,14 @@ public class SiteController {
                 SiteTableContents.SITE_MEMO + ", " +
                 SiteTableContents.TEAM_LEADER + "," +
                 SiteTableContents.TEAM_TMID +
-                " FROM " + SiteTableContents.SITE_TABLE +
-                " ORDER BY " + SiteTableContents.SITE_ID + " DESC ";
+                " FROM " + SiteTableContents.SITE_TABLE + "";
 
         Cursor cursor = sqLiteDatabase.rawQuery(srvlQuery, null);
 
         if (cursor != null){
             int r = cursor.getCount();
             for (int i = 0; i < r; i++){
-                cursor.moveToFirst();
-
+                cursor.moveToNext();
             }
         }else {
             cursor.close();

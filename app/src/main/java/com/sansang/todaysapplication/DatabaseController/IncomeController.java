@@ -173,7 +173,7 @@ public class IncomeController {
 
         List<String> listItem = new ArrayList<String>();
         //-- Select All Query
-        String spinnerQuery = "SELECT siteName  FROM site_table  ORDER BY ID DESC";
+        String spinnerQuery = "SELECT siteName  FROM site_table  ORDER BY id DESC";
         //String spinnerQuery = "SELECT siteName || ' 리더 : ' || teamLeader leader FROM site_table  ORDER BY ID DESC";
 
         Cursor curSpinner = sqLiteDatabase.rawQuery( spinnerQuery, null );

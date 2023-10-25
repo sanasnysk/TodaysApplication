@@ -181,7 +181,7 @@ public class CostController {
         sqLiteDatabase = todayDatabase.getReadableDatabase();
         List<String> listItem = new ArrayList<String>();
         //-- Select All Query
-        String spinnerQuery = "SELECT * FROM site_table  ORDER BY ID DESC";
+        String spinnerQuery = "SELECT * FROM site_table  ORDER BY id DESC";
 
         Cursor curSpinner = sqLiteDatabase.rawQuery(spinnerQuery, null);
 

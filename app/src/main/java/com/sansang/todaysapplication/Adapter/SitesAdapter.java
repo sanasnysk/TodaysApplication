@@ -42,26 +42,28 @@ public class SitesAdapter extends RecyclerView.Adapter<SitesAdapter.ViewHolder> 
     }
 
     @SuppressLint("Range")
+    @Override
     public void onBindViewHolder(@NonNull SitesAdapter.ViewHolder holder, int position ) {
         formatPay = new DecimalFormat("#,###");
 
-        if (!cursor_m.moveToPosition(position)){
+        if (!cursor_m.moveToPosition(position))
             return;
-        }else {
-            String sname = cursor_m.getString(cursor_m.getColumnIndex("siteName"));
-            holder.site_name.setText(sname);
-            String sleader = cursor_m.getString(cursor_m.getColumnIndex("teamLeader"));
-            holder.site_leader.setText(sleader);
-            String sdate = cursor_m.getString(cursor_m.getColumnIndex("Date"));
-            holder.site_date.setText(sdate);
-            String spay = cursor_m.getString(cursor_m.getColumnIndex("pay"));
-            //holder.site_pay.setText(spay);
-            if (spay != null) {
-                int fpay = Integer.parseInt(spay);
-                holder.site_pay.setText(formatPay.format(fpay));
-            } else {
-                holder.site_pay.setText("0");
-            }
+        String sname = cursor_m.getString(cursor_m.getColumnIndex("siteName"));
+        holder.site_name.setText(sname);
+
+        String sleader = cursor_m.getString(cursor_m.getColumnIndex("teamLeader"));
+        holder.site_leader.setText(sleader);
+
+        String sdate = cursor_m.getString(cursor_m.getColumnIndex("Date"));
+        holder.site_date.setText(sdate);
+
+        String spay = cursor_m.getString(cursor_m.getColumnIndex("pay"));
+        //holder.site_pay.setText(spay);
+        if (spay != null) {
+            int fpay = Integer.parseInt(spay);
+            holder.site_pay.setText(formatPay.format(fpay));
+        } else {
+            holder.site_pay.setText("0");
         }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

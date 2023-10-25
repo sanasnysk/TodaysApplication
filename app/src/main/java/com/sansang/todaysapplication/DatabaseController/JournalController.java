@@ -257,7 +257,8 @@ public class JournalController {
         sqLiteDatabase = todayDatabase.getReadableDatabase();
         List<String> listItem = new ArrayList<String>();
         //-- Select All Query
-        String spinnerQuery = "SELECT * FROM site_table  ORDER BY siteId DESC";
+        String spinnerQuery = "SELECT * FROM site_table  ORDER BY id DESC";
+//        String spinnerQuery = "SELECT * FROM site_table";
 
         Cursor curSpinner = sqLiteDatabase.rawQuery( spinnerQuery, null );
 
@@ -267,7 +268,6 @@ public class JournalController {
                 listItem.add(curSpinner.getString(2));
             } while (curSpinner.moveToNext());
         }
-
         //-- closing connection
         curSpinner.close();
         sqLiteDatabase.close();
@@ -279,12 +279,17 @@ public class JournalController {
     // --- Site Spinner Item Journal Table date DESC
     public List<String> siteSpinnerLimit(){
         List<String> listItem = new ArrayList<String>();
-        String stQuery = "SELECT siteName, siteId, sitePay, teamId, teamLeader, max(id)" +
-                " FROM journal_table " +
-                "GROUP BY siteId " +
-                "ORDER BY id DESC LIMIT 20";
+//        String stQuery = "SELECT siteName, siteId, sitePay, teamId, teamLeader, max(id)" +
+//                " FROM journal_table " +
+//                "GROUP BY siteId " +
+//                "ORDER BY id DESC LIMIT 20";
 
-        Cursor cursorSite = sqLiteDatabase.rawQuery(stQuery, null);
+        String sm_query = "SELECT s.siteName,s.siteId,s.pay, s.teamId, s.teamLeader, max(j.id) mid FROM site_table s" +
+                "   LEFT JOIN journal_table j on s.siteId = j.siteId" +
+                "   GROUP BY j.siteId" +
+                "   ORDER By mid DESC LIMIT 20";
+
+        Cursor cursorSite = sqLiteDatabase.rawQuery(sm_query, null);
         //-- looping through all rows and adding to list
         if (cursorSite.moveToFirst()){
             do {

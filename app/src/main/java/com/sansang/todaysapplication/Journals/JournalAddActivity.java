@@ -170,7 +170,7 @@ public class JournalAddActivity extends AppCompatActivity {
         }
 
         // ListView Dropdown elements
-        List<String> data = journalController.siteSpinnerLimit();
+        List<String> data = journalController.getAllSpinnerSite();
 
         String[] item_data = data.toArray(new String[0]);
         int size = 0;

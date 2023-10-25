@@ -3,7 +3,6 @@ package com.sansang.todaysapplication.Sites;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -81,11 +80,7 @@ public class SiteListActivity extends AppCompatActivity {
 
     @SuppressLint("NotifyDataSetChanged")
     private void getSiteRecyclerView(){
-        try {
-            siteController.open();
-        }catch (SQLException se){
-            throw new RuntimeException(se);
-        }
+        siteController.open();
 
         Cursor cursor = siteController.SiteRecyclerViewList();
 
@@ -95,7 +90,6 @@ public class SiteListActivity extends AppCompatActivity {
 
         siteController.close();
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

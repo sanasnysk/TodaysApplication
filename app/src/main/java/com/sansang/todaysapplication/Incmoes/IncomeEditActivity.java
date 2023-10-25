@@ -238,7 +238,7 @@ public class IncomeEditActivity extends AppCompatActivity {
         }
 
         // Spinner Drop down elements
-        List<String> data = incomeController.siteSpinnerLimit();
+        List<String> data = incomeController.getAllSpinnerSite();
 
         String[] item_data = data.toArray(new String[0]);
         int size = 0;

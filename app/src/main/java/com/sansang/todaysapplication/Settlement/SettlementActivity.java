@@ -77,6 +77,7 @@ public class SettlementActivity extends AppCompatActivity {
                 " GROUP BY strftime('%Y', " + IncomeTableContents.INCOME_DATE +
                 ")) i ON iyear = jyear GROUP BY jyear ORDER BY jyear DESC limit 5";
 
+/*
         String setQuery = "SELECT strftime('%Y',journalDate) AS jyear," +
                 " total(oneDay) AS ones," +
                 " sum(journalAmount) AS amount," +
@@ -93,6 +94,8 @@ public class SettlementActivity extends AppCompatActivity {
                 " GROUP BY jyear " +
                 " ORDER BY jyear DESC " +
                 " LIMIT 5";
+
+ */
 
         sqLiteDatabase = todayDatabase.getReadableDatabase();
         Cursor cursor_settlement = sqLiteDatabase.rawQuery(settlementQuery, null);

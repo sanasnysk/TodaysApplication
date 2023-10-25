@@ -171,7 +171,7 @@ public class CostAddActivity extends AppCompatActivity {
         }
 
         // Spinner Drop down elements
-        List<String> data = costController.siteSpinnerLimit();
+        List<String> data = costController.getAllSpinnerSite();
 
         String[] item_data = data.toArray(new String[0]);
         int size = 0;
