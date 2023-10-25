@@ -279,7 +279,10 @@ public class JournalController {
     // --- Site Spinner Item Journal Table date DESC
     public List<String> siteSpinnerLimit(){
         List<String> listItem = new ArrayList<String>();
-        String stQuery = "SELECT siteName FROM journal_table GROUP BY siteId ORDER BY journalDate DESC LIMIT 20";
+        String stQuery = "SELECT siteName, siteId, sitePay, teamId, teamLeader, max(id)" +
+                " FROM journal_table " +
+                "GROUP BY siteId " +
+                "ORDER BY id DESC LIMIT 20";
 
         Cursor cursorSite = sqLiteDatabase.rawQuery(stQuery, null);
         //-- looping through all rows and adding to list
@@ -307,8 +310,10 @@ public class JournalController {
         Cursor cusAllSite = sqLiteDatabase.rawQuery( siteItemResultQuery, null );
         if (cusAllSite.moveToFirst()) {
             do {
-                cusAllSite.getString( 0 );
-                cusAllSite.getString( 1 );
+                cusAllSite.getString(0);
+                cusAllSite.getString(1);
+                cusAllSite.getString(2);
+                cusAllSite.getString(3);
             } while (cusAllSite.moveToNext());
         }
         cusAllSite.moveToFirst();

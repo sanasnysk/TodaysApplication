@@ -226,13 +226,14 @@ public class CostAddActivity extends AppCompatActivity {
                             if (rows == 0) {
                                 return;
                             } else if (cus.moveToPosition( p )) {
-
-                                String siteName = cus.getString( 0 );
-                                edtxt_site.setText( siteName );
-                                String spay = cus.getString( 1 );
-                                //etxt_Pay.setText( spay);
-                                String stId = cus.getString(2);
+                                String stId = cus.getString(0);
                                 edtxt_stid.setText(stId);
+
+                                String siteName = cus.getString( 1 );
+                                edtxt_site.setText( siteName );
+
+                                String spay = cus.getString( 2 );
+                                //etxt_Pay.setText( spay);
 
                                 edtxt_detail.requestFocus();
 

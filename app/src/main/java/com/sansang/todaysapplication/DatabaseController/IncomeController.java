@@ -196,7 +196,10 @@ public class IncomeController {
     // --- Site Spinner Item Journal Table date DESC
     public List<String> siteSpinnerLimit(){
         List<String> listItem = new ArrayList<String>();
-        String stQuery = "SELECT siteName FROM journal_table GROUP BY siteId ORDER BY journalDate DESC LIMIT 20";
+        String stQuery = "SELECT siteName, siteId, sitePay, teamId, teamLeader, max(id)" +
+                " FROM journal_table " +
+                "GROUP BY siteId " +
+                "ORDER BY id DESC LIMIT 20";
 
         Cursor cursorSite = sqLiteDatabase.rawQuery(stQuery, null);
         //-- looping through all rows and adding to list
@@ -214,19 +217,22 @@ public class IncomeController {
     //----Journal add and update Site Result oneday and dailypay
     public Cursor siteSpinnerResult( String spinSite) {
         sqLiteDatabase = todayDatabase.getReadableDatabase();
-        String siteItemResultQuery = "SELECT " + SiteTableContents.TEAM_LEADER +
+        String siteItemResultQuery = "SELECT " + SiteTableContents.SITE_STID +
+                ", " + SiteTableContents.SITE_NAME +
                 ", " + SiteTableContents.SITE_PAY +
-                ", " + SiteTableContents.SITE_STID +
+                ", " + SiteTableContents.TEAM_LEADER +
                 ", " + SiteTableContents.TEAM_TMID +
                 " FROM " + SiteTableContents.SITE_TABLE +
-                " where " + SiteTableContents.SITE_NAME +
-                " LIKE '%" + spinSite + "%'";
+                " where " + SiteTableContents.SITE_NAME + " LIKE '%" + spinSite + "%'";
 
         Cursor cusAllSite = sqLiteDatabase.rawQuery( siteItemResultQuery, null );
         if (cusAllSite.moveToFirst()) {
             do {
-                cusAllSite.getString( 0 );
-                cusAllSite.getString( 1 );
+                cusAllSite.getString(0);
+                cusAllSite.getString(1);
+                cusAllSite.getString(2);
+                cusAllSite.getString(3);
+                cusAllSite.getString(4);
             } while (cusAllSite.moveToNext());
         }
         cusAllSite.moveToFirst();

@@ -52,7 +52,7 @@ public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.ViewHold
         holder.site_name.setText(site);
 
         String tday = cursor_m.getString(cursor_m.getColumnIndex("ones"));
-        float fday = Float.parseFloat(tday);
+        double fday = Double.parseDouble(tday);
         String day_format = formatday.format(fday);
         holder.site_total_day.setText(day_format);
 

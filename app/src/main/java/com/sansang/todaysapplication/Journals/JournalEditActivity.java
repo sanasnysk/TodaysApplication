@@ -327,12 +327,15 @@ public class JournalEditActivity extends AppCompatActivity {
                                 return;
                             } else if (cus.moveToPosition(p)) {
 
-                                String tleader = cus.getString(0);
-                                edtxt_leader.setText(tleader);
+                                String stId = cus.getString(0);
+                                edtxt_stid.setText(stId);
+
                                 String spay = cus.getString(1);
                                 edtxt_Pay.setText(spay);
-                                String stId = cus.getString(2);
-                                edtxt_stid.setText(stId);
+
+                                String tleader = cus.getString(2);
+                                edtxt_leader.setText(tleader);
+
                                 String tmId = cus.getString(3);
                                 edtxt_tmid.setText(tmId);
 

@@ -227,14 +227,19 @@ public class IncomeAddActivity extends AppCompatActivity {
                             if (rows == 0) {
                                 return;
                             } else if (cus.moveToPosition( p )) {
-
-                                String tleader = cus.getString( 0 );
-                                edtxt_leader.setText( tleader );
-                                String spay = cus.getString( 1 );
-                                //etxt_Pay.setText( spay);
-                                String stId = cus.getString(2);
+                                String stId = cus.getString(0);
                                 edtxt_stid.setText(stId);
-                                String tmId = cus.getString(3);
+
+                                String sName = cus.getString( 1 );
+                                //edtxt_site.setText( sName );
+
+                                String spay = cus.getString( 2 );
+                                //etxt_Pay.setText( spay);
+
+                                String tleader = cus.getString( 3 );
+                                edtxt_leader.setText( tleader );
+
+                                String tmId = cus.getString(4);
                                 edtxt_tmid.setText(tmId);
 
                                 edtxt_deposit.requestFocus();

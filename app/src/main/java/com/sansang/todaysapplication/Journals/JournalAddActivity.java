@@ -229,12 +229,15 @@ public class JournalAddActivity extends AppCompatActivity {
                                 return;
                             } else if (cus.moveToPosition( p )) {
 
-                                String tleader = cus.getString( 0 );
-                                etxt_tmLeader.setText( tleader );
+                                String stId = cus.getString(0);
+                                etxt_stId.setText(stId);
+
                                 String spay = cus.getString( 1 );
                                 etxt_Pay.setText( spay);
-                                String stId = cus.getString(2);
-                                etxt_stId.setText(stId);
+
+                                String tleader = cus.getString( 2 );
+                                etxt_tmLeader.setText( tleader );
+
                                 String tmId = cus.getString(3);
                                 etxt_tmId.setText(tmId);
 
