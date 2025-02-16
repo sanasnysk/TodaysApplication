@@ -22,6 +22,7 @@ import com.sansang.todaysapplication.DatabaseController.CostController;
 import com.sansang.todaysapplication.MainActivity;
 import com.sansang.todaysapplication.R;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class CostListActivity extends AppCompatActivity {
@@ -37,7 +38,11 @@ public class CostListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cost_list);
 
-        todayDatabase = new TodayDatabase(this);
+        try {
+            todayDatabase = new TodayDatabase(this);
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
         costController = new CostController(this);
 
         initView();

@@ -19,6 +19,8 @@ import com.sansang.todaysapplication.Database.JournalTableContents;
 import com.sansang.todaysapplication.Database.TodayDatabase;
 import com.sansang.todaysapplication.R;
 
+import java.io.IOException;
+
 public class SettlementActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
@@ -66,16 +68,16 @@ public class SettlementActivity extends AppCompatActivity {
                 ") as jyear, total(" + JournalTableContents.JOURNAL_ONE +
                 ") as ones, sum(" + JournalTableContents.JOURNAL_AMOUNT +
                 ") as amount, costs, deposit, tax FROM " + JournalTableContents.JOURNAL_TABLE +
-                " j LEFT JOIN (SELECT strftime('%Y', " + CostTableContents.COST_DATE +
+                " as j LEFT JOIN (SELECT strftime('%Y', " + CostTableContents.COST_DATE +
                 ") as cyear, sum(" + CostTableContents.COST_AMOUNT +
                 ") as costs FROM " + CostTableContents.COST_TABLE +
                 " GROUP BY strftime('%Y', " + CostTableContents.COST_DATE +
-                ")) c ON cyear = jyear LEFT JOIN (SELECT strftime('%Y'," + IncomeTableContents.INCOME_DATE +
+                ")) as c ON cyear = jyear LEFT JOIN (SELECT strftime('%Y'," + IncomeTableContents.INCOME_DATE +
                 ") as iyear, sum(" + IncomeTableContents.INCOME_DEPOSIT +
                 ") as deposit, sum(" + IncomeTableContents.INCOME_TAX +
                 ") as tax FROM " + IncomeTableContents.INCOME_TABLE +
                 " GROUP BY strftime('%Y', " + IncomeTableContents.INCOME_DATE +
-                ")) i ON iyear = jyear GROUP BY jyear ORDER BY jyear DESC limit 5";
+                ")) as i ON iyear = jyear GROUP BY jyear ORDER BY jyear DESC";
 
 /*
         String setQuery = "SELECT strftime('%Y',journalDate) AS jyear," +

@@ -12,6 +12,7 @@ public class TodayDatabase extends SQLiteOpenHelper {
     private final Context context;
 
     public TodayDatabase(Context context) {
+
         super(context, context.getExternalFilesDir(DATABASE_NAME) +
                 File.separator + "/database/" +
                 File.separator + DATABASE_NAME, null, DATABASE_VERSION);
@@ -42,4 +43,5 @@ public class TodayDatabase extends SQLiteOpenHelper {
             //Database on current version
         }
     }
+
 }

@@ -10,6 +10,7 @@ import com.sansang.todaysapplication.Database.JournalTableContents;
 import com.sansang.todaysapplication.Database.SiteTableContents;
 import com.sansang.todaysapplication.Database.TodayDatabase;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,11 @@ public class CostController {
     }
 
     public CostController open() throws SQLException {
-        todayDatabase = new TodayDatabase(context);
+        try {
+            todayDatabase = new TodayDatabase(context);
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
         sqLiteDatabase = todayDatabase.getWritableDatabase();
         return this;
     }

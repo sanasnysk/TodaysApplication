@@ -23,6 +23,8 @@ import com.sansang.todaysapplication.Database.JournalTableContents;
 import com.sansang.todaysapplication.Database.TodayDatabase;
 import com.sansang.todaysapplication.R;
 
+import java.io.IOException;
+
 public class IncomeListActivity extends AppCompatActivity {
     private RecyclerView recyclerView_income;
     private IncomeAdapter incomeAdapter;

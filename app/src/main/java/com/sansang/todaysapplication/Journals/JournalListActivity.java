@@ -22,6 +22,7 @@ import com.sansang.todaysapplication.Database.TodayDatabase;
 import com.sansang.todaysapplication.DatabaseController.JournalController;
 import com.sansang.todaysapplication.R;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class JournalListActivity extends AppCompatActivity {

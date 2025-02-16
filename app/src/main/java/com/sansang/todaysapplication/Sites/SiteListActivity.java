@@ -22,6 +22,7 @@ import com.sansang.todaysapplication.Database.TodayDatabase;
 import com.sansang.todaysapplication.DatabaseController.SiteController;
 import com.sansang.todaysapplication.R;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class SiteListActivity extends AppCompatActivity {

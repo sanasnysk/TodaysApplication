@@ -34,6 +34,7 @@ import com.sansang.todaysapplication.DatabaseController.CostController;
 import com.sansang.todaysapplication.NumberTextWatcher.NumberTextWatcher_ex;
 import com.sansang.todaysapplication.R;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -68,7 +69,11 @@ public class CostEditActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cost_edit);
 
-        todayDatabase = new TodayDatabase(this);
+        try {
+            todayDatabase = new TodayDatabase(this);
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
         costController = new CostController(this);
 
         initView();
